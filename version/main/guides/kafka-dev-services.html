@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 
 
@@ -11,8 +11,33 @@
   <title>Dev Services for Kafka - main - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://analytics.ossupstream.org https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://analytics.ossupstream.org; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://analytics.ossupstream.org * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://analytics.ossupstream.org/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://analytics.ossupstream.org/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://player.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -51,7 +76,6 @@
   
   <link rel="alternate" hreflang="x-default" href="https://quarkus.io/" />  
   <script src="/assets/javascript/tracking.js"></script>
-  <script src="https://analytics.ossupstream.org/matomo.js" async defer></script>
   
   <script src="/assets/javascript/colormode.js" type="text/javascript"></script>
 
@@ -76,11 +100,13 @@
         <span href="/about/">Why<i class="fas fa-chevron-down"></i></span>
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
-          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
           <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/versatility" class="">VERSATILITY</a></li>
+          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>  
+          <li><a href="/spring" class="">USING SPRING?</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -88,6 +114,7 @@
         <ul class="submenu">
           <li><a href="/get-started" class="">GET STARTED</a></li>
           <li><a href="/guides" class="active">DOCUMENTATION</a></li>
+          <li><a href="/userstories/" class="">USER STORIES</a></li>  
           <li><a href="/qtips" class="">"Q" TIP VIDEOS</a></li>          
           <li><a href="/books" class="">BOOKS</a></li>
           </ul>
@@ -108,6 +135,7 @@
           <li><a href="/support/" class="">SUPPORT</a></li>
           <li><a href="/blog" class="">BLOG</a></li>
           <li><a href="/discussion" class="">DISCUSSION</a></li>
+          <li><a href="/working-groups" class="">WORKING GROUPS</a></li>
           <li><a href="/insights" class="">PODCAST</a></li>
           <li><a href="/events" class="">EVENTS</a></li>
           <li><a href="/newsletter" class="">NEWSLETTER</a></li>
@@ -144,6 +172,7 @@
 
 
 
+
 <section class="full-width-version-bg flexfilterbar guides">
   <div class="guideflexcontainer">
     <div class="docslink">
@@ -161,7 +190,15 @@
         
         
         
-        <option value="latest" >3.11.1 - Latest</option>
+        <option value="latest" >3.24.4 - Latest</option>
+        
+        
+        
+        <option value="3.20" >3.20</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -178,10 +215,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -191,7 +224,7 @@
   <div class="grid-wrapper">
     <div class="grid__item width-8-12 width-12-12-m">
       
-      <a class="editlink" href="https://github.com/quarkusio/quarkus/edit/main/docs/src/main/asciidoc/_versions/main/guides/kafka-dev-services.adoc">Edit this Page</a>
+      <a class="editlink" href="https://github.com/quarkusio/quarkus/edit/main/docs/src/main/asciidoc/kafka-dev-services.adoc">Edit this Page</a>
       
       <h1 class="text-caps">Dev Services for Kafka </h1>
       <div id="preamble">
@@ -287,13 +320,13 @@ You can set the port by configuring the <code>quarkus.kafka.devservices.port</co
 <h2 id="configuring-the-image"><a class="anchor" href="#configuring-the-image"></a>Configuring the image</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Dev Services for Kafka supports <a href="https://redpanda.com">Redpanda</a>, <a href="https://github/ozangunalp/kafka-native">kafka-native</a>
+<p>Dev Services for Kafka supports <a href="https://redpanda.com">Redpanda</a>, <a href="https://github.com/ozangunalp/kafka-native">kafka-native</a>
 and <a href="https://strimzi.io">Strimzi</a> (in <a href="https://github.com/apache/kafka/blob/trunk/config/kraft/README.md">Kraft</a> mode)  images.</p>
 </div>
 <div class="paragraph">
 <p><strong>Redpanda</strong> is a Kafka compatible event streaming platform.
-Because it provides a fast startup times, dev services defaults to Redpanda images from <code>vectorized/redpanda</code>.
-You can select any version from <a href="https://hub.docker.com/r/vectorized/redpanda" class="bare">https://hub.docker.com/r/vectorized/redpanda</a>.</p>
+Because it provides a fast startup times, Dev Services defaults to Redpanda images from <code>redpandadata/redpanda</code>.
+You can select any version from <a href="https://hub.docker.com/r/redpandadata/redpanda" class="bare">https://hub.docker.com/r/redpandadata/redpanda</a>.</p>
 </div>
 <div class="paragraph">
 <p><strong>kafka-native</strong> provides images of standard Apache Kafka distribution compiled to native binary using Quarkus and GraalVM.
@@ -332,10 +365,16 @@ Strimzi container images run "genuine" Kafka broker on JVM, which is slower to s
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can configure the Dev Services for Kafka to create topics once the broker is started.
-Topics are created with given number of partitions and 1 replica.</p>
+Topics are created with given number of partitions and 1 replica.
+The syntax is the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.kafka.devservices.topic-partitions.&lt;topic-name&gt;=&lt;number-of-partitions&gt;</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>The following example creates a topic named <code>test</code> with 3 partitions, and a second topic named <code>messages</code> with 2 partitions.</p>
+<p>The following example creates a topic named <code>test</code> with three partitions, and a second topic named <code>messages</code> with two partitions.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -378,6 +417,381 @@ Redpanda transactions does not support exactly-once processing.
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="Compose"><a class="anchor" href="#Compose"></a>Compose</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Kafka Dev Services supports <a href="compose-dev-services">Compose Dev Services</a>.
+It relies on a <code>compose-devservices.yml</code>, such as:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: &lt;application name&gt;
+services:
+  kafka:
+    image: apache/kafka-native:3.9.0
+    restart: "no"
+    ports:
+      - '9092'
+    labels:
+      io.quarkus.devservices.compose.exposed_ports: /etc/kafka/docker/ports
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_NUM_PARTITIONS: 3
+    command: "/kafka.sh"
+    volumes:
+      - './kafka.sh:/kafka.sh'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the broker to advertise its externally accessible address to clients, it requires an additional file <code>kafka.sh</code> as described in <a href="compose-dev-services#exposing-port-mappings-to-running-containers">Exposing port mappings to running containers</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration-reference-devservices"><a class="anchor" href="#configuration-reference-devservices"></a>Configuration reference</h2>
+<div class="sectionbody">
+<div class="paragraph configuration-legend">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> Configuration property fixed at build time - All other configuration properties are overridable at runtime</p>
+</div>
+<table class="tableblock frame-all grid-all stretch configuration-reference configuration-reference-all-rows">
+<colgroup>
+<col style="width: 80%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><span class="header-title">Configuration property</span></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-enabled"></a> <span class="property-path"><a href="#quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-enabled"><code>quarkus.kafka.devservices.enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.kafka.devservices.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>If Dev Services for Kafka has been explicitly enabled or disabled. Dev Services are generally enabled by default, unless there is an existing configuration present. For Kafka, Dev Services starts a broker unless <code>kafka.bootstrap.servers</code> is set or if all the Reactive Messaging Kafka channel are configured with a <code>bootstrap.servers</code>.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-62971">QUARKUS_KAFKA_DEVSERVICES_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-62971" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-port"></a> <span class="property-path"><a href="#quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-port"><code>quarkus.kafka.devservices.port</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.kafka.devservices.port' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Optional fixed port the dev service will listen to.</p>
+</div>
+<div class="paragraph">
+<p>If not defined, the port will be chosen randomly.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-62972">QUARKUS_KAFKA_DEVSERVICES_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-62972" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-provider"></a> <span class="property-path"><a href="#quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-provider"><code>quarkus.kafka.devservices.provider</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.kafka.devservices.provider' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Kafka dev service container type.</p>
+</div>
+<div class="paragraph">
+<p>Redpanda, Strimzi and kafka-native container providers are supported. Default is redpanda.</p>
+</div>
+<div class="paragraph">
+<p>For Redpanda: See <a href="https://docs.redpanda.com/current/get-started/quick-start/" class="bare">https://docs.redpanda.com/current/get-started/quick-start/</a> and <a href="https://hub.docker.com/r/redpandadata/redpanda" class="bare">https://hub.docker.com/r/redpandadata/redpanda</a></p>
+</div>
+<div class="paragraph">
+<p>For Strimzi: See <a href="https://github.com/strimzi/test-container" class="bare">https://github.com/strimzi/test-container</a> and <a href="https://quay.io/repository/strimzi-test-container/test-container" class="bare">https://quay.io/repository/strimzi-test-container/test-container</a></p>
+</div>
+<div class="paragraph">
+<p>For Kafka Native: See <a href="https://github.com/ozangunalp/kafka-native" class="bare">https://github.com/ozangunalp/kafka-native</a> and <a href="https://quay.io/repository/ogunalp/kafka-native" class="bare">https://quay.io/repository/ogunalp/kafka-native</a></p>
+</div>
+<div class="paragraph">
+<p>Note that Strimzi and Kafka Native images are launched in Kraft mode.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-62973">QUARKUS_KAFKA_DEVSERVICES_PROVIDER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-62973" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>redpanda</code>, <code>strimzi</code>, <code>kafka-native</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>redpanda</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-image-name"></a> <span class="property-path"><a href="#quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-image-name"><code>quarkus.kafka.devservices.image-name</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.kafka.devservices.image-name' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The Kafka container image to use.</p>
+</div>
+<div class="paragraph">
+<p>Dependent on the provider.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-62974">QUARKUS_KAFKA_DEVSERVICES_IMAGE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-62974" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-shared"></a> <span class="property-path"><a href="#quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-shared"><code>quarkus.kafka.devservices.shared</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.kafka.devservices.shared' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Indicates if the Kafka broker managed by Quarkus Dev Services is shared. When shared, Quarkus looks for running containers using label-based service discovery. If a matching container is found, it is used, and so a second one is not started. Otherwise, Dev Services for Kafka starts a new container.</p>
+</div>
+<div class="paragraph">
+<p>The discovery uses the <code>quarkus-dev-service-kafka</code> label. The value is configured using the <code>service-name</code> property.</p>
+</div>
+<div class="paragraph">
+<p>Container sharing is only used in dev mode.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-62975">QUARKUS_KAFKA_DEVSERVICES_SHARED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-62975" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-service-name"></a> <span class="property-path"><a href="#quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-service-name"><code>quarkus.kafka.devservices.service-name</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.kafka.devservices.service-name' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The value of the <code>quarkus-dev-service-kafka</code> label attached to the started container. This property is used when <code>shared</code> is set to <code>true</code>. In this case, before starting a container, Dev Services for Kafka looks for a container with the <code>quarkus-dev-service-kafka</code> label set to the configured value. If found, it will use this container instead of starting a new one. Otherwise, it starts a new container with the <code>quarkus-dev-service-kafka</code> label set to the specified value.</p>
+</div>
+<div class="paragraph">
+<p>This property is used when you need multiple shared Kafka brokers.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-62976">QUARKUS_KAFKA_DEVSERVICES_SERVICE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-62976" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>kafka</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-topic-partitions-topic-name"></a> <span class="property-path"><a href="#quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-topic-partitions-topic-name"><code>quarkus.kafka.devservices.topic-partitions."topic-name"</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.kafka.devservices.topic-partitions."topic-name"' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The topic-partition pairs to create in the Dev Services Kafka broker. After the broker is started, given topics with partitions are created, skipping already existing topics. For example, <code>quarkus.kafka.devservices.topic-partitions.my-topic=2</code> will create a topic named <code>test</code> with 2 partitions.</p>
+</div>
+<div class="paragraph">
+<p>The topic creation will not try to re-partition existing topics with different number of partitions.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-62977">QUARKUS_KAFKA_DEVSERVICES_TOPIC_PARTITIONS__TOPIC_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-62977" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Map&lt;String,Integer&gt;</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-topic-partitions-timeout"></a> <span class="property-path"><a href="#quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-topic-partitions-timeout"><code>quarkus.kafka.devservices.topic-partitions-timeout</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.kafka.devservices.topic-partitions-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Timeout for admin client calls used in topic creation.</p>
+</div>
+<div class="paragraph">
+<p>Defaults to 2 seconds.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-62978">QUARKUS_KAFKA_DEVSERVICES_TOPIC_PARTITIONS_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-62978" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-kafka-client_quarkus-kafka-devservices"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>2S</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-container-env-environment-variable-name"></a> <span class="property-path"><a href="#quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-container-env-environment-variable-name"><code>quarkus.kafka.devservices.container-env."environment-variable-name"</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.kafka.devservices.container-env."environment-variable-name"' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Environment variables that are passed to the container.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-62979">QUARKUS_KAFKA_DEVSERVICES_CONTAINER_ENV__ENVIRONMENT_VARIABLE_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-62979" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Map&lt;String,String&gt;</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-redpanda-transaction-enabled"></a> <span class="property-path"><a href="#quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-redpanda-transaction-enabled"><code>quarkus.kafka.devservices.redpanda.transaction-enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.kafka.devservices.redpanda.transaction-enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Enables transaction support. Also enables the producer idempotence. Find more info about Redpanda transaction support on <a href="https://vectorized.io/blog/fast-transactions/">https://vectorized.io/blog/fast-transactions/</a>. Notice that <a href="https://cwiki.apache.org/confluence/display/KAFKA/KIP-447%3A+Producer+scalability+for+exactly+once+semantics">KIP-447 (producer scalability for exactly once semantic)</a> and <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=89068820">KIP-360 (Improve reliability of idempotent/transactional producer)</a> are <em>not</em> supported.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-62980">QUARKUS_KAFKA_DEVSERVICES_REDPANDA_TRANSACTION_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-62980" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-redpanda-proxy-port"></a> <span class="property-path"><a href="#quarkus-kafka-client_quarkus-kafka-devservices_quarkus-kafka-devservices-redpanda-proxy-port"><code>quarkus.kafka.devservices.redpanda.proxy-port</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.kafka.devservices.redpanda.proxy-port' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Port to access the Redpanda HTTP Proxy (<a href="https://docs.redpanda.com/current/develop/http-proxy/">pandaproxy</a>).</p>
+</div>
+<div class="paragraph">
+<p>If not defined, the port will be chosen randomly.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-62981">QUARKUS_KAFKA_DEVSERVICES_REDPANDA_PROXY_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-62981" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+</tbody>
+</table>
+<div id="duration-note-anchor-quarkus-kafka-client_quarkus-kafka-devservices" class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">About the Duration format</div>
+<div class="paragraph">
+<p>To write duration values, use the standard <code>java.time.Duration</code> format.
+See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html#parse(java.lang.CharSequence)">Duration#parse() Java API documentation</a> for more information.</p>
+</div>
+<div class="paragraph">
+<p>You can also use a simplified format, starting with a number:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the value is only a number, it represents time in seconds.</p>
+</li>
+<li>
+<p>If the value is a number followed by <code>ms</code>, it represents time in milliseconds.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In other cases, the simplified format is translated to the <code>java.time.Duration</code> format for parsing:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the value is a number followed by <code>h</code>, <code>m</code>, or <code>s</code>, it is prefixed with <code>PT</code>.</p>
+</li>
+<li>
+<p>If the value is a number followed by <code>d</code>, it is prefixed with <code>P</code>.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
     </div>
     <div class="grid__item width-4-12 width-12-12-m tocwrapper">
       <div class="hide-mobile toc"><ul class="sectlevel1">
@@ -387,6 +801,8 @@ Redpanda transactions does not support exactly-once processing.
 <li><a href="#configuring-the-image">Configuring the image</a></li>
 <li><a href="#configuring-kafka-topics">Configuring Kafka topics</a></li>
 <li><a href="#redpanda-transactions">Transactional and Idempotent producers support</a></li>
+<li><a href="#Compose">Compose</a></li>
+<li><a href="#configuration-reference-devservices">Configuration reference</a></li>
 </ul></div>
     </div>
   </div>
@@ -438,6 +854,9 @@ Redpanda transactions does not support exactly-once processing.
         <li class="reference"><a href="/version/main/guides/rabbitmq-reference">Reactive Messaging RabbitMQ Connector Reference Documentation</a></li>
       
         
+        <li class="guide"><a href="/version/main/guides/compose-dev-services">Compose Dev Services</a></li>
+      
+        
         <li class="howto"><a href="/version/main/guides/security-openid-connect-dev-services">Dev Services and Dev UI for OpenID Connect (OIDC)</a></li>
       
         
@@ -478,9 +897,6 @@ Redpanda transactions does not support exactly-once processing.
       
         
         <li class="guide"><a href="/version/main/guides/kafka-schema-registry-avro">Using Apache Kafka with Schema Registry and Avro</a></li>
-      
-        
-        <li class="guide"><a href="/version/main/guides/kafka-schema-registry-json-schema">Using Apache Kafka with Schema Registry and JSON Schema</a></li>
       </ul>
     </div>
     </div>
@@ -495,7 +911,7 @@ Redpanda transactions does not support exactly-once processing.
     </div>
   </div>
   <div class="grid-wrapper">
-    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
+    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license. <i class='fab fa-creative-commons'></i><i class='fab fa-creative-commons-by'></i> <a href='https://creativecommons.org/licenses/by/3.0/' target='_blank'>CC by 3.0</a><br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
 
     
       <div class="width-1-12 project-links">
@@ -527,6 +943,10 @@ Redpanda transactions does not support exactly-once processing.
           
           
           
+            <li><a href="/userstories" target="_blank">User Stories</a></li>
+          
+          
+          
             <li><a href="https://github.com/orgs/quarkusio/projects/13/views/1" target="_blank">Roadmap</a></li>
           
           
@@ -546,6 +966,10 @@ Redpanda transactions does not support exactly-once processing.
             <li><a href="/desktopwallpapers" target="_blank">Wallpapers</a></li>
           
           
+          
+            <li><a href="https://www.redhat.com/en/about/privacy-policy" target="_blank">Privacy Policy</a></li>
+          
+          
         </ul>
       </div>
     
@@ -558,8 +982,16 @@ Redpanda transactions does not support exactly-once processing.
           
           
           
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
+          
+          
+          
             <li><a rel="me" href="https://fosstodon.org/@quarkusio" target="_blank">Mastodon</a></li>
             
+          
+          
+            <li><a href="https://www.threads.com/@quarkusio" target="_blank">Threads</a></li>
+          
           
           
             <li><a href="https://www.facebook.com/quarkusio" target="_blank">Facebook</a></li>
@@ -670,17 +1102,22 @@ Redpanda transactions does not support exactly-once processing.
   </div>
 </div>
 
-  <div class="content redhat-footer">
-  <div class="grid-wrapper">
-    <span class="licence">
-      <i class="fab fa-creative-commons"></i><i class="fab fa-creative-commons-by"></i> <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC by 3.0</a> | <a href="https://www.redhat.com/en/about/privacy-policy">Privacy Policy</a>
-    </span>
-    <span class="redhat">
-      Sponsored by
-    </span>
-    <span class="redhat-logo">
-      <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
-    </span>
+  <div class="content cf-footer">
+  <div class="flexcontainer">
+    <div class="cf-logo">
+      <img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/>
+    </div>
+    <div class="license">
+      Copyright © Quarkus. All rights reserved. For details on our trademarks, please visit our <a href="https://www.commonhaus.org/policies/trademark-policy/">Trademark Policy</a> and <a href="https://www.commonhaus.org/trademarks/">Trademark List</a>. Trademarks of third parties are owned by their respective holders and their mention here does not suggest any endorsement or association.
+    </div>
+    <div class="sponsorcontainer">
+      <div class="sponsor">
+        Sponsored by
+      </div>
+      <div class="sponsor-logo">
+        <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -696,6 +1133,7 @@ Redpanda transactions does not support exactly-once processing.
   <script src="/assets/javascript/copy.js" type="text/javascript"></script>
   <script src="/assets/javascript/asciidoc-tabs.js" type="text/javascript"></script>
   <script src="/assets/javascript/future-date.js" type="text/javascript"></script>
+  <script src="/assets/javascript/randomize.js" type="text/javascript"></script>
 </body>
 
 </html>

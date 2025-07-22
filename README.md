@@ -9,18 +9,30 @@ These instructions will get you a copy of the Quarkus.io website up and running 
 #### Using Docker
 
 1. Install [Docker Desktop](https://docs.docker.com/install/).
-2. Fork the [project repository](https://github.com/quarkusio/quarkusio.github.io), then clone your fork.
+2. Fork the [project repository](https://github.com/quarkusio/quarkusio.github.io), then clone your fork:
 
         git clone git@github.com:YOUR_USER_NAME/quarkusio.github.io.git
 
 3. Change into the project directory:
 
         cd quarkusio.github.io
-4. Run Docker Composer
 
-        docker-compose up
+4. Run Docker Compose:
 
-5. Now browse to http://localhost:4000
+        docker compose up
+
+    > **Note:** The startup process may take several minutes, depending on your system. During this time, you might see logs with warnings or configuration messages (e.g., AutoPages and asciidoctor warnings). This is normal behavior as Jekyll builds the site. Once the server is running, you will see output like this:
+
+    ```
+    jekyll-1  |   Server address: http://0.0.0.0:4000/
+    jekyll-1  |   Server running... press ctrl-c to stop.
+    ```
+
+    If any error occurs mentioning a name conflict, try:
+
+        docker compose up --force-recreate
+
+5. Now browse to [http://localhost:4000](http://localhost:4000).
 #### Using a local Ruby environment
 [Jekyll static site generator docs](https://jekyllrb.com/docs/).
 
@@ -66,6 +78,10 @@ If for some reason you need to deploy from your local machine, follow these inst
 
 ## Writing a blog
 
+> **NOTE:** Using generative AI in *assisting* writing is fine, but please don't use it to write entire posts. 
+> Used badly, generative AI has a tendency to use complex words and phrasing. This makes 
+the content hard to read and understand. Always review your blog with a human reader in mind, make sure it's factually correct and especially keep the human touch and opinions in the content.
+
 To write a blog:
 
 - create an author entry in [_data/authors.yaml](https://github.com/quarkusio/quarkusio.github.io/blob/main/_data/authors.yaml)
@@ -85,6 +101,8 @@ To write a blog:
 - it's in asciidoc format, there is an example as shown with [2019-06-05-quarkus-and-web-ui-development-mode.adoc](https://github.com/quarkusio/quarkusio.github.io/blob/main/_posts/2019-06-05-quarkus-and-web-ui-development-mode.adoc)
   - Be aware that the `date` attribute in the asciidoc preamble defines when the article will be published. Add a `--future` flag when testing locally to ensure the article is included in the generated site. 
 - send a pull request against the main branch and voilà
+
+
 
 ## Translations/Localization (l10n)
 

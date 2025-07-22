@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 
 
@@ -11,8 +11,33 @@
   <title>Contexts and Dependency Injection - main - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://analytics.ossupstream.org https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://analytics.ossupstream.org; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://analytics.ossupstream.org * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://analytics.ossupstream.org/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://analytics.ossupstream.org/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://player.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -51,7 +76,6 @@
   
   <link rel="alternate" hreflang="x-default" href="https://quarkus.io/" />  
   <script src="/assets/javascript/tracking.js"></script>
-  <script src="https://analytics.ossupstream.org/matomo.js" async defer></script>
   
   <script src="/assets/javascript/colormode.js" type="text/javascript"></script>
 
@@ -76,11 +100,13 @@
         <span href="/about/">Why<i class="fas fa-chevron-down"></i></span>
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
-          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
           <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/versatility" class="">VERSATILITY</a></li>
+          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>  
+          <li><a href="/spring" class="">USING SPRING?</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -88,6 +114,7 @@
         <ul class="submenu">
           <li><a href="/get-started" class="">GET STARTED</a></li>
           <li><a href="/guides" class="active">DOCUMENTATION</a></li>
+          <li><a href="/userstories/" class="">USER STORIES</a></li>  
           <li><a href="/qtips" class="">"Q" TIP VIDEOS</a></li>          
           <li><a href="/books" class="">BOOKS</a></li>
           </ul>
@@ -108,6 +135,7 @@
           <li><a href="/support/" class="">SUPPORT</a></li>
           <li><a href="/blog" class="">BLOG</a></li>
           <li><a href="/discussion" class="">DISCUSSION</a></li>
+          <li><a href="/working-groups" class="">WORKING GROUPS</a></li>
           <li><a href="/insights" class="">PODCAST</a></li>
           <li><a href="/events" class="">EVENTS</a></li>
           <li><a href="/newsletter" class="">NEWSLETTER</a></li>
@@ -144,6 +172,7 @@
 
 
 
+
 <section class="full-width-version-bg flexfilterbar guides">
   <div class="guideflexcontainer">
     <div class="docslink">
@@ -161,7 +190,15 @@
         
         
         
-        <option value="latest" >3.11.1 - Latest</option>
+        <option value="latest" >3.24.4 - Latest</option>
+        
+        
+        
+        <option value="3.20" >3.20</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -178,10 +215,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -191,7 +224,7 @@
   <div class="grid-wrapper">
     <div class="grid__item width-8-12 width-12-12-m">
       
-      <a class="editlink" href="https://github.com/quarkusio/quarkus/edit/main/docs/src/main/asciidoc/_versions/main/guides/cdi-reference.adoc">Edit this Page</a>
+      <a class="editlink" href="https://github.com/quarkusio/quarkus/edit/main/docs/src/main/asciidoc/cdi-reference.adoc">Edit this Page</a>
       
       <h1 class="text-caps">Contexts and Dependency Injection </h1>
       <div id="preamble">
@@ -200,7 +233,8 @@
 <p>Quarkus DI solution (also called ArC) is based on the <a href="https://jakarta.ee/specifications/cdi/4.1/jakarta-cdi-spec-4.1.html" target="_blank" rel="noopener">Jakarta Contexts and Dependency Injection 4.1</a> specification.
 It implements the CDI Lite specification, with selected improvements on top, and passes the CDI Lite TCK.
 It does not implement CDI Full.
-See also <a href="#supported_features_and_limitations">the list of supported features and limitations</a>.</p>
+See also <a href="#supported_features_and_limitations">the list of supported features and limitations</a>.
+Most of the existing CDI code should work just fine but there are some small differences which follow from the Quarkus architecture and goals.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -209,19 +243,19 @@ See also <a href="#supported_features_and_limitations">the list of supported fea
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-If you&#8217;re new to CDI then we recommend you to read the <a href="cdi">Introduction to CDI</a> first.
+If you&#8217;re new to CDI we recommend you to read the <a href="cdi">Introduction to CDI</a> first.
 </td>
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Most of the existing CDI code should work just fine but there are some small differences which follow from the Quarkus architecture and goals.
+The <a href="cdi-integration">CDI integration guide</a> has more detail on common CDI-related integration use cases, and example code for solutions.
 </td>
 </tr>
 </table>
@@ -292,7 +326,7 @@ To generate the index just add the following plugin to your build file:</p>
     &lt;plugin&gt;
       &lt;groupId&gt;io.smallrye&lt;/groupId&gt;
       &lt;artifactId&gt;jandex-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;3.2.0&lt;/version&gt;
+      &lt;version&gt;3.4.0&lt;/version&gt;
       &lt;executions&gt;
         &lt;execution&gt;
           &lt;id&gt;make-index&lt;/id&gt;
@@ -355,7 +389,7 @@ quarkus.index-dependency.&lt;name&gt;.classifier=(this one is optional)</code></
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-If no <code>artifact-id</code> is specified then all dependencies with the specificed <code>group-id</code> are indexed.
+If no <code>artifact-id</code> is specified then all dependencies with the specified <code>group-id</code> are indexed.
 </td>
 </tr>
 </table>
@@ -469,7 +503,128 @@ quarkus.arc.exclude-dependency.acme.artifact-id=acme-services <i class="conum" d
 </div>
 </div>
 <div class="sect1">
-<h2 id="native-executables-and-private-members"><a class="anchor" href="#native-executables-and-private-members"></a>2. Native Executables and Private Members</h2>
+<h2 id="string-based-qualifiers"><a class="anchor" href="#string-based-qualifiers"></a>2. String-Based Qualifiers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>@Named</code> qualifier, which you might be familiar with, is a <em>string-based qualifier</em>.
+That is, it&#8217;s the string value of the qualifier annotation who determines whether the qualifier matches or not.
+This is not type-safe and should not be the norm in CDI applications.
+Specific qualifier types should be preferred.</p>
+</div>
+<div class="paragraph">
+<p>However, sometimes string-based qualifiers are necessary.
+In that case, avoid the <code>@Named</code> qualifier, because in CDI, it works differently to all other qualifiers.</p>
+</div>
+<div class="paragraph">
+<p>Specifically: if the only qualifier a bean has is <code>@Named</code>, it also automatically gets <code>@Default</code>.
+This means that if multiple beans of the same type exist, one of them without qualifiers and the others with <code>@Named</code>, they <em>all</em> get the <code>@Default</code> qualifier and bean resolution will error with ambiguity.
+For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ApplicationScoped
+public class Producers {
+    @Produces
+    MyBean produce() {
+        ...
+    }
+
+    @Produces
+    @Named("foo")
+    MyBean produceFoo() {
+        ...
+    }
+}
+
+@ApplicationScoped
+public class Consumer {
+    @Inject
+    MyBean bean;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the <code>Consumer#bean</code> injection point will cause ambiguity error, because both <code>MyBean</code> producers will have the <code>@Default</code> qualifier.</p>
+</div>
+<div class="paragraph">
+<p>Instead of <code>@Named</code>, use <code>@io.smallrye.common.annotation.Identifier</code>.
+This is a regular qualifier that works like all others.
+So if we rewrite the example to use <code>@Identifier</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ApplicationScoped
+public class Producers {
+    @Produces
+    MyBean produce() {
+        ...
+    }
+
+    @Produces
+    @Identifier("foo")
+    MyBean produceFoo() {
+        ...
+    }
+}
+
+@ApplicationScoped
+public class Consumer {
+    @Inject
+    MyBean bean;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Only the first producer will get the <code>@Default</code> qualifier, the second will not.
+Hence, there will be no error and everything will work as expected.</p>
+</div>
+<div class="sect2">
+<h3 id="when-to-use-named"><a class="anchor" href="#when-to-use-named"></a>2.1. When To Use <code>@Named</code>?</h3>
+<div class="paragraph">
+<p>There is one case where <code>@Named</code> is the right thing to use: specifying an external identifier for a different language that doesn&#8217;t support dependency injection directly.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ApplicationScoped
+@Named("myBean")
+public class MyBean {
+    public String getValue() {
+        ...
+    }
+}
+
+@ApplicationScoped
+public class Consumer {
+    @Inject
+    MyBean bean;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see, in the application code, the bean is injected without a qualifier.
+The bean name is only used to refer to the bean in the other language.</p>
+</div>
+<div class="paragraph">
+<p>Historically, the most common external language that used bean names was JSF.
+In Quarkus, we have <a href="qute-reference#injecting-beans-directly-in-templates">Qute</a>.
+In a Qute template, one would refer to the bean using its name:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">The current value is {inject:myBean.value}.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Outside of this use-case, just use <code>@Identifier</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="native-executables-and-private-members"><a class="anchor" href="#native-executables-and-private-members"></a>3. Native Executables and Private Members</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Quarkus is using GraalVM to build a native executable.
@@ -538,7 +693,7 @@ public class CounterBean {
 </div>
 </div>
 <div class="sect1">
-<h2 id="supported_features_and_limitations"><a class="anchor" href="#supported_features_and_limitations"></a>3. <a id="supported_features"></a><a id="limitations"></a> Supported Features and Limitations</h2>
+<h2 id="supported_features_and_limitations"><a class="anchor" href="#supported_features_and_limitations"></a>4. <a id="supported_features"></a><a id="limitations"></a> Supported Features and Limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The CDI Lite specification is fully supported.
@@ -604,12 +759,12 @@ These additional features are not covered by the CDI Lite TCK.
 </div>
 </div>
 <div class="sect1">
-<h2 id="nonstandard_features"><a class="anchor" href="#nonstandard_features"></a>4. Non-standard Features</h2>
+<h2 id="nonstandard_features"><a class="anchor" href="#nonstandard_features"></a>5. Non-standard Features</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="eager-instantiation-of-beans"><a class="anchor" href="#eager-instantiation-of-beans"></a>4.1. Eager Instantiation of Beans</h3>
+<h3 id="eager-instantiation-of-beans"><a class="anchor" href="#eager-instantiation-of-beans"></a>5.1. Eager Instantiation of Beans</h3>
 <div class="sect3">
-<h4 id="lazy_by_default"><a class="anchor" href="#lazy_by_default"></a>4.1.1. Lazy By Default</h4>
+<h4 id="lazy_by_default"><a class="anchor" href="#lazy_by_default"></a>5.1.1. Lazy By Default</h4>
 <div class="paragraph">
 <p>By default, CDI beans are created lazily, when needed.
 What exactly "needed" means depends on the scope of a bean.</p>
@@ -678,7 +833,7 @@ public class PingResource {
 </div>
 </div>
 <div class="sect3">
-<h4 id="startup_event"><a class="anchor" href="#startup_event"></a>4.1.2. Startup Event</h4>
+<h4 id="startup_event"><a class="anchor" href="#startup_event"></a>5.1.2. Startup Event</h4>
 <div class="paragraph">
 <p>However, if you really need to instantiate a bean eagerly you can:</p>
 </div>
@@ -776,7 +931,7 @@ Quarkus users are encouraged to always prefer the <code>@Observes StartupEvent</
 </div>
 </div>
 <div class="sect2">
-<h3 id="request-context-lifecycle"><a class="anchor" href="#request-context-lifecycle"></a>4.2. Request Context Lifecycle</h3>
+<h3 id="request-context-lifecycle"><a class="anchor" href="#request-context-lifecycle"></a>5.2. Request Context Lifecycle</h3>
 <div class="paragraph">
 <p>The request context is also active:</p>
 </div>
@@ -810,7 +965,7 @@ An event with qualifier <code>@Initialized(RequestScoped.class)</code> is fired 
 </table>
 </div>
 <div class="sect3">
-<h4 id="how-to-enable-trace-logging-for-request-context-activation"><a class="anchor" href="#how-to-enable-trace-logging-for-request-context-activation"></a>4.2.1. How to Enable Trace Logging for Request Context Activation</h4>
+<h4 id="how-to-enable-trace-logging-for-request-context-activation"><a class="anchor" href="#how-to-enable-trace-logging-for-request-context-activation"></a>5.2.1. How to Enable Trace Logging for Request Context Activation</h4>
 <div class="paragraph">
 <p>You can set the <code>TRACE</code> level for the logger <code>io.quarkus.arc.requestContext</code> and try to analyze the log output afterwards.</p>
 </div>
@@ -832,7 +987,7 @@ quarkus.log.category."io.quarkus.arc.requestContext".level=TRACE</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="qualified-injected-fields"><a class="anchor" href="#qualified-injected-fields"></a>4.3. Qualified Injected Fields</h3>
+<h3 id="qualified-injected-fields"><a class="anchor" href="#qualified-injected-fields"></a>5.3. Qualified Injected Fields</h3>
 <div class="paragraph">
 <p>In CDI, if you declare a field injection point you need to use <code>@Inject</code> and optionally a set of qualifiers.</p>
 </div>
@@ -866,7 +1021,7 @@ With the notable exception of one special case discussed below, <code>@Inject</c
 </div>
 </div>
 <div class="sect2">
-<h3 id="simplified-constructor-injection"><a class="anchor" href="#simplified-constructor-injection"></a>4.4. Simplified Constructor Injection</h3>
+<h3 id="simplified-constructor-injection"><a class="anchor" href="#simplified-constructor-injection"></a>5.4. Simplified Constructor Injection</h3>
 <div class="paragraph">
 <p>In CDI, a normal scoped bean must always declare a no-args constructor (this constructor is normally generated by the compiler unless you declare any other constructor).
 However, this requirement complicates constructor injection - you need to provide a dummy no-args constructor to make things work in CDI.</p>
@@ -919,7 +1074,7 @@ We don&#8217;t generate a no-args constructor automatically if a bean class exte
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove_unused_beans"><a class="anchor" href="#remove_unused_beans"></a>4.5. Removing Unused Beans</h3>
+<h3 id="remove_unused_beans"><a class="anchor" href="#remove_unused_beans"></a>5.5. Removing Unused Beans</h3>
 <div class="paragraph">
 <p>The container attempts to remove all unused beans, interceptors and decorators during build by default.
 This optimization helps to minimize the amount of generated classes, thus conserving memory.
@@ -934,7 +1089,7 @@ Quarkus also provides a middle ground where application beans are never removed 
 To use this mode, set <code>quarkus.arc.remove-unused-beans</code> to <code>fwk</code> or <code>framework</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="whats-removed"><a class="anchor" href="#whats-removed"></a>4.5.1. What&#8217;s Removed?</h4>
+<h4 id="whats-removed"><a class="anchor" href="#whats-removed"></a>5.5.1. What&#8217;s Removed?</h4>
 <div class="paragraph">
 <p>Quarkus first identifies so-called <em>unremovable</em> beans that form the roots in the dependency tree.
 A good example is a Jakarta REST resource class or a bean which declares a <code>@Scheduled</code> method.</p>
@@ -945,7 +1100,7 @@ A good example is a Jakarta REST resource class or a bean which declares a <code
 <div class="ulist">
 <ul>
 <li>
-<p>is excluded from removal by an extension, or</p>
+<p>is <a href="#eliminate_false_positives">excluded from removal</a>, or</p>
 </li>
 <li>
 <p>has a name designated via <code>@Named</code>, or</p>
@@ -964,13 +1119,16 @@ A good example is a Jakarta REST resource class or a bean which declares a <code
 <p>is not <em>unremovable</em>, and</p>
 </li>
 <li>
-<p>is not eligible for injection to any injection point in the dependency tree, and</p>
+<p>is not eligible for injection to any injection point in the dependency tree of <em>unremovable</em> beans, and</p>
 </li>
 <li>
 <p>does not declare any producer which is eligible for injection to any injection point in the dependency tree, and</p>
 </li>
 <li>
-<p>is not eligible for injection into any <code>jakarta.enterprise.inject.Instance</code> or <code>jakarta.inject.Provider</code> injection point.</p>
+<p>is not eligible for injection into any <code>jakarta.enterprise.inject.Instance</code> or <code>jakarta.inject.Provider</code> injection point, and</p>
+</li>
+<li>
+<p>is not eligible for injection into any <a href="#injecting-multiple-bean-instances-intuitively"><code>@Inject @All List&lt;&gt;</code></a> injection point.</p>
 </li>
 </ul>
 </div>
@@ -985,7 +1143,7 @@ A good example is a Jakarta REST resource class or a bean which declares a <code
 </td>
 <td class="content">
 <div class="paragraph">
-<p>When using the dev mode (running <code>./mvnw clean compile quarkus:dev</code>), you can see more information about which beans are being removed:</p>
+<p>When using the dev mode (running <code>./mvnw quarkus:dev</code>), you can see more information about which beans are being removed:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1003,7 +1161,7 @@ A good example is a Jakarta REST resource class or a bean which declares a <code
 </div>
 </div>
 <div class="sect3">
-<h4 id="eliminate_false_positives"><a class="anchor" href="#eliminate_false_positives"></a>4.5.2. How To Eliminate False Positives</h4>
+<h4 id="eliminate_false_positives"><a class="anchor" href="#eliminate_false_positives"></a>5.5.2. How To Eliminate False Positives</h4>
 <div class="paragraph">
 <p>Users can instruct the container to not remove any of their specific beans (even if they satisfy all the rules specified above) by annotating them with <code>@io.quarkus.arc.Unremovable</code>.
 This annotation can be declared on a class, a producer method or field.</p>
@@ -1053,7 +1211,7 @@ The <code>quarkus.arc.unremovable-types</code> property accepts a list of string
 </div>
 </div>
 <div class="sect2">
-<h3 id="default_beans"><a class="anchor" href="#default_beans"></a>4.6. Default Beans</h3>
+<h3 id="default_beans"><a class="anchor" href="#default_beans"></a>5.6. Default Beans</h3>
 <div class="paragraph">
 <p>Quarkus adds a capability that CDI currently does not support which is to conditionally declare a bean if no other bean with equal types and qualifiers was declared by any available means (bean class, producer, synthetic bean, &#8230;&#8203;)
 This is done using the <code>@io.quarkus.arc.DefaultBean</code> annotation and is best explained with an example.</p>
@@ -1128,7 +1286,7 @@ public class CustomizedDefaultConfiguration {
 </div>
 </div>
 <div class="sect2">
-<h3 id="enable_build_profile"><a class="anchor" href="#enable_build_profile"></a>4.7. Enabling Beans for Quarkus Build Profile</h3>
+<h3 id="enable_build_profile"><a class="anchor" href="#enable_build_profile"></a>5.7. Enabling Beans for Quarkus Build Profile</h3>
 <div class="paragraph">
 <p>Quarkus adds a capability that CDI currently does not support which is to conditionally enable a bean when a Quarkus build time profile is enabled,
 via the <code>@io.quarkus.arc.profile.IfBuildProfile</code> and <code>@io.quarkus.arc.profile.UnlessBuildProfile</code> annotations.
@@ -1205,11 +1363,11 @@ It is also possible to use <code>@IfBuildProfile</code> and <code>@UnlessBuildPr
 </div>
 </div>
 <div class="sect2">
-<h3 id="enable_build_properties"><a class="anchor" href="#enable_build_properties"></a>4.8. Enabling Beans for Quarkus Build Properties</h3>
+<h3 id="enable_build_properties"><a class="anchor" href="#enable_build_properties"></a>5.8. Enabling Beans for Quarkus Build Properties</h3>
 <div class="paragraph">
-<p>Quarkus adds a capability that CDI currently does not support which is to conditionally enable a bean when a Quarkus build time property has/has not a specific value,
+<p>Quarkus adds a capability that CDI currently does not support which is to conditionally enable a bean when a Quarkus build time property has or does not have a specific value,
 via the <code>@io.quarkus.arc.properties.IfBuildProperty</code> and <code>@io.quarkus.arc.properties.UnlessBuildProperty</code> annotations.
-When used in conjunction with <code>@io.quarkus.arc.DefaultBean</code>, this annotation allow for the creation of different bean configurations for different build properties.</p>
+When used in conjunction with <code>@io.quarkus.arc.DefaultBean</code>, these annotations allow for the creation of different bean configurations for different build properties.</p>
 </div>
 <div class="paragraph">
 <p>The scenario we mentioned above with <code>Tracer</code> could also be implemented in the following way:</p>
@@ -1293,7 +1451,7 @@ It is also possible to use <code>@IfBuildProperty</code> and <code>@UnlessBuildP
 </div>
 </div>
 <div class="sect2">
-<h3 id="declaring-selected-alternatives"><a class="anchor" href="#declaring-selected-alternatives"></a>4.9. Declaring Selected Alternatives</h3>
+<h3 id="declaring-selected-alternatives"><a class="anchor" href="#declaring-selected-alternatives"></a>5.9. Declaring Selected Alternatives</h3>
 <div class="paragraph">
 <p>In CDI, an alternative bean may be selected either globally for an application by means of <code>@Priority</code>, or for a bean archive using a <code>beans.xml</code> descriptor.
 Quarkus has a simplified bean discovery and the content of <code>beans.xml</code> is ignored.</p>
@@ -1341,7 +1499,7 @@ The priority declared via <code>@Priority</code> or inherited from a stereotype 
 </div>
 </div>
 <div class="sect2">
-<h3 id="simplified-producer-method-declaration"><a class="anchor" href="#simplified-producer-method-declaration"></a>4.10. Simplified Producer Method Declaration</h3>
+<h3 id="simplified-producer-method-declaration"><a class="anchor" href="#simplified-producer-method-declaration"></a>5.10. Simplified Producer Method Declaration</h3>
 <div class="paragraph">
 <p>In CDI, a producer method must be always annotated with <code>@Produces</code>.</p>
 </div>
@@ -1380,7 +1538,7 @@ The priority declared via <code>@Priority</code> or inherited from a stereotype 
 </div>
 </div>
 <div class="sect2">
-<h3 id="interception-of-static-methods"><a class="anchor" href="#interception-of-static-methods"></a>4.11. Interception of Static Methods</h3>
+<h3 id="interception_of_static_methods"><a class="anchor" href="#interception_of_static_methods"></a>5.11. Interception of Static Methods</h3>
 <div class="paragraph">
 <p>The Interceptors specification is clear that <em>around-invoke</em> methods must not be declared static.
 However, this restriction was driven mostly by technical limitations.
@@ -1413,7 +1571,7 @@ It&#8217;s possible to annotate a non-private static method with an interceptor 
 </table>
 </div>
 <div class="sect3">
-<h4 id="limitations"><a class="anchor" href="#limitations"></a>4.11.1. Limitations</h4>
+<h4 id="limitations"><a class="anchor" href="#limitations"></a>5.11.1. Limitations</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1442,7 +1600,7 @@ Interceptors can use <code>InvocationContext.getMethod()</code> to detect static
 </div>
 </div>
 <div class="sect2">
-<h3 id="unproxyable_classes_transformation"><a class="anchor" href="#unproxyable_classes_transformation"></a>4.12. Ability to handle 'final' classes and methods</h3>
+<h3 id="unproxyable_classes_transformation"><a class="anchor" href="#unproxyable_classes_transformation"></a>5.12. Ability to handle 'final' classes and methods</h3>
 <div class="paragraph">
 <p>In normal CDI, classes that are marked as <code>final</code> and / or have <code>final</code> methods are not eligible for proxy creation,
 which in turn means that interceptors and normal scoped beans don&#8217;t work properly.
@@ -1453,7 +1611,7 @@ This situation is very common when trying to use CDI with alternative JVM langua
 </div>
 </div>
 <div class="sect2">
-<h3 id="container-managed-concurrency"><a class="anchor" href="#container-managed-concurrency"></a>4.13. Container-managed Concurrency</h3>
+<h3 id="container-managed-concurrency"><a class="anchor" href="#container-managed-concurrency"></a>5.13. Container-managed Concurrency</h3>
 <div class="paragraph">
 <p>There is no standard concurrency control mechanism for CDI beans.
 Nevertheless, a bean instance can be shared and accessed concurrently from multiple threads.
@@ -1512,7 +1670,7 @@ class SharedService {
 </div>
 </div>
 <div class="sect2">
-<h3 id="repeatable-interceptor-bindings"><a class="anchor" href="#repeatable-interceptor-bindings"></a>4.14. Repeatable interceptor bindings</h3>
+<h3 id="repeatable-interceptor-bindings"><a class="anchor" href="#repeatable-interceptor-bindings"></a>5.14. Repeatable interceptor bindings</h3>
 <div class="paragraph">
 <p>Quarkus has limited support for <code>@Repeatable</code> interceptor binding annotations.</p>
 </div>
@@ -1569,7 +1727,7 @@ class NaiveLoggingInterceptor {
 </div>
 </div>
 <div class="sect2">
-<h3 id="caching-the-result-of-programmatic-lookup"><a class="anchor" href="#caching-the-result-of-programmatic-lookup"></a>4.15. Caching the Result of Programmatic Lookup</h3>
+<h3 id="caching-the-result-of-programmatic-lookup"><a class="anchor" href="#caching-the-result-of-programmatic-lookup"></a>5.15. Caching the Result of Programmatic Lookup</h3>
 <div class="paragraph">
 <p>In certain situations, it is practical to obtain a bean instance programmatically via an injected <code>jakarta.enterprise.inject.Instance</code> and <code>Instance.get()</code>.
 However, according to the specification the <code>get()</code> method must identify the matching bean and obtain a contextual reference.
@@ -1637,7 +1795,7 @@ It is also possible to clear the cached value via <code>io.quarkus.arc.Injectabl
 </div>
 </div>
 <div class="sect2">
-<h3 id="declaratively-choose-beans-that-can-be-obtained-by-programmatic-lookup"><a class="anchor" href="#declaratively-choose-beans-that-can-be-obtained-by-programmatic-lookup"></a>4.16. Declaratively Choose Beans That Can Be Obtained by Programmatic Lookup</h3>
+<h3 id="declaratively-choose-beans-that-can-be-obtained-by-programmatic-lookup"><a class="anchor" href="#declaratively-choose-beans-that-can-be-obtained-by-programmatic-lookup"></a>5.16. Declaratively Choose Beans That Can Be Obtained by Programmatic Lookup</h3>
 <div class="paragraph">
 <p>It is sometimes useful to narrow down the set of beans that can be obtained by programmatic lookup via <code>jakarta.enterprise.inject.Instance</code>.
 Typically, a user needs to choose the appropriate implementation of an interface based on a runtime configuration property.</p>
@@ -1690,7 +1848,54 @@ Alternatively, you can use the <code>@LookupIfProperty</code> and <code>@LookupU
 </div>
 </div>
 <div class="sect2">
-<h3 id="injecting-multiple-bean-instances-intuitively"><a class="anchor" href="#injecting-multiple-bean-instances-intuitively"></a>4.17. Injecting Multiple Bean Instances Intuitively</h3>
+<h3 id="sorting-beans-obtained-with-programmatic-lookup"><a class="anchor" href="#sorting-beans-obtained-with-programmatic-lookup"></a>5.17. Sorting beans obtained with programmatic lookup</h3>
+<div class="paragraph">
+<p>If there is more than one bean that matches the required type and qualifiers and is eligible for injection, it is possible to iterate (or stream) available bean instances.
+Beans returned by both stream and iterator methods are sorted by priority as defined by <code>io.quarkus.arc.InjectableBean#getPriority()</code>. Higher priority goes first.
+If no priority is explicitly declared, 0 is assumed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">interface Service {
+
+}
+
+@Priority(100)
+@ApplicationScoped
+class FirstService implements Service {
+
+}
+
+@Priority(10)
+@ApplicationScoped
+class SecondService implements Service {
+
+}
+
+@ApplicationScoped
+class ThirdService implements Service {
+
+}
+
+@ApplicationScoped
+class Client {
+
+   @Inject
+   Instance&lt;Service&gt; serviceInstance;
+
+   void printServiceName() {
+       if(service.isAmbiguous()){
+           for (Service service : serviceInstance) {
+                // FirstService, SecondService, ThirdService
+           }
+       }
+   }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="injecting-multiple-bean-instances-intuitively"><a class="anchor" href="#injecting-multiple-bean-instances-intuitively"></a>5.18. Injecting Multiple Bean Instances Intuitively</h3>
 <div class="paragraph">
 <p>In CDI, it&#8217;s possible to inject multiple bean instances (aka contextual references) via the <code>jakarta.enterprise.inject.Instance</code> which implements <code>java.lang.Iterable</code>.
 However, it&#8217;s not exactly intuitive.
@@ -1785,7 +1990,7 @@ It is also possible to obtain the list of all bean instance handles programmatic
 </div>
 </div>
 <div class="sect2">
-<h3 id="ignoring-class-level-interceptor-bindings-for-methods-and-constructors"><a class="anchor" href="#ignoring-class-level-interceptor-bindings-for-methods-and-constructors"></a>4.18. Ignoring Class-Level Interceptor Bindings for Methods and Constructors</h3>
+<h3 id="ignoring-class-level-interceptor-bindings-for-methods-and-constructors"><a class="anchor" href="#ignoring-class-level-interceptor-bindings-for-methods-and-constructors"></a>5.19. Ignoring Class-Level Interceptor Bindings for Methods and Constructors</h3>
 <div class="paragraph">
 <p>If a managed bean declares interceptor binding annotations on the class level, the corresponding <code>@AroundInvoke</code> interceptors will apply to all business methods.
 Similarly, the corresponding <code>@AroundConstruct</code> interceptors will apply to the bean constructor.</p>
@@ -1835,7 +2040,7 @@ In other words, if a method/constructor is annotated <code>@NoClassInterceptors<
 </div>
 </div>
 <div class="sect2">
-<h3 id="exceptions-thrown-by-an-asynchronous-observer-method"><a class="anchor" href="#exceptions-thrown-by-an-asynchronous-observer-method"></a>4.19. Exceptions Thrown By An Asynchronous Observer Method</h3>
+<h3 id="exceptions-thrown-by-an-asynchronous-observer-method"><a class="anchor" href="#exceptions-thrown-by-an-asynchronous-observer-method"></a>5.20. Exceptions Thrown By An Asynchronous Observer Method</h3>
 <div class="paragraph">
 <p>If an exception is thrown by an asynchronous observer then the <code>CompletionStage</code> returned by the <code>fireAsync()</code> method completes exceptionally so that the event producer may react appropriately.
 However, if the event producer does not care then the exception is ignored silently.
@@ -1857,10 +2062,357 @@ public class NoopAsyncObserverExceptionHandler implements AsyncObserverException
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="intercepted-self-invocation"><a class="anchor" href="#intercepted-self-invocation"></a>5.21. Intercepted self-invocation</h3>
+<div class="paragraph">
+<p>Quarkus supports what is known as intercepted self-invocation or just self-interception - a scenario where CDI bean invokes its own intercepted method from within another method while triggering any associated interceptors.
+This is a non-standard feature as CDI specification doesn&#8217;t define whether self-interception should work or not.</p>
+</div>
+<div class="paragraph">
+<p>Suppose we have a CDI bean with two methods, one of which has the <code>@Transactional</code> interceptor binding associated with it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ApplicationScoped
+public class MyService {
+
+  @Transactional <i class="conum" data-value="1"></i><b>(1)</b>
+  void doSomething() {
+    // some application logic
+  }
+
+  void doSomethingElse() {
+    doSomething();<i class="conum" data-value="2"></i><b>(2)</b>
+  }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>One or more interceptor bindings; <code>@Transactional</code> is just an example.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Non-intercepted method invoking another method from the same bean that has associated binding(s); this will trigger interception.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In the above example, any code calling the <code>doSomething()</code> method triggers interception - in this case, the method becomes transactional.
+This is regardless of whether the invocation originated directly from the <code>MyService</code> bean (such as <code>MyService#doSomethingElse</code>) or from some other bean.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="intercepting-producer-methods-and-synthetic-beans"><a class="anchor" href="#intercepting-producer-methods-and-synthetic-beans"></a>5.22. Intercepting Producer Methods and Synthetic Beans</h3>
+<div class="paragraph">
+<p>By default, interception is only supported for managed beans (also known as class-based beans).
+To support interception of producer methods and synthetic beans, the CDI specification includes an <code>InterceptionFactory</code>, which is a runtime oriented concept and therefore cannot be supported in Quarkus.</p>
+</div>
+<div class="paragraph">
+<p>Instead, Quarkus has its own API: <code>InterceptionProxy</code> and <code>@BindingsSource</code>.
+The <code>InterceptionProxy</code> is very similar to <code>InterceptionFactory</code>: it creates a proxy that applies <code>@AroundInvoke</code> interceptors before forwarding the method call to the target instance.
+The <code>@BindingsSource</code> annotation allows setting interceptor bindings in case the intercepted class is external and cannot be changed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import io.quarkus.arc.InterceptionProxy;
+
+@ApplicationScoped
+class MyProducer {
+    @Produces
+    MyClass produce(InterceptionProxy&lt;MyClass&gt; proxy) { <i class="conum" data-value="1"></i><b>(1)</b>
+        return proxy.create(new MyClass()); <i class="conum" data-value="2"></i><b>(2)</b>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Declares an injection point of type <code>InterceptionProxy&lt;MyClass&gt;</code>.
+This means that at build time, a subclass of <code>MyClass</code> is generated that does the interception and forwarding.
+Note that the type argument must be identical to the return type of the producer method.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Creates an instance of the interception proxy for the given instance of <code>MyClass</code>.
+The method calls will be forwarded to this target instance after all interceptors run.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In this example, interceptor bindings are read from the <code>MyClass</code> class.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Note that <code>InterceptionProxy</code> only supports <code>@AroundInvoke</code> interceptors declared on interceptor classes.
+Other kinds of interception, as well as <code>@AroundInvoke</code> interceptors declared on the target class and its superclasses, are not supported.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The intercepted class should be <a href="https://jakarta.ee/specifications/cdi/4.1/jakarta-cdi-spec-4.1#unproxyable">proxyable</a> and therefore should not be <code>final</code>, should not have non-private <code>final</code> methods, and should have a non-private zero-parameter constructor.
+If it isn&#8217;t, a bytecode transformation will attempt to fix it if <a href="#unproxyable_classes_transformation">enabled</a>, but note that adding a zero-parameter constructor is not always possible.</p>
+</div>
+<div class="paragraph">
+<p>It is often the case that the produced classes come from external libraries and don&#8217;t contain interceptor binding annotations at all.
+To support such cases, the <code>@BindingsSource</code> annotation may be declared on the <code>InterceptionProxy</code> parameter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import io.quarkus.arc.BindingsSource;
+import io.quarkus.arc.InterceptionProxy;
+
+abstract class MyClassBindings { <i class="conum" data-value="1"></i><b>(1)</b>
+    @MyInterceptorBinding
+    abstract String doSomething();
+}
+
+@ApplicationScoped
+class MyProducer {
+    @Produces
+    MyClass produce(@BindingsSource(MyClassBindings.class) InterceptionProxy&lt;MyClass&gt; proxy) { <i class="conum" data-value="2"></i><b>(2)</b>
+        return proxy.create(new MyClass());
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A class that mirrors the <code>MyClass</code> structure and contains interceptor bindings.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>@BindingsSource</code> annotation says that interceptor bindings for <code>MyClass</code> should be read from <code>MyClassBindings</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The concept of <em>bindings source</em> is a build-time friendly equivalent of <code>InterceptionFactory.configure()</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Producer method interception and synthetic bean interception only works for instance methods.
+<a href="#interception_of_static_methods">Interception of Static Methods</a> is not supported for producer methods and synthetic beans.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="declaring-bindingssource"><a class="anchor" href="#declaring-bindingssource"></a>5.22.1. Declaring <code>@BindingsSource</code></h4>
+<div class="paragraph">
+<p>The <code>@BindingsSource</code> annotation specifies a class that mirrors the structure of the intercepted class.
+Interceptor bindings are then read from that class and treated as if they were declared on the intercepted class.</p>
+</div>
+<div class="paragraph">
+<p>Specifically: class-level interceptor bindings declared on the bindings source class are treated as class-level bindings of the intercepted class.
+Method-level interceptor bindings declared on the bindings source class are treated as method-level bindings of a method with the same name, return type, parameter types and <code>static</code> flag of the intercepted class.</p>
+</div>
+<div class="paragraph">
+<p>It is common to make the bindings source class and methods <code>abstract</code> so that you don&#8217;t have to write method bodies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">abstract class MyClassBindings {
+    @MyInterceptorBinding
+    abstract String doSomething();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since this class is never instantiated and its method are never invoked, this is okay, but it&#8217;s also possible to create a non-<code>abstract</code> class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">class MyClassBindings {
+    @MyInterceptorBinding
+    String doSomething() {
+        return null; <i class="conum" data-value="1"></i><b>(1)</b>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The method body does not matter.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Note that for generic classes, the type variable names must also be identical.
+For example, for the following class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">class MyClass&lt;T&gt; {
+    T doSomething() {
+        ...
+    }
+
+    void doSomethingElse(T param) {
+        ...
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>the bindings source class must also use <code>T</code> as the name of the type variable:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">abstract class MyClassBindings&lt;T&gt; {
+    @MyInterceptorBinding
+    abstract T doSomething();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You don&#8217;t need to declare methods that are not annotated simply because they exist on the intercepted class.
+If you want to add method-level bindings to a subset of methods, you only have to declare the methods that are supposed to have an interceptor binding.
+If you only want to add class-level bindings, you don&#8217;t have to declare any methods at all.</p>
+</div>
+<div class="paragraph">
+<p>These annotations can be present on a bindings source class:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>interceptor bindings</em>: on the class and on the methods</p>
+</li>
+<li>
+<p><em>stereotypes</em>: on the class</p>
+</li>
+<li>
+<p><code>@NoClassInterceptors</code>: on the methods</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Any other annotation present on a bindings source class is ignored.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="synthetic-beans"><a class="anchor" href="#synthetic-beans"></a>5.22.2. Synthetic Beans</h4>
+<div class="paragraph">
+<p>Using <code>InterceptionProxy</code> in synthetic beans is similar.</p>
+</div>
+<div class="paragraph">
+<p>First, you have to declare that your synthetic bean injects the <code>InterceptionProxy</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public void register(RegistrationContext context) {
+    context.configure(MyClass.class)
+            .types(MyClass.class)
+            .injectInterceptionProxy() <i class="conum" data-value="1"></i><b>(1)</b>
+            .creator(MyClassCreator.class)
+            .done();
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Once again, this means that at build time, a subclass of <code>MyClass</code> is generated that does the interception and forwarding.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Second, you have to obtain the <code>InterceptionProxy</code> from the <code>SyntheticCreationalContext</code> in the <code>BeanCreator</code> and use it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public MyClass create(SyntheticCreationalContext&lt;MyClass&gt; context) {
+    InterceptionProxy&lt;MyClass&gt; proxy = context.getInterceptionProxy(); <i class="conum" data-value="1"></i><b>(1)</b>
+    return proxy.create(new MyClass());
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Obtains the <code>InterceptionProxy</code> for <code>MyClass</code>, as declared above.
+It would also be possible to use the <code>getInjectedReference()</code> method, passing a <code>TypeLiteral</code>, but <code>getInterceptionProxy()</code> is easier.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>There&#8217;s also an equivalent of <code>@BindingsSource</code>.
+The <code>injectInterceptionProxy()</code> method has an overload with a parameter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public void register(RegistrationContext context) {
+    context.configure(MyClass.class)
+            .types(MyClass.class)
+            .injectInterceptionProxy(MyClassBindings.class) <i class="conum" data-value="1"></i><b>(1)</b>
+            .creator(MyClassCreator.class)
+            .done();
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The argument is the bindings source class.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="instance-handle-close-behavior"><a class="anchor" href="#instance-handle-close-behavior"></a>5.23. <code>Instance.Handle.close()</code> Behavior</h3>
+<div class="paragraph">
+<p>Per the CDI specification, the <code>Instance.Handle.close()</code> method always delegates to <code>destroy()</code>.
+In ArC, this is only true in the <a href="#strict_mode">Strict Mode</a>.</p>
+</div>
+<div class="paragraph">
+<p>In the default mode, the <code>close()</code> method only delegates to <code>destroy()</code> when the bean is <code>@Dependent</code> (or when the instance handle does not represent a CDI contextual object).
+When the instance handle represents a bean of any other scope, the <code>close()</code> method does nothing; the bean is left as is and will be destroyed whenever its context is destroyed.</p>
+</div>
+<div class="paragraph">
+<p>This is to make the following code behave as one would naively expect:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Instance&lt;T&gt; instance = ...;
+try (Instance.Handle&lt;T&gt; handle : instance.getHandle()) {
+   T value = handle.get();
+   ... use value ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>@Dependent</code> beans are destroyed immediately, while other beans are not destroyed at all.
+This is important when multiple beans of different scopes might be returned by the <code>Instance</code>.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="reactive_pitfalls"><a class="anchor" href="#reactive_pitfalls"></a>5. Pitfalls with Reactive Programming</h2>
+<h2 id="reactive_pitfalls"><a class="anchor" href="#reactive_pitfalls"></a>6. Pitfalls with Reactive Programming</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>CDI is a purely synchronous framework.
@@ -1868,7 +2420,7 @@ Its notion of asynchrony is very limited and based solely on thread pools and th
 Therefore, there is a number of pitfalls when using CDI together with reactive programming.</p>
 </div>
 <div class="sect2">
-<h3 id="detecting-when-blocking-is-allowed"><a class="anchor" href="#detecting-when-blocking-is-allowed"></a>5.1. Detecting When Blocking Is Allowed</h3>
+<h3 id="detecting-when-blocking-is-allowed"><a class="anchor" href="#detecting-when-blocking-is-allowed"></a>6.1. Detecting When Blocking Is Allowed</h3>
 <div class="paragraph">
 <p>The <code>io.quarkus.runtime.BlockingOperationControl#isBlockingAllowed()</code> method can be used to detect whether blocking is allowed on the current thread.
 When it is not, and you need to perform a blocking operation, you have to offload it to another thread.
@@ -1903,10 +2455,33 @@ public class MyBean {
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="asynchronous-observers"><a class="anchor" href="#asynchronous-observers"></a>6.2. Asynchronous Observers</h3>
+<div class="paragraph">
+<p>CDI asynchronous observers (<code>@ObservesAsync</code>) are not aware of reactive programming and are not meant to be used as part of reactive pipelines.
+The observer methods are meant to be synchronous, they are just offloaded to a thread pool.</p>
+</div>
+<div class="paragraph">
+<p>The <code>Event.fireAsync()</code> method returns a <code>CompletionStage</code> that completes when all observers are notified.
+If all observers were notified successfully, the <code>CompletionStage</code> completes with the event payload.
+If some observers have thrown an exception, the <code>CompletionStage</code> completes exceptionally with a <code>CompletionException</code>.</p>
+</div>
+<div class="paragraph">
+<p>The return type of the observer <em>does not matter</em>.
+The return value of the observer is <em>ignored</em>.</p>
+</div>
+<div class="paragraph">
+<p>You may declare an observer method that has a return type of <code>CompletionStage&lt;&gt;</code> or <code>Uni&lt;&gt;</code>, but neither the return type nor the actual return value affect the result of <code>Event.fireAsync()</code>.
+Further, if the observer declares a return type of <code>Uni&lt;&gt;</code>, the returned <code>Uni</code> will not be subscribed to, so it is quite possible that part of the observer logic will not even execute.</p>
+</div>
+<div class="paragraph">
+<p>Therefore, it is recommended that observer methods, both synchronous and asynchronous, are always declared <code>void</code>.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="build_time_apis"><a class="anchor" href="#build_time_apis"></a>6. Build Time Extensions</h2>
+<h2 id="build_time_apis"><a class="anchor" href="#build_time_apis"></a>7. Build Time Extensions</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Quarkus incorporates build-time optimizations in order to provide instant startup and low memory footprint.
@@ -1917,7 +2492,7 @@ See the <a href="cdi-integration">integration guide</a> for more information.</p
 </div>
 </div>
 <div class="sect1">
-<h2 id="dev_mode"><a class="anchor" href="#dev_mode"></a>7. <a id="development-mode"></a> Dev mode</h2>
+<h2 id="dev_mode"><a class="anchor" href="#dev_mode"></a>8. <a id="development-mode"></a> Dev mode</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In dev mode, two special endpoints are registered automatically to provide some basic debug info in the JSON format:</p>
@@ -1971,7 +2546,7 @@ These endpoints are only available in dev mode, i.e. when you run your applicati
 </table>
 </div>
 <div class="sect2">
-<h3 id="monitoring-business-method-invocations-and-events"><a class="anchor" href="#monitoring-business-method-invocations-and-events"></a>7.1. Monitoring Business Method Invocations and Events</h3>
+<h3 id="monitoring-business-method-invocations-and-events"><a class="anchor" href="#monitoring-business-method-invocations-and-events"></a>8.1. Monitoring Business Method Invocations and Events</h3>
 <div class="paragraph">
 <p>In dev mode, it is also possible to enable monitoring of business method invocations and fired events.
 Simply set the <code>quarkus.arc.dev-mode.monitoring-enabled</code> configuration property to <code>true</code> and explore the relevant Dev UI pages.</p>
@@ -1980,7 +2555,7 @@ Simply set the <code>quarkus.arc.dev-mode.monitoring-enabled</code> configuratio
 </div>
 </div>
 <div class="sect1">
-<h2 id="strict_mode"><a class="anchor" href="#strict_mode"></a>8. Strict Mode</h2>
+<h2 id="strict_mode"><a class="anchor" href="#strict_mode"></a>9. Strict Mode</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>By default, ArC does not perform all validations required by the CDI specification.
@@ -2021,7 +2596,7 @@ The "strictness" of the strict mode (the set of additional validations and the s
 </div>
 </div>
 <div class="sect1">
-<h2 id="arc-configuration-reference"><a class="anchor" href="#arc-configuration-reference"></a>9. ArC Configuration Reference</h2>
+<h2 id="arc-configuration-reference"><a class="anchor" href="#arc-configuration-reference"></a>10. ArC Configuration Reference</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> Configuration property fixed at build time - All other configuration properties are overridable at runtime <input type="search" id="config-search-0" placeholder="FILTER CONFIGURATION" disabled></p>
@@ -2034,13 +2609,14 @@ The "strictness" of the strict mode (the set of additional validations and the s
 </colgroup>
 <tbody>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-arc_configuration"></a><a href="#quarkus-arc_configuration">Configuration property</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><span class="header-title">Configuration property</span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-remove-unused-beans"></a><code><a href="#quarkus-arc_quarkus-arc-remove-unused-beans">quarkus.arc.remove-unused-beans</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-remove-unused-beans"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-remove-unused-beans"><code>quarkus.arc.remove-unused-beans</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.remove-unused-beans' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
 <div class="content">
@@ -2086,7 +2662,7 @@ The "strictness" of the strict mode (the set of additional validations and the s
 </ul>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-42806">QUARKUS_ARC_REMOVE_UNUSED_BEANS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42806" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-60605">QUARKUS_ARC_REMOVE_UNUSED_BEANS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60605" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2098,7 +2674,8 @@ The "strictness" of the strict mode (the set of additional validations and the s
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-auto-inject-fields"></a><code><a href="#quarkus-arc_quarkus-arc-auto-inject-fields">quarkus.arc.auto-inject-fields</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-auto-inject-fields"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-auto-inject-fields"><code>quarkus.arc.auto-inject-fields</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.auto-inject-fields' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
@@ -2106,7 +2683,7 @@ The "strictness" of the strict mode (the set of additional validations and the s
 <p>If set to true <code>@Inject</code> is automatically added to all non-static non-final fields that are annotated with one of the annotations defined by <code>AutoInjectAnnotationBuildItem</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-42807">QUARKUS_ARC_AUTO_INJECT_FIELDS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42807" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-60606">QUARKUS_ARC_AUTO_INJECT_FIELDS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60606" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2118,7 +2695,8 @@ The "strictness" of the strict mode (the set of additional validations and the s
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-transform-unproxyable-classes"></a><code><a href="#quarkus-arc_quarkus-arc-transform-unproxyable-classes">quarkus.arc.transform-unproxyable-classes</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-transform-unproxyable-classes"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-transform-unproxyable-classes"><code>quarkus.arc.transform-unproxyable-classes</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.transform-unproxyable-classes' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
@@ -2139,7 +2717,7 @@ The "strictness" of the strict mode (the set of additional validations and the s
 </ul>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-42808">QUARKUS_ARC_TRANSFORM_UNPROXYABLE_CLASSES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42808" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-60607">QUARKUS_ARC_TRANSFORM_UNPROXYABLE_CLASSES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60607" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2151,7 +2729,8 @@ The "strictness" of the strict mode (the set of additional validations and the s
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-transform-private-injected-fields"></a><code><a href="#quarkus-arc_quarkus-arc-transform-private-injected-fields">quarkus.arc.transform-private-injected-fields</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-transform-private-injected-fields"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-transform-private-injected-fields"><code>quarkus.arc.transform-private-injected-fields</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.transform-private-injected-fields' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
@@ -2159,7 +2738,7 @@ The "strictness" of the strict mode (the set of additional validations and the s
 <p>If set to true, the bytecode of private fields that are injection points will be transformed to package private. This ensures that field injection can be performed completely reflection-free. If the value is set to false, then a reflection fallback is used to perform the injection.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-42809">QUARKUS_ARC_TRANSFORM_PRIVATE_INJECTED_FIELDS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42809" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-60608">QUARKUS_ARC_TRANSFORM_PRIVATE_INJECTED_FIELDS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60608" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2171,7 +2750,8 @@ The "strictness" of the strict mode (the set of additional validations and the s
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-fail-on-intercepted-private-method"></a><code><a href="#quarkus-arc_quarkus-arc-fail-on-intercepted-private-method">quarkus.arc.fail-on-intercepted-private-method</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-fail-on-intercepted-private-method"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-fail-on-intercepted-private-method"><code>quarkus.arc.fail-on-intercepted-private-method</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.fail-on-intercepted-private-method' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
@@ -2179,7 +2759,7 @@ The "strictness" of the strict mode (the set of additional validations and the s
 <p>If set to true (the default), the build fails if a private method that is neither an observer nor a producer, is annotated with an interceptor binding. An example of this is the use of <code>Transactional</code> on a private method of a bean. If set to false, Quarkus simply logs a warning that the annotation will be ignored.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-42810">QUARKUS_ARC_FAIL_ON_INTERCEPTED_PRIVATE_METHOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42810" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-60609">QUARKUS_ARC_FAIL_ON_INTERCEPTED_PRIVATE_METHOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60609" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2191,7 +2771,8 @@ The "strictness" of the strict mode (the set of additional validations and the s
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-selected-alternatives"></a><code><a href="#quarkus-arc_quarkus-arc-selected-alternatives">quarkus.arc.selected-alternatives</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-selected-alternatives"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-selected-alternatives"><code>quarkus.arc.selected-alternatives</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.selected-alternatives' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
 <div class="content">
@@ -2213,12 +2794,15 @@ The "strictness" of the strict mode (the set of additional validations and the s
 <p>a package name with suffix <code>.*</code>, i.e. <code>org.acme.*</code>, matches a package</p>
 </li>
 <li>
-<p>a package name with suffix <code>.**</code>, i.e. <code>org.acme.**</code>, matches a package that starts with the value  Each element value is used to match an alternative bean class, an alternative stereotype annotation type or a bean class that declares an alternative producer. If any value matches then the priority of <code>Integer#MAX_VALUE</code> is used for the relevant bean. The priority declared via <code>jakarta.annotation.Priority</code> is overridden.</p>
+<p>a package name with suffix <code>.**</code>, i.e. <code>org.acme.**</code>, matches a package that starts with the value</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-42811">QUARKUS_ARC_SELECTED_ALTERNATIVES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42811" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Each element value is used to match an alternative bean class, an alternative stereotype annotation type or a bean class that declares an alternative producer. If any value matches then the priority of <code>Integer#MAX_VALUE</code> is used for the relevant bean. The priority declared via <code>jakarta.annotation.Priority</code> is overridden.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-60610">QUARKUS_ARC_SELECTED_ALTERNATIVES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60610" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2230,7 +2814,8 @@ The "strictness" of the strict mode (the set of additional validations and the s
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-auto-producer-methods"></a><code><a href="#quarkus-arc_quarkus-arc-auto-producer-methods">quarkus.arc.auto-producer-methods</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-auto-producer-methods"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-auto-producer-methods"><code>quarkus.arc.auto-producer-methods</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.auto-producer-methods' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
 <div class="content">
@@ -2238,7 +2823,7 @@ The "strictness" of the strict mode (the set of additional validations and the s
 <p>If set to true then <code>jakarta.enterprise.inject.Produces</code> is automatically added to all non-void methods that are annotated with a scope annotation, a stereotype or a qualifier, and are not annotated with <code>Inject</code> or <code>Produces</code>, and no parameter is annotated with <code>Disposes</code>, <code>Observes</code> or <code>ObservesAsync</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-42812">QUARKUS_ARC_AUTO_PRODUCER_METHODS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42812" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-60611">QUARKUS_ARC_AUTO_PRODUCER_METHODS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60611" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2250,7 +2835,8 @@ The "strictness" of the strict mode (the set of additional validations and the s
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-exclude-types"></a><code><a href="#quarkus-arc_quarkus-arc-exclude-types">quarkus.arc.exclude-types</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-exclude-types"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-exclude-types"><code>quarkus.arc.exclude-types</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.exclude-types' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
 <div class="content">
@@ -2272,12 +2858,15 @@ The "strictness" of the strict mode (the set of additional validations and the s
 <p>a package name with suffix <code>.*</code>, i.e. <code>org.acme.*</code>, matches a package</p>
 </li>
 <li>
-<p>a package name with suffix <code>.**</code>, i.e. <code>org.acme.**</code>, matches a package that starts with the value  If any element value matches a discovered type then the type is excluded from discovery, i.e. no beans and observer methods are created from this type.</p>
+<p>a package name with suffix <code>.**</code>, i.e. <code>org.acme.**</code>, matches a package that starts with the value</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-42813">QUARKUS_ARC_EXCLUDE_TYPES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42813" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>If any element value matches a discovered type then the type is excluded from discovery, i.e. no beans and observer methods are created from this type.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-60612">QUARKUS_ARC_EXCLUDE_TYPES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60612" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2289,7 +2878,8 @@ The "strictness" of the strict mode (the set of additional validations and the s
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-unremovable-types"></a><code><a href="#quarkus-arc_quarkus-arc-unremovable-types">quarkus.arc.unremovable-types</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-unremovable-types"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-unremovable-types"><code>quarkus.arc.unremovable-types</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.unremovable-types' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
 <div class="content">
@@ -2311,12 +2901,15 @@ The "strictness" of the strict mode (the set of additional validations and the s
 <p>a package name with suffix <code>.*</code>, i.e. <code>org.acme.*</code>, matches a package</p>
 </li>
 <li>
-<p>a package name with suffix <code>.**</code>, i.e. <code>org.acme.**</code>, matches a package that starts with the value  If any element value matches a discovered bean, then such a bean is considered unremovable.</p>
+<p>a package name with suffix <code>.**</code>, i.e. <code>org.acme.**</code>, matches a package that starts with the value</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-42814">QUARKUS_ARC_UNREMOVABLE_TYPES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42814" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>If any element value matches a discovered bean, then such a bean is considered unremovable.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-60613">QUARKUS_ARC_UNREMOVABLE_TYPES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60613" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2326,17 +2919,110 @@ The "strictness" of the strict mode (the set of additional validations and the s
 <td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-arc_section_quarkus-arc-exclude-dependency"></a> <span class="section-name section-level0"><a href="#quarkus-arc_section_quarkus-arc-exclude-dependency">Artifacts that should be excluded from discovery</a></span></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-detect-unused-false-positives"></a><code><a href="#quarkus-arc_quarkus-arc-detect-unused-false-positives">quarkus.arc.detect-unused-false-positives</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-exclude-dependency-dependency-name-group-id"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-exclude-dependency-dependency-name-group-id"><code>quarkus.arc.exclude-dependency."dependency-name".group-id</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.exclude-dependency."dependency-name".group-id' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The maven groupId of the artifact.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-60614">QUARKUS_ARC_EXCLUDE_DEPENDENCY__DEPENDENCY_NAME__GROUP_ID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60614" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">required <span class="icon"><i class="fa fa-exclamation-circle" title="Configuration property is required"></i></span></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-exclude-dependency-dependency-name-artifact-id"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-exclude-dependency-dependency-name-artifact-id"><code>quarkus.arc.exclude-dependency."dependency-name".artifact-id</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.exclude-dependency."dependency-name".artifact-id' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The maven artifactId of the artifact (optional).</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-60615">QUARKUS_ARC_EXCLUDE_DEPENDENCY__DEPENDENCY_NAME__ARTIFACT_ID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60615" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-exclude-dependency-dependency-name-classifier"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-exclude-dependency-dependency-name-classifier"><code>quarkus.arc.exclude-dependency."dependency-name".classifier</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.exclude-dependency."dependency-name".classifier' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-12" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The maven classifier of the artifact (optional).</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-60616">QUARKUS_ARC_EXCLUDE_DEPENDENCY__DEPENDENCY_NAME__CLASSIFIER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60616" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-detect-unused-false-positives"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-detect-unused-false-positives"><code>quarkus.arc.detect-unused-false-positives</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.detect-unused-false-positives' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-13" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>If set to true then the container attempts to detect "unused removed beans" false positives during programmatic lookup at runtime. You can disable this feature to conserve some memory when running your application in production.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-42815">QUARKUS_ARC_DETECT_UNUSED_FALSE_POSITIVES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42815" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-60617">QUARKUS_ARC_DETECT_UNUSED_FALSE_POSITIVES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60617" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-detect-wrong-annotations"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-detect-wrong-annotations"><code>quarkus.arc.detect-wrong-annotations</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.detect-wrong-annotations' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-14" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>If set to true then the container attempts to detect <em>wrong</em> usages of annotations and eventually fails the build to prevent unexpected behavior of a Quarkus application.</p>
+</div>
+<div class="paragraph">
+<p>A typical example is <code>@jakarta.ejb.Singleton</code> which is often confused with <code>@jakarta.inject.Singleton</code>. As a result a component annotated with <code>@jakarta.ejb.Singleton</code> would be completely ignored. Another example is an inner class annotated with a scope annotation - this component would be again completely ignored.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-60618">QUARKUS_ARC_DETECT_WRONG_ANNOTATIONS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60618" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2348,32 +3034,10 @@ The "strictness" of the strict mode (the set of additional validations and the s
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-detect-wrong-annotations"></a><code><a href="#quarkus-arc_quarkus-arc-detect-wrong-annotations">quarkus.arc.detect-wrong-annotations</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-strict-compatibility"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-strict-compatibility"><code>quarkus.arc.strict-compatibility</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.strict-compatibility' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>If set to true then the container attempts to detect <em>wrong</em> usages of annotations and eventually fails the build to prevent unexpected behavior of a Quarkus application.</p>
-</div>
-<div class="paragraph">
-<p>A typical example is <code>@jakarta.ejb.Singleton</code> which is often confused with <code>@jakarta.inject.Singleton</code>. As a result a component annotated with <code>@jakarta.ejb.Singleton</code> would be completely ignored. Another example is an inner class annotated with a scope annotation - this component would be again completely ignored.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-42816">QUARKUS_ARC_DETECT_WRONG_ANNOTATIONS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42816" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-strict-compatibility"></a><code><a href="#quarkus-arc_quarkus-arc-strict-compatibility">quarkus.arc.strict-compatibility</a></code></p>
-</div>
-<div id="conf-collapsible-desc-12" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-15" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>If set to <code>true</code>, the container will perform additional validations mandated by the CDI specification. Some improvements on top of the CDI specification may be disabled. Applications that work as expected in the strict mode should work without a change in the default, non-strict mode.</p>
@@ -2385,7 +3049,7 @@ The "strictness" of the strict mode (the set of additional validations and the s
 <p>Note that <code>transform-unproxyable-classes</code> and <code>remove-unused-beans</code> also has effect on specification compatibility. You may want to disable these features to get behavior closer to the specification.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-42817">QUARKUS_ARC_STRICT_COMPATIBILITY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42817" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-60619">QUARKUS_ARC_STRICT_COMPATIBILITY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60619" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2395,11 +3059,12 @@ The "strictness" of the strict mode (the set of additional validations and the s
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-dev-mode-monitoring-enabled"></a><code><a href="#quarkus-arc_quarkus-arc-dev-mode-monitoring-enabled">quarkus.arc.dev-mode.monitoring-enabled</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-dev-mode-monitoring-enabled"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-dev-mode-monitoring-enabled"><code>quarkus.arc.dev-mode.monitoring-enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.dev-mode.monitoring-enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-13" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-16" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>If set to true then the container monitors business method invocations and fired events during the development mode.</p>
@@ -2417,7 +3082,7 @@ This config property should not be changed in the development mode as it require
 </table>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-42818">QUARKUS_ARC_DEV_MODE_MONITORING_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42818" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-60620">QUARKUS_ARC_DEV_MODE_MONITORING_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60620" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2427,37 +3092,41 @@ This config property should not be changed in the development mode as it require
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
+<tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-dev-mode-generate-dependency-graphs"></a><code><a href="#quarkus-arc_quarkus-arc-dev-mode-generate-dependency-graphs">quarkus.arc.dev-mode.generate-dependency-graphs</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-dev-mode-generate-dependency-graphs"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-dev-mode-generate-dependency-graphs"><code>quarkus.arc.dev-mode.generate-dependency-graphs</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.dev-mode.generate-dependency-graphs' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-14" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-17" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
-<p>If set to true then the dependency graphs are generated and available in the Dev UI.</p>
+<p>If set to <code>true</code> then the dependency graphs are generated and available in the Dev UI. If set to <code>auto</code> then the dependency graphs are generated if there&#8217;s less than 1000 beans in the application. If set to <code>false</code> the dependency graphs are not generated.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-42819">QUARKUS_ARC_DEV_MODE_GENERATE_DEPENDENCY_GRAPHS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42819" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-60621">QUARKUS_ARC_DEV_MODE_GENERATE_DEPENDENCY_GRAPHS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60621" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>true</code>, <code>false</code>, <code>auto</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>auto</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-test-disable-application-lifecycle-observers"></a><code><a href="#quarkus-arc_quarkus-arc-test-disable-application-lifecycle-observers">quarkus.arc.test.disable-application-lifecycle-observers</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-test-disable-application-lifecycle-observers"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-test-disable-application-lifecycle-observers"><code>quarkus.arc.test.disable-application-lifecycle-observers</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.test.disable-application-lifecycle-observers' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-15" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-18" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>If set to true then disable <code>StartupEvent</code> and <code>ShutdownEvent</code> observers declared on application bean classes during the tests.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-42820">QUARKUS_ARC_TEST_DISABLE_APPLICATION_LIFECYCLE_OBSERVERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42820" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-60622">QUARKUS_ARC_TEST_DISABLE_APPLICATION_LIFECYCLE_OBSERVERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60622" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2467,11 +3136,12 @@ This config property should not be changed in the development mode as it require
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
+<tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-ignored-split-packages"></a><code><a href="#quarkus-arc_quarkus-arc-ignored-split-packages">quarkus.arc.ignored-split-packages</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-ignored-split-packages"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-ignored-split-packages"><code>quarkus.arc.ignored-split-packages</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.ignored-split-packages' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-16" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-19" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The list of packages that will not be checked for split package issues.</p>
@@ -2490,7 +3160,7 @@ This config property should not be changed in the development mode as it require
 </ul>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-42821">QUARKUS_ARC_IGNORED_SPLIT_PACKAGES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42821" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-60623">QUARKUS_ARC_IGNORED_SPLIT_PACKAGES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60623" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2500,17 +3170,18 @@ This config property should not be changed in the development mode as it require
 <td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-context-propagation-enabled"></a><code><a href="#quarkus-arc_quarkus-arc-context-propagation-enabled">quarkus.arc.context-propagation.enabled</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-context-propagation-enabled"></a> <span class="property-path"><a href="#quarkus-arc_quarkus-arc-context-propagation-enabled"><code>quarkus.arc.context-propagation.enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.arc.context-propagation.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-17" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-20" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>If set to true and the SmallRye Context Propagation extension is present then the CDI contexts will be propagated by means of the MicroProfile Context Propagation API. Specifically, a <code>org.eclipse.microprofile.context.spi.ThreadContextProvider</code> implementation is registered. On the other hand, if set to false then the MicroProfile Context Propagation API will never be used to propagate the CDI contexts. Note that the CDI contexts may be propagated in a different way though. For example with the Vertx duplicated context.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-42822">QUARKUS_ARC_CONTEXT_PROPAGATION_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42822" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-60624">QUARKUS_ARC_CONTEXT_PROPAGATION_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-60624" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2519,71 +3190,6 @@ This config property should not be changed in the development mode as it require
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-arc_quarkus-arc-exclude-dependency-artifacts-that-should-be-excluded-from-discovery"></a><a href="#quarkus-arc_quarkus-arc-exclude-dependency-artifacts-that-should-be-excluded-from-discovery">Artifacts that should be excluded from discovery</a></p></th>
-<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
-<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-exclude-dependency-dependency-name-group-id"></a><code><a href="#quarkus-arc_quarkus-arc-exclude-dependency-dependency-name-group-id">quarkus.arc.exclude-dependency."dependency-name".group-id</a></code></p>
-</div>
-<div id="conf-collapsible-desc-18" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The maven groupId of the artifact.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-42823">QUARKUS_ARC_EXCLUDE_DEPENDENCY__DEPENDENCY_NAME__GROUP_ID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42823" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">required <span class="icon"><i class="fa fa-exclamation-circle" title="Configuration property is required"></i></span></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-exclude-dependency-dependency-name-artifact-id"></a><code><a href="#quarkus-arc_quarkus-arc-exclude-dependency-dependency-name-artifact-id">quarkus.arc.exclude-dependency."dependency-name".artifact-id</a></code></p>
-</div>
-<div id="conf-collapsible-desc-19" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The maven artifactId of the artifact (optional).</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-42824">QUARKUS_ARC_EXCLUDE_DEPENDENCY__DEPENDENCY_NAME__ARTIFACT_ID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42824" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-arc_quarkus-arc-exclude-dependency-dependency-name-classifier"></a><code><a href="#quarkus-arc_quarkus-arc-exclude-dependency-dependency-name-classifier">quarkus.arc.exclude-dependency."dependency-name".classifier</a></code></p>
-</div>
-<div id="conf-collapsible-desc-20" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The maven classifier of the artifact (optional).</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-42825">QUARKUS_ARC_EXCLUDE_DEPENDENCY__DEPENDENCY_NAME__CLASSIFIER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-42825" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
 </tr>
 </tbody>
 </table>
@@ -2598,44 +3204,54 @@ This config property should not be changed in the development mode as it require
 <li><a href="#how-to-exclude-types-and-dependencies-from-discovery">1.2. How To Exclude Types and Dependencies from Discovery</a></li>
 </ul>
 </li>
-<li><a href="#native-executables-and-private-members">2. Native Executables and Private Members</a></li>
-<li><a href="#supported_features_and_limitations">3.  Supported Features and Limitations</a></li>
-<li><a href="#nonstandard_features">4. Non-standard Features</a>
+<li><a href="#string-based-qualifiers">2. String-Based Qualifiers</a>
 <ul class="sectlevel2">
-<li><a href="#eager-instantiation-of-beans">4.1. Eager Instantiation of Beans</a></li>
-<li><a href="#request-context-lifecycle">4.2. Request Context Lifecycle</a></li>
-<li><a href="#qualified-injected-fields">4.3. Qualified Injected Fields</a></li>
-<li><a href="#simplified-constructor-injection">4.4. Simplified Constructor Injection</a></li>
-<li><a href="#remove_unused_beans">4.5. Removing Unused Beans</a></li>
-<li><a href="#default_beans">4.6. Default Beans</a></li>
-<li><a href="#enable_build_profile">4.7. Enabling Beans for Quarkus Build Profile</a></li>
-<li><a href="#enable_build_properties">4.8. Enabling Beans for Quarkus Build Properties</a></li>
-<li><a href="#declaring-selected-alternatives">4.9. Declaring Selected Alternatives</a></li>
-<li><a href="#simplified-producer-method-declaration">4.10. Simplified Producer Method Declaration</a></li>
-<li><a href="#interception-of-static-methods">4.11. Interception of Static Methods</a></li>
-<li><a href="#unproxyable_classes_transformation">4.12. Ability to handle 'final' classes and methods</a></li>
-<li><a href="#container-managed-concurrency">4.13. Container-managed Concurrency</a></li>
-<li><a href="#repeatable-interceptor-bindings">4.14. Repeatable interceptor bindings</a></li>
-<li><a href="#caching-the-result-of-programmatic-lookup">4.15. Caching the Result of Programmatic Lookup</a></li>
-<li><a href="#declaratively-choose-beans-that-can-be-obtained-by-programmatic-lookup">4.16. Declaratively Choose Beans That Can Be Obtained by Programmatic Lookup</a></li>
-<li><a href="#injecting-multiple-bean-instances-intuitively">4.17. Injecting Multiple Bean Instances Intuitively</a></li>
-<li><a href="#ignoring-class-level-interceptor-bindings-for-methods-and-constructors">4.18. Ignoring Class-Level Interceptor Bindings for Methods and Constructors</a></li>
-<li><a href="#exceptions-thrown-by-an-asynchronous-observer-method">4.19. Exceptions Thrown By An Asynchronous Observer Method</a></li>
+<li><a href="#when-to-use-named">2.1. When To Use <code>@Named</code>?</a></li>
 </ul>
 </li>
-<li><a href="#reactive_pitfalls">5. Pitfalls with Reactive Programming</a>
+<li><a href="#native-executables-and-private-members">3. Native Executables and Private Members</a></li>
+<li><a href="#supported_features_and_limitations">4.  Supported Features and Limitations</a></li>
+<li><a href="#nonstandard_features">5. Non-standard Features</a>
 <ul class="sectlevel2">
-<li><a href="#detecting-when-blocking-is-allowed">5.1. Detecting When Blocking Is Allowed</a></li>
+<li><a href="#eager-instantiation-of-beans">5.1. Eager Instantiation of Beans</a></li>
+<li><a href="#request-context-lifecycle">5.2. Request Context Lifecycle</a></li>
+<li><a href="#qualified-injected-fields">5.3. Qualified Injected Fields</a></li>
+<li><a href="#simplified-constructor-injection">5.4. Simplified Constructor Injection</a></li>
+<li><a href="#remove_unused_beans">5.5. Removing Unused Beans</a></li>
+<li><a href="#default_beans">5.6. Default Beans</a></li>
+<li><a href="#enable_build_profile">5.7. Enabling Beans for Quarkus Build Profile</a></li>
+<li><a href="#enable_build_properties">5.8. Enabling Beans for Quarkus Build Properties</a></li>
+<li><a href="#declaring-selected-alternatives">5.9. Declaring Selected Alternatives</a></li>
+<li><a href="#simplified-producer-method-declaration">5.10. Simplified Producer Method Declaration</a></li>
+<li><a href="#interception_of_static_methods">5.11. Interception of Static Methods</a></li>
+<li><a href="#unproxyable_classes_transformation">5.12. Ability to handle 'final' classes and methods</a></li>
+<li><a href="#container-managed-concurrency">5.13. Container-managed Concurrency</a></li>
+<li><a href="#repeatable-interceptor-bindings">5.14. Repeatable interceptor bindings</a></li>
+<li><a href="#caching-the-result-of-programmatic-lookup">5.15. Caching the Result of Programmatic Lookup</a></li>
+<li><a href="#declaratively-choose-beans-that-can-be-obtained-by-programmatic-lookup">5.16. Declaratively Choose Beans That Can Be Obtained by Programmatic Lookup</a></li>
+<li><a href="#sorting-beans-obtained-with-programmatic-lookup">5.17. Sorting beans obtained with programmatic lookup</a></li>
+<li><a href="#injecting-multiple-bean-instances-intuitively">5.18. Injecting Multiple Bean Instances Intuitively</a></li>
+<li><a href="#ignoring-class-level-interceptor-bindings-for-methods-and-constructors">5.19. Ignoring Class-Level Interceptor Bindings for Methods and Constructors</a></li>
+<li><a href="#exceptions-thrown-by-an-asynchronous-observer-method">5.20. Exceptions Thrown By An Asynchronous Observer Method</a></li>
+<li><a href="#intercepted-self-invocation">5.21. Intercepted self-invocation</a></li>
+<li><a href="#intercepting-producer-methods-and-synthetic-beans">5.22. Intercepting Producer Methods and Synthetic Beans</a></li>
+<li><a href="#instance-handle-close-behavior">5.23. <code>Instance.Handle.close()</code> Behavior</a></li>
 </ul>
 </li>
-<li><a href="#build_time_apis">6. Build Time Extensions</a></li>
-<li><a href="#dev_mode">7.  Dev mode</a>
+<li><a href="#reactive_pitfalls">6. Pitfalls with Reactive Programming</a>
 <ul class="sectlevel2">
-<li><a href="#monitoring-business-method-invocations-and-events">7.1. Monitoring Business Method Invocations and Events</a></li>
+<li><a href="#detecting-when-blocking-is-allowed">6.1. Detecting When Blocking Is Allowed</a></li>
+<li><a href="#asynchronous-observers">6.2. Asynchronous Observers</a></li>
 </ul>
 </li>
-<li><a href="#strict_mode">8. Strict Mode</a></li>
-<li><a href="#arc-configuration-reference">9. ArC Configuration Reference</a></li>
+<li><a href="#build_time_apis">7. Build Time Extensions</a></li>
+<li><a href="#dev_mode">8.  Dev mode</a>
+<ul class="sectlevel2">
+<li><a href="#monitoring-business-method-invocations-and-events">8.1. Monitoring Business Method Invocations and Events</a></li>
+</ul>
+</li>
+<li><a href="#strict_mode">9. Strict Mode</a></li>
+<li><a href="#arc-configuration-reference">10. ArC Configuration Reference</a></li>
 </ul></div>
     </div>
   </div>
@@ -2678,7 +3294,7 @@ This config property should not be changed in the development mode as it require
     </div>
   </div>
   <div class="grid-wrapper">
-    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
+    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license. <i class='fab fa-creative-commons'></i><i class='fab fa-creative-commons-by'></i> <a href='https://creativecommons.org/licenses/by/3.0/' target='_blank'>CC by 3.0</a><br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
 
     
       <div class="width-1-12 project-links">
@@ -2710,6 +3326,10 @@ This config property should not be changed in the development mode as it require
           
           
           
+            <li><a href="/userstories" target="_blank">User Stories</a></li>
+          
+          
+          
             <li><a href="https://github.com/orgs/quarkusio/projects/13/views/1" target="_blank">Roadmap</a></li>
           
           
@@ -2729,6 +3349,10 @@ This config property should not be changed in the development mode as it require
             <li><a href="/desktopwallpapers" target="_blank">Wallpapers</a></li>
           
           
+          
+            <li><a href="https://www.redhat.com/en/about/privacy-policy" target="_blank">Privacy Policy</a></li>
+          
+          
         </ul>
       </div>
     
@@ -2741,8 +3365,16 @@ This config property should not be changed in the development mode as it require
           
           
           
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
+          
+          
+          
             <li><a rel="me" href="https://fosstodon.org/@quarkusio" target="_blank">Mastodon</a></li>
             
+          
+          
+            <li><a href="https://www.threads.com/@quarkusio" target="_blank">Threads</a></li>
+          
           
           
             <li><a href="https://www.facebook.com/quarkusio" target="_blank">Facebook</a></li>
@@ -2853,17 +3485,22 @@ This config property should not be changed in the development mode as it require
   </div>
 </div>
 
-  <div class="content redhat-footer">
-  <div class="grid-wrapper">
-    <span class="licence">
-      <i class="fab fa-creative-commons"></i><i class="fab fa-creative-commons-by"></i> <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC by 3.0</a> | <a href="https://www.redhat.com/en/about/privacy-policy">Privacy Policy</a>
-    </span>
-    <span class="redhat">
-      Sponsored by
-    </span>
-    <span class="redhat-logo">
-      <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
-    </span>
+  <div class="content cf-footer">
+  <div class="flexcontainer">
+    <div class="cf-logo">
+      <img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/>
+    </div>
+    <div class="license">
+      Copyright © Quarkus. All rights reserved. For details on our trademarks, please visit our <a href="https://www.commonhaus.org/policies/trademark-policy/">Trademark Policy</a> and <a href="https://www.commonhaus.org/trademarks/">Trademark List</a>. Trademarks of third parties are owned by their respective holders and their mention here does not suggest any endorsement or association.
+    </div>
+    <div class="sponsorcontainer">
+      <div class="sponsor">
+        Sponsored by
+      </div>
+      <div class="sponsor-logo">
+        <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -2879,6 +3516,7 @@ This config property should not be changed in the development mode as it require
   <script src="/assets/javascript/copy.js" type="text/javascript"></script>
   <script src="/assets/javascript/asciidoc-tabs.js" type="text/javascript"></script>
   <script src="/assets/javascript/future-date.js" type="text/javascript"></script>
+  <script src="/assets/javascript/randomize.js" type="text/javascript"></script>
 </body>
 
 </html>

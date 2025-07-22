@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 
 
@@ -11,8 +11,33 @@
   <title>Quarkus Messaging Extensions - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://analytics.ossupstream.org https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://analytics.ossupstream.org; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://analytics.ossupstream.org * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://analytics.ossupstream.org/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://analytics.ossupstream.org/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://player.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -51,7 +76,6 @@
   
   <link rel="alternate" hreflang="x-default" href="https://quarkus.io/" />  
   <script src="/assets/javascript/tracking.js"></script>
-  <script src="https://analytics.ossupstream.org/matomo.js" async defer></script>
   
   <script src="/assets/javascript/colormode.js" type="text/javascript"></script>
 
@@ -76,11 +100,13 @@
         <span href="/about/">Why<i class="fas fa-chevron-down"></i></span>
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
-          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
           <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/versatility" class="">VERSATILITY</a></li>
+          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>  
+          <li><a href="/spring" class="">USING SPRING?</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -88,6 +114,7 @@
         <ul class="submenu">
           <li><a href="/get-started" class="">GET STARTED</a></li>
           <li><a href="/guides" class="active">DOCUMENTATION</a></li>
+          <li><a href="/userstories/" class="">USER STORIES</a></li>  
           <li><a href="/qtips" class="">"Q" TIP VIDEOS</a></li>          
           <li><a href="/books" class="">BOOKS</a></li>
           </ul>
@@ -108,6 +135,7 @@
           <li><a href="/support/" class="">SUPPORT</a></li>
           <li><a href="/blog" class="">BLOG</a></li>
           <li><a href="/discussion" class="">DISCUSSION</a></li>
+          <li><a href="/working-groups" class="">WORKING GROUPS</a></li>
           <li><a href="/insights" class="">PODCAST</a></li>
           <li><a href="/events" class="">EVENTS</a></li>
           <li><a href="/newsletter" class="">NEWSLETTER</a></li>
@@ -144,6 +172,7 @@
 
 
 
+
 <section class="full-width-version-bg flexfilterbar guides">
   <div class="guideflexcontainer">
     <div class="docslink">
@@ -161,10 +190,15 @@
         
         
         
-        <option value="latest" selected>3.11.1 - Latest</option>
+        <option value="latest" selected>3.24.4 - Latest</option>
         
         
         
+        <option value="3.20" >3.20</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -238,10 +272,10 @@ This empowers developers to concentrate on crafting the core application logic, 
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://camel.apache.org/camel-quarkus/3.8.x/reference/extensions/smallrye-reactive-messaging.html">Camel Smallrye Reactive Messaging</a></p>
+<p><a href="https://camel.apache.org/camel-quarkus/3.8.x/reference/extensions/smallrye-reactive-messaging.html">Camel SmallRye Reactive Messaging</a></p>
 </li>
 <li>
-<p><a href="https://docs.quarkiverse.io/quarkus-reactive-messsaging-nats-jetstream/dev/index.html">Nats Jetstream Connector</a></p>
+<p><a href="https://docs.quarkiverse.io/quarkus-reactive-messaging-nats-jetstream/dev/index.html">Nats Jetstream Connector</a></p>
 </li>
 <li>
 <p><a href="https://solacelabs.github.io/solace-quarkus/">Solace Messaging Connector</a></p>
@@ -427,8 +461,9 @@ The <code>Emitter</code> allows buffering messages sent to the channel.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import io.smallrye.mutiny.Multi;
+import io.smallrye.reactive.messaging.MutinyEmitter;
+
 import org.eclipse.microprofile.reactive.messaging.Channel;
-import org.eclipse.microprofile.reactive.messaging.MutinyEmitter;
 
 @ApplicationScoped
 @Path("/")
@@ -646,6 +681,96 @@ public class MyProfileBean {
 </div>
 </div>
 <div class="sect3">
+<h4 id="pausable-channels"><a class="anchor" href="#pausable-channels"></a>Pausable Channels</h4>
+<div class="paragraph">
+<p>Injected <code>@Channel</code> streams are not subscribed to by default, so the flow of messages is controlled by the application code using reactive streams and Mutiny APIs.
+But for <code>@Incoming</code> methods, the flow of messages is controlled by the runtime.</p>
+</div>
+<div class="paragraph">
+<p>Pausable channels provide a mechanism to control message flow programmatically.
+This is useful in scenarios where producers or consumers need to stop temporarily due to managing the lifecycle or performing maintenance operations.</p>
+</div>
+<div class="paragraph">
+<p>To use pausable channels, you need to activate it with the configuration property <code>pausable</code> set to <code>true</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">mp.messaging.incoming.my-channel.pausable=true
+# optional, by default the channel is NOT paused initially
+mp.messaging.outgoing.my-channel.initially-paused=true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If a channel is configured to be pausable, you can get the <code>PausableChannel</code> by channel name from the <code>ChannelRegistry</code> programmatically, and pause or resume the channel as needed:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+import org.eclipse.microprofile.reactive.messaging.Incoming;
+
+import io.smallrye.reactive.messaging.ChannelRegistry;
+import io.smallrye.reactive.messaging.PausableChannel;
+
+@ApplicationScoped
+public class PausableController {
+
+    @Inject
+    ChannelRegistry registry;
+
+    @PostConstruct
+    public void resume() {
+        // Wait for the application to be ready
+        // Retrieve the pausable channel
+        PausableChannel pausable = registry.getPausable("my-channel");
+        // Pause the processing of the messages
+        pausable.resume();
+    }
+
+    public void pause() {
+        // Retrieve the pausable channel
+        PausableChannel pausable = registry.getPausable("my-channel");
+        // Pause the processing of the messages
+        pausable.pause();
+    }
+
+    @Incoming("my-channel")
+    void process(String message) {
+        // Process the message
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This feature is independent of connectors and can be in theory used with channels backed by any connector.
+Note that pausing message consumption applies back-pressure on the underlying consumer which receives messages from the remote broker.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Kafka consumers provide a similar feature to pause and resume the consumption of messages from topic-partitions.
+The Quarkus Kafka connector allows <a href="kafka#kafka-bare-clients">access to the underlying client</a> to pause/resume the consumption.</p>
+</div>
+<div class="paragraph">
+<p>However, by default, with the <code>pause-if-no-requests=true</code> configuration,
+the connector handles automatically the back-pressure,
+by the pausing and resuming the Kafka consumer based on downstream requests.
+It is therefore recommended to use pausable channels with the default <code>pause-if-no-requests=true</code> configuration.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
 <h4 id="multiple-outgoings-and-broadcast"><a class="anchor" href="#multiple-outgoings-and-broadcast"></a>Multiple Outgoings and <code>@Broadcast</code></h4>
 <div class="paragraph">
 <p>By default, messages transmitted in a channel are only dispatched to a single consumer.
@@ -792,7 +917,7 @@ public class StreamProcessor {
 </div>
 </div>
 <div class="sect1">
-<h2 id="execution-model"><a class="anchor" href="#execution-model"></a>Execution Model</h2>
+<h2 id="execution_model"><a class="anchor" href="#execution_model"></a>Execution Model</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Quarkus Messaging sits on top of the <a href="quarkus-reactive-architecture#engine">reactive engine</a> of Quarkus and leverages <a href="https://vertx.io/">Eclipse Vert.x</a> to dispatch messages for processing.
@@ -906,10 +1031,185 @@ This is the case, for example, for Kafka, where multiple consumers can consume d
 </div>
 </div>
 <div class="sect1">
+<h2 id="context-propagation"><a class="anchor" href="#context-propagation"></a>Context Propagation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In Quarkus Messaging, the default mechanism for propagating context between different processing stages is the
+<a href="https://smallrye.io/smallrye-reactive-messaging/latest/concepts/message-context">message context</a>.
+This provides a consistent way to pass context information along with the message as it flows through different stages.</p>
+</div>
+<div class="paragraph">
+<p>When integrating with other extensions, notably using Emitters, it relies on the Mutiny context propagation:</p>
+</div>
+<div class="sect2">
+<h3 id="interaction-with-mutiny-and-microprofile-context-propagation"><a class="anchor" href="#interaction-with-mutiny-and-microprofile-context-propagation"></a>Interaction with Mutiny and MicroProfile Context Propagation</h3>
+<div class="paragraph">
+<p>Mutiny, which is the foundation of reactive programming in Quarkus, is integrated with the MicroProfile Context Propagation.
+This integration enables automatic capturing and restoring of context across asynchronous boundaries.
+To learn more about context propagation in Quarkus and Mutiny, refer to the <a href="context-propagation">Context Propagation</a> guide.</p>
+</div>
+<div class="paragraph">
+<p>To ensure consistent behavior, Quarkus Messaging disables the propagation of any context during message dispatching through inbound or outbound connectors.
+This means that context captured through Emitters won&#8217;t be propagated to the outgoing channel, and incoming channels won&#8217;t dispatch messages by activating a context (e.g. the request context).
+This behaviour can be configured using <code>quarkus.messaging.connector-context-propagation</code> configuration property, by listing the context types to propagate.
+For example <code>quarkus.messaging.connector-context-propagation=CDI</code> will only propagate the CDI context.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="context-propagation-with-emitters"><a class="anchor" href="#context-propagation-with-emitters"></a>Context Propagation with Emitters</h3>
+<div class="paragraph">
+<p>When using messaging emitters, the context is not propagated by default.</p>
+</div>
+<div class="paragraph">
+<p>In some scenarios, you might want to propagate the caller context to the message processing stage, using <a href="#internal-channels">internal channels</a>.</p>
+</div>
+<div class="paragraph">
+<p>Quarkus provides <code>ContextualEmitter</code>, a drop in replacement for <code>MutinyEmitter</code> and <code>Emitter</code>, that allows you to propagate the context when sending messages.
+You can use the context propagation annotation <code>@CurrentThreadContext</code> to configure the contexts that will be propagated from an <em>emitter</em> method.
+The annotation configures the contexts that will be captured and propagated from that method,
+and needs to be present on the propagator method, i.e. the caller of the emitter, not the processing method.</p>
+</div>
+<div class="paragraph">
+<p>Let <code>RequestScopedBean</code> a request-scoped bean, <code>ContextualEmitter</code> can be used to dispatch messages locally through the internal channel <code>app</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import jakarta.inject.Inject;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.core.MediaType;
+
+import org.eclipse.microprofile.reactive.messaging.Channel;
+
+import io.quarkus.logging.Log;
+import io.quarkus.smallrye.reactivemessaging.runtime.ContextualEmitter;
+
+@Path("/")
+public class Resource {
+
+    @Channel("app")
+    ContextualEmitter&lt;String&gt; emitter;
+
+    @Inject
+    RequestScopedBean requestScopedBean;
+
+    @POST
+    @Path("/send")
+    public void send(String message) {
+        requestScopedBean.setValue("Hello");
+        emitter.sendAndAwait(message);
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then the request-scoped bean can be accessed in the message processing stage, regardless of the <a href="#execution_model">Execution Model</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+import org.eclipse.microprofile.reactive.messaging.Incoming;
+
+import io.quarkus.logging.Log;
+import io.smallrye.reactive.messaging.annotations.Blocking;
+
+
+@ApplicationScoped
+public class Processor {
+
+    @Inject
+    RequestScopedBean requestScopedBean;
+
+    @Incoming("app")
+    @Blocking
+    public void process(String message) {
+        Log.infof("Message %s from request %s", message, requestScopedBean.getValue());
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also use the <code>@CurrentThreadContext</code> annotation to control which contexts are propagated.
+The following example shows how to avoid propagating any context to the message processing stage:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import jakarta.inject.Inject;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.core.MediaType;
+
+import org.eclipse.microprofile.reactive.messaging.Channel;
+
+import io.quarkus.logging.Log;
+import io.quarkus.smallrye.reactivemessaging.runtime.ContextualEmitter;
+
+import io.smallrye.mutiny.Uni;
+import io.vertx.core.Context;
+import io.vertx.core.Vertx;
+
+@Path("/")
+public class Resource {
+
+    @Channel("app")
+    ContextualEmitter&lt;String&gt; emitter;
+
+    @Inject
+    RequestScopedBean requestScopedBean;
+
+    @POST
+    @Path("/send")
+    @CurrentThreadContext(propagated = {})
+    public void send(String message) {
+        requestScopedBean.setValue("Hello");
+        emitter.sendAndAwait(message);
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The execution context to which the RequestScoped context is bound, in the previous example the REST call, controls the lifecycle of the context.
+This means that when the REST call is completed the RequestScoped context is destroyed.
+Therefore, you need to make sure that your processing or message dispatch is completed before the REST call completes.</p>
+</div>
+<div class="paragraph">
+<p>For more information check the <a href="context-propagation#context-propagation-for-cdi">Context Propagation</a> guide.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="request-context-activation"><a class="anchor" href="#request-context-activation"></a>Request Context Activation</h3>
+<div class="paragraph">
+<p>In some cases, you might need to activate the request context while processing messages consumed from a broker.
+While using <code>@ActivateRequestContext</code> on the <code>@Incoming</code> method is an option, its lifecycle does not follow that of a Quarkus Messaging message.
+For incoming channels, you can enable the request scope activation with the build time property <code>quarkus.messaging.request-scoped.enabled=true</code>.
+This will activate the request context for each message processed by incoming channels, and close the context once the message is processed.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="health-checks"><a class="anchor" href="#health-checks"></a>Health Checks</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Together with the Smallrye Health extension, Quarkus Messaging extensions provide health check support per channel.
+<p>Together with the SmallRye Health extension, Quarkus Messaging extensions provide health check support per channel.
 The implementation of <em>startup</em>, <em>readiness</em> and <em>liveness</em> checks depends on the connector.
 Some connectors allow configuring the health check behavior or disabling them completely or per channel.</p>
 </div>
@@ -973,6 +1273,52 @@ On incoming channels, if a received message contains tracing information, the me
 </div>
 </div>
 <div class="sect1">
+<h2 id="tls-configuration"><a class="anchor" href="#tls-configuration"></a>TLS Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Some messaging extensions integrate with the <a href="./tls-registry-reference">Quarkus TLS Registry</a> to configure the underlying client.
+To configure the TLS on a channel, you need to provide the named TLS configuration to the <code>tls-configuration-name</code> property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.tls.my-tls-config.trust-store=truststore.jks
+quarkus.tls.my-tls-config.trust-store-password=secret
+mp.messaging.incoming.my-channel.tls-configuration-name=my-tls-config</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or you can configure it globally on all channels of a connector:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">mp.messaging.connector.smallrye-pulsar.tls-configuration-name=my-tls-config</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Currently, the following messaging extensions support configuration through the Quarkus TLS Registry:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Kafka: Provides the <code>ssl.engine.factory.class</code> property for the Kafka client.</p>
+</li>
+<li>
+<p>Pulsar: Only mTLS authentication is supported.</p>
+</li>
+<li>
+<p>RabbitMQ</p>
+</li>
+<li>
+<p>AMQP 1.0</p>
+</li>
+<li>
+<p>MQTT</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="testing"><a class="anchor" href="#testing"></a>Testing</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -982,7 +1328,7 @@ On incoming channels, if a received message contains tracing information, the me
 The Dev Service creates a broker instance configured to work out-of-the-box with the Quarkus Messaging extension.</p>
 </div>
 <div class="paragraph">
-<p>During testing Quarkus creates a separate brok er instance to run the tests against it.</p>
+<p>During testing Quarkus creates a separate broker instance to run the tests against it.</p>
 </div>
 <div class="paragraph">
 <p>You can read more about Dev Services in the <a href="dev-services">Dev Services</a> guide, including a list of Dev Services provided by platform extensions.</p>
@@ -1226,6 +1572,77 @@ Alternatively you can switch this behaviour using the <code>InMemorySource#runOn
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="channel-decorators"><a class="anchor" href="#channel-decorators"></a>Channel Decorators</h3>
+<div class="paragraph">
+<p><a href="https://smallrye.io/smallrye-reactive-messaging/latest/concepts/decorators/">Channel decorators</a> is a way to intercept and decorate the reactive streams corresponding to messaging channels.
+This can be useful for adding custom behavior to the channels, such as logging, metrics, or error handling.</p>
+</div>
+<div class="paragraph">
+<p>It is therefore possible to implement a bean implementing <code>PublisherDecorator</code> for incoming channels, and <code>SubscriberDecorator</code> for outgoing channels.
+Since two APIs are symmetric, you can implement both interfaces in the same bean.
+These beans are automatically discovered by Quarkus and applied by priority (from the least value to the greatest).</p>
+</div>
+<div class="paragraph">
+<p>Some decorators are included by default by Quarkus extensions.</p>
+</div>
+<div class="paragraph">
+<p>Incoming channels (PublisherDecorator) in the order of priority:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>io.quarkus.smallrye.reactivemessaging.runtime.ConnectorContextPropagationDecorator</code> (-100): Clears the context propagation for incoming channels</p>
+</li>
+<li>
+<p><code>io.smallrye.reactive.messaging.providers.locals.ContextDecorator</code> (0): Ensures messages are dispatched on the message context</p>
+</li>
+<li>
+<p><code>io.quarkus.smallrye.reactivemessaging.runtime.RequestScopedDecorator</code> (100): Handles pausable channels</p>
+</li>
+<li>
+<p><code>io.smallrye.reactive.messaging.providers.IncomingInterceptorDecorator</code> (500): Handles <code>IncomingInterceptor</code> beans</p>
+</li>
+<li>
+<p><code>io.smallrye.reactive.messaging.providers.metrics.MetricDecorator</code> (1000): MicroProfile Metrics support, enabled with <code>quarkus-smallrye-metrics</code> extension</p>
+</li>
+<li>
+<p><code>io.smallrye.reactive.messaging.providers.metrics.MicrometerDecorator</code> (1000): Micrometer Metrics support, enabled with <code>quarkus-micrometer</code> extension</p>
+</li>
+<li>
+<p><code>io.smallrye.reactive.messaging.providers.extension.ObservationDecorator</code> (1000): Message observation support for incoming channels</p>
+</li>
+<li>
+<p><code>io.smallrye.reactive.messaging.providers.extension.PausableChannelDecorator</code> (1000): Handles pausable channels</p>
+</li>
+<li>
+<p><code>io.quarkus.opentelemetry.runtime.tracing.intrumentation.reactivemessaging.ReactiveMessagingTracingIncomingDecorator</code> (1000): Included with <code>quarkus-opentelemetry</code> extension, propagates tracing information</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Outgoing channels (SubscriberDecorator):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>io.quarkus.smallrye.reactivemessaging.runtime.ConnectorContextPropagationDecorator</code> (-100): Clears the context propagation for outgoing channels</p>
+</li>
+<li>
+<p><code>io.smallrye.reactive.messaging.providers.extension.OutgoingObservationDecorator</code> (1000): Message observation support for outgoing channels</p>
+</li>
+<li>
+<p><code>io.smallrye.reactive.messaging.providers.extension.PausableChannelDecorator</code> (1000): Handles pausable channels</p>
+</li>
+<li>
+<p><code>io.quarkus.opentelemetry.runtime.tracing.intrumentation.reactivemessaging.ReactiveMessagingTracingOutgoingDecorator</code> (1000): Included with <code>quarkus-opentelemetry</code> extension, propagates tracing information</p>
+</li>
+<li>
+<p><code>io.smallrye.reactive.messaging.providers.OutgoingInterceptorDecorator</code> (2000): Handles <code>OutgoingInterceptor</code> beans</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1252,9 +1669,16 @@ which has in-depth documentation for each of these concepts and more.</p>
 <li><a href="#channel-wiring-and-messaging-patterns">Channel wiring and Messaging patterns</a></li>
 </ul>
 </li>
-<li><a href="#execution-model">Execution Model</a>
+<li><a href="#execution_model">Execution Model</a>
 <ul class="sectlevel2">
 <li><a href="#incoming-channel-concurrency">Incoming Channel Concurrency</a></li>
+</ul>
+</li>
+<li><a href="#context-propagation">Context Propagation</a>
+<ul class="sectlevel2">
+<li><a href="#interaction-with-mutiny-and-microprofile-context-propagation">Interaction with Mutiny and MicroProfile Context Propagation</a></li>
+<li><a href="#context-propagation-with-emitters">Context Propagation with Emitters</a></li>
+<li><a href="#request-context-activation">Request Context Activation</a></li>
 </ul>
 </li>
 <li><a href="#health-checks">Health Checks</a></li>
@@ -1264,10 +1688,12 @@ which has in-depth documentation for each of these concepts and more.</p>
 <li><a href="#opentelemetry-tracing">OpenTelemetry Tracing</a></li>
 </ul>
 </li>
+<li><a href="#tls-configuration">TLS Configuration</a></li>
 <li><a href="#testing">Testing</a>
 <ul class="sectlevel2">
 <li><a href="#testing-with-dev-services">Testing with Dev Services</a></li>
 <li><a href="#testing-with-inmemoryconnector">Testing with InMemoryConnector</a></li>
+<li><a href="#channel-decorators">Channel Decorators</a></li>
 </ul>
 </li>
 <li><a href="#going-further">Going further</a></li>
@@ -1353,7 +1779,7 @@ which has in-depth documentation for each of these concepts and more.</p>
     </div>
   </div>
   <div class="grid-wrapper">
-    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
+    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license. <i class='fab fa-creative-commons'></i><i class='fab fa-creative-commons-by'></i> <a href='https://creativecommons.org/licenses/by/3.0/' target='_blank'>CC by 3.0</a><br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
 
     
       <div class="width-1-12 project-links">
@@ -1385,6 +1811,10 @@ which has in-depth documentation for each of these concepts and more.</p>
           
           
           
+            <li><a href="/userstories" target="_blank">User Stories</a></li>
+          
+          
+          
             <li><a href="https://github.com/orgs/quarkusio/projects/13/views/1" target="_blank">Roadmap</a></li>
           
           
@@ -1404,6 +1834,10 @@ which has in-depth documentation for each of these concepts and more.</p>
             <li><a href="/desktopwallpapers" target="_blank">Wallpapers</a></li>
           
           
+          
+            <li><a href="https://www.redhat.com/en/about/privacy-policy" target="_blank">Privacy Policy</a></li>
+          
+          
         </ul>
       </div>
     
@@ -1416,8 +1850,16 @@ which has in-depth documentation for each of these concepts and more.</p>
           
           
           
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
+          
+          
+          
             <li><a rel="me" href="https://fosstodon.org/@quarkusio" target="_blank">Mastodon</a></li>
             
+          
+          
+            <li><a href="https://www.threads.com/@quarkusio" target="_blank">Threads</a></li>
+          
           
           
             <li><a href="https://www.facebook.com/quarkusio" target="_blank">Facebook</a></li>
@@ -1528,17 +1970,22 @@ which has in-depth documentation for each of these concepts and more.</p>
   </div>
 </div>
 
-  <div class="content redhat-footer">
-  <div class="grid-wrapper">
-    <span class="licence">
-      <i class="fab fa-creative-commons"></i><i class="fab fa-creative-commons-by"></i> <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC by 3.0</a> | <a href="https://www.redhat.com/en/about/privacy-policy">Privacy Policy</a>
-    </span>
-    <span class="redhat">
-      Sponsored by
-    </span>
-    <span class="redhat-logo">
-      <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
-    </span>
+  <div class="content cf-footer">
+  <div class="flexcontainer">
+    <div class="cf-logo">
+      <img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/>
+    </div>
+    <div class="license">
+      Copyright © Quarkus. All rights reserved. For details on our trademarks, please visit our <a href="https://www.commonhaus.org/policies/trademark-policy/">Trademark Policy</a> and <a href="https://www.commonhaus.org/trademarks/">Trademark List</a>. Trademarks of third parties are owned by their respective holders and their mention here does not suggest any endorsement or association.
+    </div>
+    <div class="sponsorcontainer">
+      <div class="sponsor">
+        Sponsored by
+      </div>
+      <div class="sponsor-logo">
+        <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1554,6 +2001,7 @@ which has in-depth documentation for each of these concepts and more.</p>
   <script src="/assets/javascript/copy.js" type="text/javascript"></script>
   <script src="/assets/javascript/asciidoc-tabs.js" type="text/javascript"></script>
   <script src="/assets/javascript/future-date.js" type="text/javascript"></script>
+  <script src="/assets/javascript/randomize.js" type="text/javascript"></script>
 </body>
 
 </html>

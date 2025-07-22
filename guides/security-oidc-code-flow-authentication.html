@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 
 
@@ -11,8 +11,33 @@
   <title>OpenID Connect authorization code flow mechanism for protecting web applications - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://analytics.ossupstream.org https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://analytics.ossupstream.org; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://analytics.ossupstream.org * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://analytics.ossupstream.org/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://analytics.ossupstream.org/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://player.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -51,7 +76,6 @@
   
   <link rel="alternate" hreflang="x-default" href="https://quarkus.io/" />  
   <script src="/assets/javascript/tracking.js"></script>
-  <script src="https://analytics.ossupstream.org/matomo.js" async defer></script>
   
   <script src="/assets/javascript/colormode.js" type="text/javascript"></script>
 
@@ -76,11 +100,13 @@
         <span href="/about/">Why<i class="fas fa-chevron-down"></i></span>
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
-          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
           <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/versatility" class="">VERSATILITY</a></li>
+          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>  
+          <li><a href="/spring" class="">USING SPRING?</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -88,6 +114,7 @@
         <ul class="submenu">
           <li><a href="/get-started" class="">GET STARTED</a></li>
           <li><a href="/guides" class="active">DOCUMENTATION</a></li>
+          <li><a href="/userstories/" class="">USER STORIES</a></li>  
           <li><a href="/qtips" class="">"Q" TIP VIDEOS</a></li>          
           <li><a href="/books" class="">BOOKS</a></li>
           </ul>
@@ -108,6 +135,7 @@
           <li><a href="/support/" class="">SUPPORT</a></li>
           <li><a href="/blog" class="">BLOG</a></li>
           <li><a href="/discussion" class="">DISCUSSION</a></li>
+          <li><a href="/working-groups" class="">WORKING GROUPS</a></li>
           <li><a href="/insights" class="">PODCAST</a></li>
           <li><a href="/events" class="">EVENTS</a></li>
           <li><a href="/newsletter" class="">NEWSLETTER</a></li>
@@ -144,6 +172,7 @@
 
 
 
+
 <section class="full-width-version-bg flexfilterbar guides">
   <div class="guideflexcontainer">
     <div class="docslink">
@@ -161,7 +190,15 @@
         
         
         
-        <option value="latest" selected>3.11.1 - Latest</option>
+        <option value="latest" selected>3.24.4 - Latest</option>
+        
+        
+        
+        <option value="3.20" >3.20</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -170,9 +207,6 @@
         
         
         <option value="3.2" >3.2</option>
-        
-        
-        
         
         
         
@@ -275,6 +309,16 @@ The following tokens are issued:</p>
 <h2 id="using-the-authorization-code-flow-mechanism"><a class="anchor" href="#using-the-authorization-code-flow-mechanism"></a>Using the authorization code flow mechanism</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="configuring-quarkus-to-support-authorization-code-flow"><a class="anchor" href="#configuring-quarkus-to-support-authorization-code-flow"></a>Configuring Quarkus to support authorization code flow</h3>
+<div class="paragraph">
+<p>To enable an authorization code flow authentication, the <code>quarkus.oidc.application-type</code> property must be set to <code>web-app</code>.
+Usually, the Quarkus OIDC <code>web-app</code> application type must be set when your Quarkus application is a frontend application which serves HTML pages and requires an OIDC single sign-on login.
+For the Quarkus OIDC <code>web-app</code> application, the authorization code flow is defined as the preferred method for authenticating users.
+When your application serves HTML pages and provides REST API at the same time, and requires both the authorization code flow authentication and <a href="security-oidc-bearer-token-authentication">the bearer access token authentication</a>, the <code>quarkus.oidc.application-type</code> property can be set to <code>hybrid</code> instead.
+In this case, the authorization code flow is only triggered  when an HTTP <code>Authorization</code> request header with a <code>Bearer</code> authorization scheme containing a bearer access token is not set.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="configuring-access-to-the-oidc-provider-endpoint"><a class="anchor" href="#configuring-access-to-the-oidc-provider-endpoint"></a>Configuring access to the OIDC provider endpoint</h3>
 <div class="paragraph">
 <p>The OIDC <code>web-app</code> application requires URLs of the OIDC provider&#8217;s authorization, token, <code>JsonWebKey</code> (JWK) set, and possibly the <code>UserInfo</code>, introspection and end-session (RP-initiated logout) endpoints.</p>
@@ -365,6 +409,8 @@ quarkus.oidc.client-id=quarkus-app
 
 # This is a key which will be used to retrieve a secret from the map of credentials returned from CredentialsProvider
 quarkus.oidc.credentials.client-secret.provider.key=mysecret-key
+# This is the keyring provided to the CredentialsProvider when looking up the secret, set only if required by the CredentialsProvider implementation
+quarkus.oidc.credentials.client-secret.provider.keyring-name=oidc
 # Set it only if more than one CredentialsProvider can be registered
 quarkus.oidc.credentials.client-secret.provider.name=oidc-credentials-provider</code></pre>
 </div>
@@ -394,6 +440,8 @@ quarkus.oidc.client-id=quarkus-app
 
 # This is a key which will be used to retrieve a secret from the map of credentials returned from CredentialsProvider
 quarkus.oidc.credentials.jwt.secret-provider.key=mysecret-key
+# This is the keyring provided to the CredentialsProvider when looking up the secret, set only if required by the CredentialsProvider implementation
+quarkus.oidc.credentials.client-secret.provider.keyring-name=oidc
 # Set it only if more than one CredentialsProvider can be registered
 quarkus.oidc.credentials.jwt.secret-provider.name=oidc-credentials-provider</code></pre>
 </div>
@@ -423,7 +471,7 @@ quarkus.oidc.credentials.jwt.key-file=privateKey.pem</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.oidc.auth-server-url=http://localhost:8180/realms/quarkus/
 quarkus.oidc.client-id=quarkus-app
-quarkus.oidc.credentials.jwt.key-store-file=keystore.jks
+quarkus.oidc.credentials.jwt.key-store-file=keystore.pkcs12
 quarkus.oidc.credentials.jwt.key-store-password=mypassword
 quarkus.oidc.credentials.jwt.key-password=mykeypassword
 
@@ -433,6 +481,27 @@ quarkus.oidc.credentials.jwt.key-id=mykeyAlias</code></pre>
 </div>
 <div class="paragraph">
 <p>Using <code>client_secret_jwt</code> or <code>private_key_jwt</code> authentication methods ensures that a client secret does not get sent to the OIDC provider, therefore avoiding the risk of a secret being intercepted by a  'man-in-the-middle' attack.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example how JWT Bearer token can be used to authenticate client</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.oidc.auth-server-url=http://localhost:8180/realms/quarkus/
+quarkus.oidc.client-id=quarkus-app
+quarkus.oidc.credentials.jwt.source=bearer <i class="conum" data-value="1"></i><b>(1)</b>
+quarkus.oidc.credentials.jwt.token-path=/var/run/secrets/tokens <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Use JWT bearer token to authenticate OIDC provider client, see the <a href="https://www.rfc-editor.org/rfc/rfc7523#section-2.2">Using JWTs for Client Authentication</a> section for more information.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Path to a JWT bearer token. Quarkus loads a new token from a filesystem and reloads it when the token has expired.</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
 <h4 id="additional-jwt-authentication-options"><a class="anchor" href="#additional-jwt-authentication-options"></a>Additional JWT authentication options</h4>
@@ -500,21 +569,24 @@ quarkus.oidc.credentials.jwt.issuer=${apple.issuer}</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.oidc.tls.verification=certificate-validation
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.oidc.tls.tls-configuration-name=oidc
+
+# configure hostname verification if necessary
+#quarkus.tls.oidc.hostname-verification-algorithm=NONE
 
 # Keystore configuration
-quarkus.oidc.tls.key-store-file=client-keystore.jks
-quarkus.oidc.tls.key-store-password=${key-store-password}
+quarkus.tls.oidc.key-store.p12.path=client-keystore.p12
+quarkus.tls.oidc.key-store.p12.password=${key-store-password}
 
 # Add more keystore properties if needed:
-#quarkus.oidc.tls.key-store-alias=keyAlias
-#quarkus.oidc.tls.key-store-alias-password=keyAliasPassword
+#quarkus.tls.oidc.key-store.p12.alias=keyAlias
+#quarkus.tls.oidc.key-store.p12.alias-password=keyAliasPassword
 
 # Truststore configuration
-quarkus.oidc.tls.trust-store-file=client-truststore.jks
-quarkus.oidc.tls.trust-store-password=${trust-store-password}
+quarkus.tls.oidc.trust-store.p12.path=client-truststore.p12
+quarkus.tls.oidc.trust-store.p12.password=${trust-store-password}
 # Add more truststore properties if needed:
-#quarkus.oidc.tls.trust-store-alias=certAlias</code></pre>
+#quarkus.tls.oidc.trust-store.p12.alias=certAlias</code></pre>
 </div>
 </div>
 </div>
@@ -550,7 +622,7 @@ quarkus.oidc.introspection-credentials.secret=introspection-user-secret</code></
 </div>
 </div>
 <div class="sect2">
-<h3 id="oidc-request-filters"><a class="anchor" href="#oidc-request-filters"></a>OIDC request filters</h3>
+<h3 id="code-flow-oidc-request-filters"><a class="anchor" href="#code-flow-oidc-request-filters"></a>OIDC request filters</h3>
 <div class="paragraph">
 <p>You can filter OIDC requests made by Quarkus to the OIDC provider by registering one or more <code>OidcRequestFilter</code> implementations, which can update or add new request headers and can also log requests.</p>
 </div>
@@ -561,23 +633,22 @@ quarkus.oidc.introspection-credentials.secret=introspection-user-secret</code></
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package io.quarkus.it.keycloak;
 
+import io.quarkus.oidc.OidcConfigurationMetadata;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import io.quarkus.arc.Unremovable;
-import io.quarkus.oidc.common.OidcRequestContextProperties;
+import io.quarkus.oidc.common.OidcRequestContext;
 import io.quarkus.oidc.common.OidcRequestFilter;
-import io.vertx.mutiny.core.buffer.Buffer;
-import io.vertx.mutiny.ext.web.client.HttpRequest;
 
 @ApplicationScoped
 @Unremovable
 public class OidcTokenRequestCustomizer implements OidcRequestFilter {
     @Override
-    public void filter(HttpRequest&lt;Buffer&gt; request, Buffer buffer, OidcRequestContextProperties contextProps) {
-        OidcConfigurationMetadata metadata = contextProps.get(OidcConfigurationMetadata.class.getName()); <i class="conum" data-value="1"></i><b>(1)</b>
+    public void filter(OidcRequestContext requestContext) {
+        OidcConfigurationMetadata metadata = requestContext.contextProperties().get(OidcConfigurationMetadata.class.getName()); <i class="conum" data-value="1"></i><b>(1)</b>
         // Metadata URI is absolute, request URI value is relative
-        if (metadata.getTokenUri().endsWith(request.uri())) { <i class="conum" data-value="2"></i><b>(2)</b>
-            request.putHeader("TokenGrantDigest", calculateDigest(buffer.toString()));
+        if (metadata.getTokenUri().endsWith(requestContext.request().uri())) { <i class="conum" data-value="2"></i><b>(2)</b>
+            requestContext.request().putHeader("TokenGrantDigest", calculateDigest(requestContext.requestBody().toString()));
         }
     }
     private String calculateDigest(String bodyString) {
@@ -599,19 +670,19 @@ public class OidcTokenRequestCustomizer implements OidcRequestFilter {
 </table>
 </div>
 <div class="paragraph">
-<p>Alternatively, you can use <code>OidcRequestFilter.Endpoint</code> enum to apply this filter to the token endpoint requests only:</p>
+<p>Alternatively, you can use an <code>@OidcEndpoint</code> annotation to apply this filter to responses from the OIDC discovery endpoint only:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import jakarta.enterprise.context.ApplicationScoped;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package io.quarkus.it.keycloak;
+
+import jakarta.enterprise.context.ApplicationScoped;
 
 import io.quarkus.arc.Unremovable;
 import io.quarkus.oidc.common.OidcEndpoint;
 import io.quarkus.oidc.common.OidcEndpoint.Type;
-import io.quarkus.oidc.common.OidcRequestContextProperties;
+import io.quarkus.oidc.common.OidcRequestContext;
 import io.quarkus.oidc.common.OidcRequestFilter;
-import io.vertx.mutiny.core.buffer.Buffer;
-import io.vertx.mutiny.ext.web.client.HttpRequest;
 
 @ApplicationScoped
 @Unremovable
@@ -619,8 +690,8 @@ import io.vertx.mutiny.ext.web.client.HttpRequest;
 public class OidcDiscoveryRequestCustomizer implements OidcRequestFilter {
 
     @Override
-    public void filter(HttpRequest&lt;Buffer&gt; request, Buffer buffer, OidcRequestContextProperties contextProps) {
-        request.putHeader("Discovery", "OK");
+    public void filter(OidcRequestContext requestContext) {
+        requestContext.request().putHeader("Discovery", "OK");
     }
 }</code></pre>
 </div>
@@ -630,6 +701,72 @@ public class OidcDiscoveryRequestCustomizer implements OidcRequestFilter {
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>Restrict this filter to requests targeting the OIDC discovery endpoint only.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>OidcRequestContextProperties</code> can be used to access request properties.
+Currently, you can use a <code>tenand_id</code> key to access the OIDC tenant id and a <code>grant_type</code> key to access the grant type which the OIDC provider uses to acquire tokens.
+The <code>grant_type</code> can only be set to either <code>authorization_code</code> or <code>refresh_token</code> grant type, when requests are made to the token endpoint. It is <code>null</code> in all other cases.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="code-flow-oidc-response-filters"><a class="anchor" href="#code-flow-oidc-response-filters"></a>OIDC response filters</h3>
+<div class="paragraph">
+<p>You can filter responses from the OIDC providers by registering one or more <code>OidcResponseFilter</code> implementations, which can check the response status, headers and body in order to log them or perform other actions.</p>
+</div>
+<div class="paragraph">
+<p>You can have a single filter intercepting all the OIDC responses, or use an <code>@OidcEndpoint</code> annotation to apply this filter to the specific endpoint responses only. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package io.quarkus.it.keycloak;
+
+import jakarta.enterprise.context.ApplicationScoped;
+
+import io.quarkus.arc.Unremovable;
+import io.quarkus.logging.Log;
+import io.quarkus.oidc.common.OidcEndpoint;
+import io.quarkus.oidc.common.OidcEndpoint.Type;
+import io.quarkus.oidc.common.OidcResponseFilter;
+import io.quarkus.oidc.common.runtime.OidcConstants;
+import io.quarkus.oidc.runtime.OidcUtils;
+
+@ApplicationScoped
+@Unremovable
+@OidcEndpoint(value = Type.TOKEN) <i class="conum" data-value="1"></i><b>(1)</b>
+public class TokenEndpointResponseFilter implements OidcResponseFilter {
+
+    @Override
+    public void filter(OidcResponseContext rc) {
+        String contentType = rc.responseHeaders().get("Content-Type"); <i class="conum" data-value="2"></i><b>(2)</b>
+        if (contentType.equals("application/json")
+                &amp;&amp; OidcConstants.AUTHORIZATION_CODE.equals(rc.requestProperties().get(OidcConstants.GRANT_TYPE)) <i class="conum" data-value="3"></i><b>(3)</b>
+                &amp;&amp; "code-flow-user-info-cached-in-idtoken".equals(rc.requestProperties().get(OidcUtils.TENANT_ID_ATTRIBUTE)) <i class="conum" data-value="3"></i><b>(3)</b>
+                &amp;&amp; rc.responseBody().toJsonObject().containsKey("id_token")) { <i class="conum" data-value="4"></i><b>(4)</b>
+            Log.debug("Authorization code completed for tenant 'code-flow-user-info-cached-in-idtoken'");
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Restrict this filter to requests targeting the OIDC token endpoint only.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Check the response <code>Content-Type</code> header.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Use <code>OidcRequestContextProperties</code> request properties to check only an <code>authorization_code</code> token grant response for the <code>code-flow-user-info-cached-in-idtoken</code> tenant.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Confirm the response JSON contains an <code>id_token</code> property.</td>
 </tr>
 </table>
 </div>
@@ -776,6 +913,8 @@ import org.eclipse.microprofile.jwt.Claims;
 import io.quarkus.arc.Unremovable;
 import io.quarkus.oidc.AuthorizationCodeTokens;
 import io.quarkus.oidc.OidcRedirectFilter;
+import io.quarkus.oidc.Redirect;
+import io.quarkus.oidc.Redirect.Location;
 import io.quarkus.oidc.TenantFeature;
 import io.quarkus.oidc.runtime.OidcUtils;
 import io.smallrye.jwt.build.Jwt;
@@ -783,18 +922,19 @@ import io.smallrye.jwt.build.Jwt;
 @ApplicationScoped
 @Unremovable
 @TenantFeature("tenant-refresh")
+@Redirect(Location.SESSION_EXPIRED_PAGE) <i class="conum" data-value="1"></i><b>(1)</b>
 public class SessionExpiredOidcRedirectFilter implements OidcRedirectFilter {
 
     @Override
     public void filter(OidcRedirectContext context) {
 
         if (context.redirectUri().contains("/session-expired-page")) {
-            AuthorizationCodeTokens tokens = context.routingContext().get(AuthorizationCodeTokens.class.getName()); <i class="conum" data-value="1"></i><b>(1)</b>
-            String userName = OidcUtils.decodeJwtContent(tokens.getIdToken()).getString(Claims.preferred_username.name()); <i class="conum" data-value="2"></i><b>(2)</b>
-            String jwe = Jwt.preferredUserName(userName).jwe()
-                    .encryptWithSecret(context.oidcTenantConfig().credentials.secret.get()); <i class="conum" data-value="3"></i><b>(3)</b>
-            OidcUtils.createCookie(context.routingContext(), context.oidcTenantConfig(), "session_expired",
-                    jwe + "|" + context.oidcTenantConfig().tenantId.get(), 10); <i class="conum" data-value="4"></i><b>(4)</b>
+        AuthorizationCodeTokens tokens = context.routingContext().get(AuthorizationCodeTokens.class.getName()); <i class="conum" data-value="2"></i><b>(2)</b>
+        String userName = OidcUtils.decodeJwtContent(tokens.getIdToken()).getString(Claims.preferred_username.name()); <i class="conum" data-value="3"></i><b>(3)</b>
+        String jwe = Jwt.preferredUserName(userName).jwe()
+                .encryptWithSecret(context.oidcTenantConfig().credentials.secret.get()); <i class="conum" data-value="4"></i><b>(4)</b>
+        OidcUtils.createCookie(context.routingContext(), context.oidcTenantConfig(), "session_expired",
+                jwe + "|" + context.oidcTenantConfig().tenantId.get(), 10); <i class="conum" data-value="5"></i><b>(5)</b>
      }
     }
 }</code></pre>
@@ -804,18 +944,22 @@ public class SessionExpiredOidcRedirectFilter implements OidcRedirectFilter {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Access <code>AuthorizationCodeTokens</code> tokens associated with the now expired session as a <code>RoutingContext</code>  attribute.</td>
+<td>Make sure this redirect filter is only called during a redirect to the session expired page.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Decode ID token claims and get a user name.</td>
+<td>Access <code>AuthorizationCodeTokens</code> tokens associated with the now expired session as a <code>RoutingContext</code>  attribute.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Save the user name in a JWT token encrypted with the current OIDC tenant&#8217;s client secret.</td>
+<td>Decode ID token claims and get a user name.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Save the user name in a JWT token encrypted with the current OIDC tenant&#8217;s client secret.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
 <td>Create a custom <code>session_expired</code> cookie valid for 5 seconds which joins the encrypted token and a tenant id using a "|" separator. Recording a tenant id in a custom cookie can help to generate correct session expired pages in a multi-tenant OIDC setup.</td>
 </tr>
 </table>
@@ -836,12 +980,15 @@ import org.eclipse.microprofile.jwt.Claims;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import io.quarkus.oidc.OidcTenantConfig;
+import io.quarkus.oidc.runtime.OidcUtils;
 import io.quarkus.oidc.runtime.TenantConfigBean;
 import io.smallrye.jwt.auth.principal.DefaultJWTParser;
 import io.vertx.ext.web.RoutingContext;
 
 @Path("/session-expired-page")
 public class SessionExpiredResource {
+    @Inject
+    RoutingContext context;
 
     @Inject
     TenantConfigBean tenantConfig; <i class="conum" data-value="1"></i><b>(1)</b>
@@ -907,6 +1054,8 @@ You can access ID token claims by injecting <code>JsonWebToken</code> with an <c
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import io.quarkus.oidc.IdToken;
 import io.quarkus.security.Authenticated;
@@ -933,6 +1082,8 @@ You can access the raw access token as follows:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import io.quarkus.oidc.AccessTokenCredential;
 import io.quarkus.security.Authenticated;
@@ -998,7 +1149,7 @@ public class ProtectedResource {
 </div>
 </div>
 <div class="sect3">
-<h4 id="user-info"><a class="anchor" href="#user-info"></a>User info</h4>
+<h4 id="code-flow-user-info"><a class="anchor" href="#code-flow-user-info"></a>User info</h4>
 <div class="paragraph">
 <p>If the ID token does not provide enough information about the currently authenticated user, you can get more information from the <code>UserInfo</code> endpoint.
 Set the <code>quarkus.oidc.authentication.user-info-required=true</code> property to request a <a href="https://openid.net/specs/openid-connect-core-1_0.html#UserInfo">UserInfo</a> JSON object from the OIDC <code>UserInfo</code> endpoint.</p>
@@ -1022,7 +1173,7 @@ Set the <code>quarkus.oidc.authentication.user-info-required=true</code> propert
 </div>
 </div>
 <div class="sect3">
-<h4 id="config-metadata"><a class="anchor" href="#config-metadata"></a>Accessing the OIDC configuration information</h4>
+<h4 id="code-flow-config-metadata"><a class="anchor" href="#code-flow-config-metadata"></a>Accessing the OIDC configuration information</h4>
 <div class="paragraph">
 <p>The current tenant&#8217;s discovered <a href="https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata">OpenID Connect configuration metadata</a> is represented by <code>io.quarkus.oidc.OidcConfigurationMetadata</code> and can be injected or accessed as a <code>SecurityIdentity</code> <code>configuration-metadata</code> attribute.</p>
 </div>
@@ -1074,10 +1225,10 @@ You can also map <code>SecurityIdentity</code> roles created from token claims t
 This is done by ensuring tokens can be trusted.</p>
 </div>
 <div class="sect3">
-<h4 id="token-verification-introspection"><a class="anchor" href="#token-verification-introspection"></a>Token verification and introspection</h4>
+<h4 id="code-flow-token-verification-introspection"><a class="anchor" href="#code-flow-token-verification-introspection"></a>Token verification and introspection</h4>
 <div class="paragraph">
 <p>The verification process of OIDC authorization code flow tokens follows the Bearer token authentication token verification and introspection logic.
-For more information, see the <a href="security-oidc-bearer-token-authentication#token-verification-introspection">Token verification and introspection</a> section of the "Quarkus OpenID Connect (OIDC) Bearer token authentication" guide.</p>
+For more information, see the <a href="security-oidc-bearer-token-authentication#bearer-token-token-verification-introspection">Token verification and introspection</a> section of the "Quarkus OpenID Connect (OIDC) Bearer token authentication" guide.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1096,27 +1247,27 @@ If you expect the access token to contain the roles required to access the curre
 </div>
 </div>
 <div class="sect3">
-<h4 id="token-introspection-userinfo-cache"><a class="anchor" href="#token-introspection-userinfo-cache"></a>Token introspection and UserInfo cache</h4>
+<h4 id="code-flow-token-introspection-userinfo-cache"><a class="anchor" href="#code-flow-token-introspection-userinfo-cache"></a>Token introspection and UserInfo cache</h4>
 <div class="paragraph">
 <p>Code flow access tokens are not introspected unless they are expected to be the source of roles.
 However, they will be used to get <code>UserInfo</code>.
 There will be one or two remote calls with the code flow access token if the token introspection, <code>UserInfo</code>, or both are required.</p>
 </div>
 <div class="paragraph">
-<p>For more information about using the default token cache or registering a custom cache implementation, see <a href="security-oidc-bearer-token-authentication#token-introspection-userinfo-cache">Token introspection and UserInfo cache</a>.</p>
+<p>For more information about using the default token cache or registering a custom cache implementation, see <a href="security-oidc-bearer-token-authentication#bearer-token-token-introspection-userinfo-cache">Token introspection and UserInfo cache</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="jwt-claim-verification"><a class="anchor" href="#jwt-claim-verification"></a>JSON web token claim verification</h4>
+<h4 id="code-flow-jwt-claim-verification"><a class="anchor" href="#code-flow-jwt-claim-verification"></a>JSON web token claim verification</h4>
 <div class="paragraph">
-<p>For information about the claim verification, including the <code>iss</code> (issuer) claim, see the <a href="security-oidc-bearer-token-authentication#jwt-claim-verification">JSON Web Token claim verification</a> section.
+<p>For information about the claim verification, including the <code>iss</code> (issuer) claim, see the <a href="security-oidc-bearer-token-authentication#bearer-token-jwt-claim-verification">JSON Web Token claim verification</a> section.
 It applies to ID tokens and also to access tokens in a JWT format, if the <code>web-app</code> application has requested the access token verification.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="jose4j-validator"><a class="anchor" href="#jose4j-validator"></a>Jose4j Validator</h4>
+<h4 id="jose4j-validator-code"><a class="anchor" href="#jose4j-validator-code"></a>Jose4j Validator</h4>
 <div class="paragraph">
-<p>You can register a custom [Jose4j Validator] to customize the JWT claim verification process. See <a href="security-oidc-bearer-token-authentication#jose4j-validator">Jose4j</a> section for more information.</p>
+<p>You can register a custom Jose4j Validator to customize the JWT claim verification process. See the <a href="security-oidc-bearer-token-authentication#jose4j-validator-bearer">Jose4j</a> section for more information.</p>
 </div>
 </div>
 </div>
@@ -1183,15 +1334,14 @@ For example:</p>
 </div>
 <div class="paragraph">
 <p>To set the cookie path dynamically, configure the <code>quarkus.oidc.authentication.cookie-path-header</code> property.
-Set the <code>quarkus.oidc.authentication.cookie-path-header</code> property.
-For example, to set the cookie path dynamically by using the value of the`X-Forwarded-Prefix` HTTP header, configure the property to <code>quarkus.oidc.authentication.cookie-path-header=X-Forwarded-Prefix</code>.</p>
+For example, to set the cookie path dynamically by using the value of the <code>X-Forwarded-Prefix</code> HTTP header, configure the property to <code>quarkus.oidc.authentication.cookie-path-header=X-Forwarded-Prefix</code>.</p>
 </div>
 <div class="paragraph">
 <p>If <code>quarkus.oidc.authentication.cookie-path-header</code> is set but no configured HTTP header is available in the current request, then the <code>quarkus.oidc.authentication.cookie-path</code> will be checked.</p>
 </div>
 <div class="paragraph">
 <p>If your application is deployed across multiple domains, set the <code>quarkus.oidc.authentication.cookie-domain</code> property so that the session cookie is visible to all protected Quarkus services.
-For example, if you have Quarkus services deployed on the following two domains, then you must set the <code>quarkus.oidc.authentication.cookie-domain</code> property to <code>company.net</code>.</p>
+For example, if you have Quarkus services deployed on the following two domains, then you must set the <code>quarkus.oidc.authentication.cookie-domain</code> property to <code>company.net</code>:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1212,11 +1362,11 @@ When an authorization code flow is started, Quarkus creates a state cookie and a
 When the user is redirected back to Quarkus to complete the authorization code flow, Quarkus expects that the request URI must contain the <code>state</code> query parameter and it must match the current state cookie value.</p>
 </div>
 <div class="paragraph">
-<p>The default state cookie age is 5 mins and you can change it with a <code>quarkus.oidc.authenticaion.state-cookie-age</code> Duration property.</p>
+<p>The default state cookie age is 5 mins and you can change it with a <code>quarkus.oidc.authentication.state-cookie-age</code> Duration property.</p>
 </div>
 <div class="paragraph">
 <p>Quarkus creates a unique state cookie name every time a new authorization code flow is started to support multi-tab authentication. Many concurrent authentication requests on behalf of the same user may cause a lot of state cookies be created.
-If you do not want to allow your users use multiple browser tabs to authenticate then it is recommended to disable it with <code>quarkus.oidc.authenticaion.allow-multiple-code-flows=false</code>. It also ensures that the same state cookie name is created for every new user authentication.</p>
+If you do not want to allow your users use multiple browser tabs to authenticate then it is recommended to disable it with <code>quarkus.oidc.authentication.allow-multiple-code-flows=false</code>. It also ensures that the same state cookie name is created for every new user authentication.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1228,8 +1378,10 @@ If you do not want to allow your users use multiple browser tabs to authenticate
 <p>It makes Quarkus OIDC endpoints completely stateless and it is recommended to follow this strategy to achieve the best scalability results.</p>
 </div>
 <div class="paragraph">
-<p>See the <a href="#db-token-state-manager">Database TokenStateManager</a> and <a href="#custom-token-state-manager">Session cookie and custom TokenStateManager</a> sections of this guide for alternative approaches to storing tokens.
-For example, storing tokens in the database or other server-side storage, if you prefer and have good reasons for storing the token state on the server.</p>
+<p>Refer to the <a href="#db-token-state-manager">Database TokenStateManager</a> section of this guide for information on storing tokens in the database or other server-side storage solutions. This approach is suitable if you prefer and have compelling reasons to store the token state on the server.</p>
+</div>
+<div class="paragraph">
+<p>See the <a href="#custom-token-state-manager">Session cookie and custom TokenStateManager</a> section for alternative methods of token storage. This is ideal for those seeking customized solutions for token state management, especially when standard server-side storage does not meet your specific requirements.</p>
 </div>
 <div class="paragraph">
 <p>You can configure the default <code>TokenStateManager</code> to avoid saving an access token in the session cookie and to only keep ID and refresh tokens or a single ID token only.</p>
@@ -1358,14 +1510,14 @@ public class CustomTokenStateManager implements TokenStateManager {
 
     @Override
     public Uni&lt;String&gt; createTokenState(RoutingContext routingContext, OidcTenantConfig oidcConfig,
-            AuthorizationCodeTokens sessionContent, TokenStateManager.CreateTokenStateRequestContext requestContext) {
+            AuthorizationCodeTokens sessionContent, OidcRequestContext&lt;String&gt; requestContext) {
         return tokenStateManager.createTokenState(routingContext, oidcConfig, sessionContent, requestContext)
                 .map(t -&gt; (t + "|custom"));
     }
 
     @Override
     public Uni&lt;AuthorizationCodeTokens&gt; getTokens(RoutingContext routingContext, OidcTenantConfig oidcConfig,
-            String tokenState, TokenStateManager.GetTokensRequestContext requestContext) {
+            String tokenState, OidcRequestContext&lt;AuthorizationCodeTokens&gt; requestContext) {
         if (!tokenState.endsWith("|custom")) {
             throw new IllegalStateException();
         }
@@ -1375,7 +1527,7 @@ public class CustomTokenStateManager implements TokenStateManager {
 
     @Override
     public Uni&lt;Void&gt; deleteTokens(RoutingContext routingContext, OidcTenantConfig oidcConfig, String tokenState,
-            TokenStateManager.DeleteTokensRequestContext requestContext) {
+            OidcRequestContext&lt;Void&gt; requestContext) {
         if (!tokenState.endsWith("|custom")) {
             throw new IllegalStateException();
         }
@@ -1549,6 +1701,48 @@ For more information, refer to the <a href="hibernate-orm">Hibernate ORM</a> gui
 </table>
 </div>
 </div>
+<div class="sect3">
+<h4 id="redis-token-state-manager"><a class="anchor" href="#redis-token-state-manager"></a>Redis TokenStateManager</h4>
+<div class="paragraph">
+<p>Another approach for a stateful token storage strategy is a custom <code>TokenStateManager</code> provided by Quarkus to have your application store tokens in a Redis cache.
+If you decided to use the OIDC Redis Token State Manager, you must add the following dependency:</p>
+</div>
+<div class="listingblock primary asciidoc-tabs-target-sync-cli asciidoc-tabs-target-sync-maven">
+<div class="title">pom.xml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+    &lt;artifactId&gt;quarkus-oidc-redis-token-state-manager&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock secondary asciidoc-tabs-target-sync-gradle">
+<div class="title">build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation("io.quarkus:quarkus-oidc-redis-token-state-manager")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Quarkus stores tokens in the default Redis client.
+If you prefer to use different Redis client, you can configure it like in the example below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.oidc.redis-token-state-manager.redis-client-name=my-redis-client <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>my-redis-client</code> name must correspond to the Redis client config key specified with <code>quarkus.redis.my-redis-client.*</code> configuration properties.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Please refer to the <a href="redis-reference">Quarkus Redis Client reference</a> for information how to configure the Redis client.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="logout-and-expiration"><a class="anchor" href="#logout-and-expiration"></a>Logout and expiration</h3>
@@ -1558,11 +1752,30 @@ For more information, refer to the <a href="hibernate-orm">Hibernate ORM</a> gui
 <div class="paragraph">
 <p>Let&#8217;s start with explicit logout operations.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can request setting <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Clear-Site-Data">Clear-Site-Data</a> directives for all of the logout operations with a <code>quarkus.oidc.logout.clear-site-data</code> configuration property. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.oidc.logout.clear-site-data=cache,cookies</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="sect3">
 <h4 id="user-initiated-logout"><a class="anchor" href="#user-initiated-logout"></a>User-initiated logout</h4>
 <div class="paragraph">
 <p>Users can request a logout by sending a request to the Quarkus endpoint logout path set with a <code>quarkus.oidc.logout.path</code> property.
-For example, if the endpoint address is <code><a href="https://application.com/webapp" class="bare">https://application.com/webapp</a></code> and the <code>quarkus.oidc.logout.path</code> is set to "/logout", then the logout request must be sent to <code><a href="https://application.com/webapp/logout" class="bare">https://application.com/webapp/logout</a></code>.</p>
+For example, if the endpoint address is <code><a href="https://application.com/webapp" class="bare">https://application.com/webapp</a></code> and the <code>quarkus.oidc.logout.path</code> is set to <code>/logout</code>, then the logout request must be sent to <code><a href="https://application.com/webapp/logout" class="bare">https://application.com/webapp/logout</a></code>.</p>
 </div>
 <div class="paragraph">
 <p>This logout request starts an <a href="https://openid.net/specs/openid-connect-session-1_0.html#RPLogout">RP-initiated logout</a>.
@@ -1570,7 +1783,7 @@ The user will be redirected to the OIDC provider to log out, where they can be a
 </div>
 <div class="paragraph">
 <p>The user will be returned to the endpoint post-logout page once the logout has been completed and if the <code>quarkus.oidc.logout.post-logout-path</code> property is set.
-For example, if the endpoint address is <code><a href="https://application.com/webapp" class="bare">https://application.com/webapp</a></code> and the <code>quarkus.oidc.logout.post-logout-path</code> is set to "/signin", then the user will be returned to <code><a href="https://application.com/webapp/signin" class="bare">https://application.com/webapp/signin</a></code>.
+For example, if the endpoint address is <code><a href="https://application.com/webapp" class="bare">https://application.com/webapp</a></code> and the <code>quarkus.oidc.logout.post-logout-path</code> is set to <code>/signin</code>, then the user will be returned to <code><a href="https://application.com/webapp/signin" class="bare">https://application.com/webapp/signin</a></code>.
 Note, this URI must be registered as a valid <code>post_logout_redirect_uri</code> in the OIDC provider.</p>
 </div>
 <div class="paragraph">
@@ -1738,8 +1951,9 @@ public class ServiceResource {
     @Path("logout")
     public String logout() {
         oidcSession.logout().await().indefinitely();
-        return "You are logged out".
-    }</code></pre>
+        return "You are logged out";
+    }
+}</code></pre>
 </div>
 </div>
 </div>
@@ -1892,7 +2106,7 @@ This <code>access</code> token represents an authenticated user authorizing the 
 <div class="paragraph">
 <p>For OIDC, you validate the ID token as proof of authentication validity whereas in the case of OAuth2, you validate the access token.
 This is done by subsequently calling an endpoint that requires the access token and that typically returns user information.
-This approach is similar to the OIDC <a href="#user-info">UserInfo</a> approach, with <code>UserInfo</code> fetched by Quarkus OIDC on your behalf.</p>
+This approach is similar to the OIDC <a href="#code-flow-user-info">UserInfo</a> approach, with <code>UserInfo</code> fetched by Quarkus OIDC on your behalf.</p>
 </div>
 <div class="paragraph">
 <p>For example, when working with GitHub, the Quarkus endpoint can acquire an <code>access</code> token, which allows the Quarkus endpoint to request a GitHub profile for the current user.</p>
@@ -1911,11 +2125,8 @@ This approach is similar to the OIDC <a href="#user-info">UserInfo</a> approach,
 <p>Even though you configure the extension to support the authorization code flows without <code>IdToken</code>, an internal <code>IdToken</code> is generated to standardize the way <code>quarkus-oidc</code> operates.
 You use an internal <code>IdToken</code> to support the authentication session and to avoid redirecting the user to the provider,  such as GitHub, on every request.
 In this case, the <code>IdToken</code> age is set to the value of a standard <code>expires_in</code> property in the authorization code flow response.
-You can use a `quarkus.oidc.authentication.internal-id-token-lifespan`property to customize the ID token age.
-The default ID token age is 5 minutes.</p>
-</div>
-<div class="paragraph">
-<p>, which you can extend further as described in the <a href="#session-management">session management</a> section.</p>
+You can use a <code>quarkus.oidc.authentication.internal-id-token-lifespan</code> property to customize the ID token age.
+The default ID token age is 5 minutes, which you can extend further as described in the <a href="#session-management">session management</a> section.</p>
 </div>
 <div class="paragraph">
 <p>This simplifies how you handle an application that supports multiple OIDC providers.</p>
@@ -1928,7 +2139,7 @@ The default ID token age is 5 minutes.</p>
 <p>The next step is to ensure that the returned access token can be useful and is valid to the current Quarkus endpoint.
 The first way is to call the OAuth2 provider introspection endpoint by configuring <code>quarkus.oidc.introspection-path</code>, if the provider offers such an endpoint.
 In this case, you can use the access token as a source of roles using <code>quarkus.oidc.roles.source=accesstoken</code>.
-If no introspection endpoint is present, you can attempt instead to request <a href="#user-info">UserInfo</a> from the provider as it will at least validate the access token.
+If no introspection endpoint is present, you can attempt instead to request <a href="#code-flow-user-info">UserInfo</a> from the provider as it will at least validate the access token.
 To do so, specify <code>quarkus.oidc.token.verify-access-token-with-user-info=true</code>.
 You also need to set the <code>quarkus.oidc.user-info-path</code> property to a URL endpoint that fetches the user info (or to an endpoint protected by the access token).
 For GitHub, since it does not have an introspection endpoint, requesting the UserInfo is required.</p>
@@ -1941,14 +2152,14 @@ For GitHub, since it does not have an introspection endpoint, requesting the Use
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Requiring <a href="#user-info">UserInfo</a> involves making a remote call on every request.</p>
+<p>Requiring <a href="#code-flow-user-info">UserInfo</a> involves making a remote call on every request.</p>
 </div>
 <div class="paragraph">
 <p>Therefore, <code>UserInfo</code> is embedded in the internal generated <code>IdToken</code> and saved in the encrypted session cookie. It can be disabled with <code>quarkus.oidc.cache-user-info-in-idtoken=false</code>.</p>
 </div>
 <div class="paragraph">
 <p>Alternatively, you might want to consider caching <code>UserInfo</code> using a default or custom UserInfo cache provider.
-For more information, see the <a href="security-oidc-bearer-token-authentication#token-introspection-userinfo-cache">Token Introspection and UserInfo cache</a> section of the "OpenID Connect (OIDC) Bearer token authentication" guide.</p>
+For more information, see the <a href="security-oidc-bearer-token-authentication#bearer-token-token-introspection-userinfo-cache">Token Introspection and UserInfo cache</a> section of the "OpenID Connect (OIDC) Bearer token authentication" guide.</p>
 </div>
 <div class="paragraph">
 <p>Most well-known social OAuth2 providers enforce rate-limiting so there is a high chance you will prefer to have UserInfo cached.</p>
@@ -1962,7 +2173,7 @@ For more information, see the <a href="security-oidc-bearer-token-authentication
 In this case, you must disable the discovery and configure the authorization, token, and introspection and <code>UserInfo</code> endpoint paths manually.</p>
 </div>
 <div class="paragraph">
-<p>For well-known OIDC or OAuth2 providers, such as Apple, Facebook, GitHub, Google, Microsoft, Spotify, and Twitter, Quarkus can help significantly simplify your application&#8217;s configuration with the <code>quarkus.oidc.provider</code> property.
+<p>For well-known OIDC or OAuth2 providers, such as Apple, Facebook, GitHub, Google, Microsoft, Spotify, and X (formerly Twitter), Quarkus can help significantly simplify your application&#8217;s configuration with the <code>quarkus.oidc.provider</code> property.
 Here is how you can integrate <code>quarkus-oidc</code> with GitHub after you have <a href="https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app">created a GitHub OAuth application</a>.
 Configure your Quarkus endpoint like this:</p>
 </div>
@@ -1991,7 +2202,9 @@ quarkus.oidc.credentials.secret=github_app_clientsecret
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import jakarta.inject.Inject;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package io.quarkus.it.keycloak;
+
+import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -2065,7 +2278,9 @@ public class CustomSecurityIdentityAugmentor implements SecurityIdentityAugmento
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import jakarta.inject.Inject;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package io.quarkus.it.keycloak;
+
+import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -2083,15 +2298,15 @@ public class TokenResource {
     @GET
     @Path("/google")
     @Produces("application/json")
-    public String getUserName() {
+    public String getGoogleUserName() {
         return identity.getPrincipal().getName();
     }
 
     @GET
     @Path("/github")
     @Produces("application/json")
-    public String getUserName() {
-        return identity.getPrincipal().getUserName();
+    public String getGitHubUserName() {
+        return identity.getPrincipal().getName();
     }
 }</code></pre>
 </div>
@@ -2101,7 +2316,7 @@ public class TokenResource {
 </div>
 <div class="paragraph">
 <p>You must ensure that the callback path you enter in the GitHub OAuth application configuration matches the endpoint path where you want the user to be redirected after a successful GitHub authentication and application authorization.
-In this case, it has to be set to <code>http:localhost:8080/github/userinfo</code>.</p>
+In this case, it has to be set to <code><a href="http://localhost:8080/github/userinfo" class="bare">http://localhost:8080/github/userinfo</a></code>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2117,9 +2332,7 @@ For example:</p>
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
 
-import io.quarkus.oidc.IdTokenCredential;
 import io.quarkus.oidc.SecurityEvent;
-import io.quarkus.security.identity.AuthenticationRequestContext;
 import io.vertx.ext.web.RoutingContext;
 
 @ApplicationScoped
@@ -2147,9 +2360,146 @@ You can listen to other security events as described in the <a href="security-cu
 </div>
 </div>
 <div class="sect2">
+<h3 id="oidc-token-revocation"><a class="anchor" href="#oidc-token-revocation"></a>Token revocation</h3>
+<div class="paragraph">
+<p>Sometimes, you may want to revoke the current authorization code flow access and/or refresh tokens.
+You can revoke tokens with <code>quarkus.oidc.OidcProviderClient</code> which provides access to the OIDC provider&#8217;s UserInfo, token introspection and revocation endpoints.</p>
+</div>
+<div class="paragraph">
+<p>For example, when a local logout with <a href="#oidc-session">OidcSession</a> is performed, you can use an injected <code>OidcProviderClient</code> to revoke access and refresh tokens associated with the current session:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+
+import io.quarkus.oidc.AccessTokenCredential;
+import io.quarkus.oidc.OidcProviderClient;
+import io.quarkus.oidc.OidcSession;
+import io.quarkus.oidc.RefreshToken;
+
+import io.smallrye.mutiny.Uni;
+
+@Path("/service")
+public class ServiceResource {
+
+    @Inject
+    OidcSession oidcSession;
+
+    @Inject
+    OidcProviderClient oidcProviderClient;
+
+    @Inject
+    AccessTokenCredential accessToken;
+
+    @Inject
+    RefreshToken refreshToken;
+
+    @GET
+    public Uni&lt;String&gt; logout() {
+        return oidcSession.logout() <i class="conum" data-value="1"></i><b>(1)</b>
+                   .chain(() -&gt; oidcClient.revokeAccessToken(accessToken.getToken())) <i class="conum" data-value="2"></i><b>(2)</b>
+                   .chain(() -&gt; oidcClient.revokeRefreshToken(refreshToken.getToken())) <i class="conum" data-value="3"></i><b>(3)</b>
+                   .map((result) -&gt; "You are logged out");
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Do the local logout by clearing the session cookie.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Revoke the authorization code flow access token.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Revoke the authorization code flow refresh token.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can also revoke tokens in the security event listeners.</p>
+</div>
+<div class="paragraph">
+<p>For example, when your application supports a standard <a href="#user-initiated-logout">User-initiated logout</a>, you can catch a logout event and revoke tokens:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
+
+import io.quarkus.oidc.AccessTokenCredential;
+import io.quarkus.oidc.OidcProviderClient;
+import io.quarkus.oidc.RefreshToken;
+import io.quarkus.oidc.SecurityEvent;
+import io.quarkus.security.identity.SecurityIdentity;
+import io.smallrye.mutiny.Uni;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.event.ObservesAsync;
+
+@ApplicationScoped
+public class SecurityEventListener {
+
+    public CompletionStage&lt;Void&gt; processSecurityEvent(@ObservesAsync SecurityEvent event) {
+        if (SecurityEvent.Type.OIDC_LOGOUT_RP_INITIATED == event.getEventType()) { <i class="conum" data-value="1"></i><b>(1)</b>
+	    return revokeTokens(event.getSecurityIdentity()).subscribeAsCompletionStage();
+	}
+	return CompletableFuture.completedFuture(null);
+    }
+    private Uni&lt;Void&gt; revokeTokens(SecurityIdentity securityIdentity) {
+        return Uni.join().all(
+                   revokeAccessToken(securityIdentity),
+	           revokeRefreshToken(securityIdentity)
+               ).andCollectFailures()
+                .replaceWithVoid()
+                .onFailure().recoverWithUni(t -&gt; logFailure(t));
+    }
+
+    private static Uni&lt;Boolean&gt; revokeAccessToken(SecurityIdentity securityIdentity) { <i class="conum" data-value="2"></i><b>(2)</b>
+        OidcProviderClient oidcProvider = securityIdentity.getAttribute(OidcProviderClient.class.getName());
+        String accessToken = securityIdentity.getCredential(AccessTokenCredential.class).getToken();
+        return oidcProvider.revokeAccessToken(accessToken);
+    }
+
+    private static Uni&lt;Boolean&gt; revokeRefreshToken(SecurityIdentity securityIdentity) { <i class="conum" data-value="3"></i><b>(3)</b>
+        OidcProviderClient oidcProvider = securityIdentity.getAttribute(OidcProviderClient.class.getName());
+        String refreshToken = securityIdentity.getCredential(RefreshToken.class).getToken();
+        return oidcProvider.revokeRefreshToken(refreshToken);
+    }
+
+    private static Uni&lt;Void&gt; logFailure(Throwable t) {
+        // Log failure as required
+        return Uni.createFrom().voidItem();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Revoke tokens if an RP-initiated logout event is observed.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Revoke the authorization code flow access token.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Revoke the authorization code flow refresh token.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
 <h3 id="propagating-tokens-to-downstream-services"><a class="anchor" href="#propagating-tokens-to-downstream-services"></a>Propagating tokens to downstream services</h3>
 <div class="paragraph">
-<p>For information about Authorization Code Flow access token propagation to downstream services, see the <a href="security-openid-connect-client-reference#token-propagation">Token Propagation</a> section.</p>
+<p>For information about Authorization Code Flow access token propagation to downstream services, see the <a href="security-openid-connect-client-reference#token-propagation-rest">Token Propagation</a> section.</p>
 </div>
 </div>
 </div>
@@ -2309,6 +2659,19 @@ In such cases, the endpoint might report an issuer verification failure and redi
 If you work with other OIDC providers, check the documentation of your provider.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="oidc-http-client-redirects"><a class="anchor" href="#oidc-http-client-redirects"></a>OIDC HTTP client redirects</h3>
+<div class="paragraph">
+<p>OIDC providers behind a firewall may redirect Quarkus OIDC HTTP client&#8217;s GET requests to some of its endpoints such as a well-known configuration endpoint.
+By default, Quarkus OIDC HTTP client follows HTTP redirects automatically, excluding cookies which may have been set during the redirect request for security reasons.</p>
+</div>
+<div class="paragraph">
+<p>If you would like, you can disable it with <code>quarkus.oidc.follow-redirects=false</code>.</p>
+</div>
+<div class="paragraph">
+<p>When following redirects automatically is disabled, and Quarkus OIDC HTTP client receives a redirect request, it will attempt to recover only once by following the redirect URI, but only if it is exactly the same as the original request URI, and as long as one or more cookies were set during the redirect request.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2344,8 +2707,8 @@ Here is a typical sequence explaining how to configure <code>Keycloak</code> to 
 </div>
 <div class="paragraph">
 <p>Next, configure it to point to a Keycloak SAML broker endpoint.
-At this point, you need to know the name of the Keycloak realm, for example, <code>quarkus</code>, and, assuming that the Keycloak SAML broker alias is <code>saml</code>, enter the endpoint address as <code>http:localhost:8081/realms/quarkus/broker/saml/endpoint</code>.
-Enter the service provider (SP) entity ID as <code>http:localhost:8081/realms/quarkus</code>, where <code><a href="http://localhost:8081" class="bare">http://localhost:8081</a></code> is a Keycloak base address and <code>saml</code> is a broker alias:</p>
+At this point, you need to know the name of the Keycloak realm, for example, <code>quarkus</code>, and, assuming that the Keycloak SAML broker alias is <code>saml</code>, enter the endpoint address as <code><a href="http://localhost:8081/realms/quarkus/broker/saml/endpoint" class="bare">http://localhost:8081/realms/quarkus/broker/saml/endpoint</a></code>.
+Enter the service provider (SP) entity ID as <code><a href="http://localhost:8081/realms/quarkus" class="bare">http://localhost:8081/realms/quarkus</a></code>, where <code><a href="http://localhost:8081" class="bare">http://localhost:8081</a></code> is a Keycloak base address and <code>saml</code> is a broker alias:</p>
 </div>
 <div class="imageblock center">
 <div class="content">
@@ -2376,7 +2739,7 @@ In this case, the realm name has to be <code>quarkus</code>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Note the alias is set to <code>saml</code>, <code>Redirect URI</code> is <code>http:localhost:8081/realms/quarkus/broker/saml/endpoint</code> and <code>Service provider entity ID</code> is <code>http:localhost:8081/realms/quarkus</code> - these are the same values you entered when creating the Okta SAML integration in the previous step.</p>
+<p>Note the alias is set to <code>saml</code>, <code>Redirect URI</code> is <code><a href="http://localhost:8081/realms/quarkus/broker/saml/endpoint" class="bare">http://localhost:8081/realms/quarkus/broker/saml/endpoint</a></code> and <code>Service provider entity ID</code> is <code><a href="http://localhost:8081/realms/quarkus" class="bare">http://localhost:8081/realms/quarkus</a></code> - these are the same values you entered when creating the Okta SAML integration in the previous step.</p>
 </div>
 <div class="paragraph">
 <p>Finally, set <code>Service entity descriptor</code> to point to the Okta SAML Integration Metadata URL you noted at the end of the previous step.</p>
@@ -2405,7 +2768,7 @@ Then, you are ready to start authenticating your Quarkus users to the Okta SAML 
 </div>
 </div>
 <div class="sect1">
-<h2 id="integration-testing"><a class="anchor" href="#integration-testing"></a>Testing</h2>
+<h2 id="code-flow-integration-testing"><a class="anchor" href="#code-flow-integration-testing"></a>Testing</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Testing is often tricky when it comes to authentication to a separate OIDC-like server.
@@ -2418,7 +2781,7 @@ Quarkus offers several options from mocking to a local run of an OIDC provider.<
 <div class="title">pom.xml</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
-    &lt;groupId&gt;net.sourceforge.htmlunit&lt;/groupId&gt;
+    &lt;groupId&gt;org.htmlunit&lt;/groupId&gt;
     &lt;artifactId&gt;htmlunit&lt;/artifactId&gt;
     &lt;exclusions&gt;
         &lt;exclusion&gt;
@@ -2438,12 +2801,69 @@ Quarkus offers several options from mocking to a local run of an OIDC provider.<
 <div class="listingblock secondary asciidoc-tabs-target-sync-gradle">
 <div class="title">build.gradle</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">testImplementation("net.sourceforge.htmlunit:htmlunit")
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">testImplementation("org.htmlunit:htmlunit")
 testImplementation("io.quarkus:quarkus-junit5")</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="integration-testing-wiremock"><a class="anchor" href="#integration-testing-wiremock"></a>Wiremock</h3>
+<h3 id="code-flow-integration-testing-keycloak-devservices"><a class="anchor" href="#code-flow-integration-testing-keycloak-devservices"></a>Dev Services for Keycloak</h3>
+<div class="paragraph">
+<p>For integration testing against Keycloak, use <a href="security-openid-connect-dev-services">Dev services for Keycloak</a>.
+This service initializes a test container, creates a <code>quarkus</code> realm, and configures a <code>quarkus-app</code> client with the secret <code>secret</code>.
+It also sets up two users: <code>alice</code> with <code>admin</code> and <code>user</code> roles, and <code>bob</code> with the <code>user</code> role.</p>
+</div>
+<div class="paragraph">
+<p>First, prepare the <code>application.properties</code> file.</p>
+</div>
+<div class="paragraph">
+<p>If starting from an empty <code>application.properties</code> file, <code>Dev Services for Keycloak</code> automatically registers the following properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>quarkus.oidc.auth-server-url</code>, which points to the running test container.</p>
+</li>
+<li>
+<p><code>quarkus.oidc.client-id=quarkus-app</code>.</p>
+</li>
+<li>
+<p><code>quarkus.oidc.credentials.secret=secret</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you already have the required <code>quarkus-oidc</code> properties configured, associate <code>quarkus.oidc.auth-server-url</code> with the <code>prod</code> profile.
+This ensures that <code>Dev Services for Keycloak</code> starts the container as expected.
+For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">%prod.quarkus.oidc.auth-server-url=http://localhost:8180/realms/quarkus</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To import a custom realm file into Keycloak before running the tests, configure <code>Dev services for Keycloak</code> as shown:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">%prod.quarkus.oidc.auth-server-url=http://localhost:8180/realms/quarkus
+quarkus.keycloak.devservices.realm-path=quarkus-realm.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, write the test code as described in the <a href="#code-flow-integration-testing-wiremock">Wiremock</a> section.
+The only difference is that <code>@QuarkusTestResource</code> is no longer required:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@QuarkusTest
+public class CodeFlowAuthorizationTest {
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="code-flow-integration-testing-wiremock"><a class="anchor" href="#code-flow-integration-testing-wiremock"></a>Wiremock</h3>
 <div class="paragraph">
 <p>Add the following dependency:</p>
 </div>
@@ -2470,7 +2890,7 @@ For example:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># keycloak.url is set by OidcWiremockTestResource
-quarkus.oidc.auth-server-url=${keycloak.url}/realms/quarkus/
+quarkus.oidc.auth-server-url=${keycloak.url:replaced-by-test-resource}/realms/quarkus/
 quarkus.oidc.client-id=quarkus-web-app
 quarkus.oidc.credentials.secret=secret
 quarkus.oidc.application-type=web-app</code></pre>
@@ -2485,10 +2905,10 @@ quarkus.oidc.application-type=web-app</code></pre>
 
 import org.junit.jupiter.api.Test;
 
-import com.gargoylesoftware.htmlunit.SilentCssErrorHandler;
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlForm;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import org.htmlunit.SilentCssErrorHandler;
+import org.htmlunit.WebClient;
+import org.htmlunit.html.HtmlForm;
+import org.htmlunit.html.HtmlPage;
 
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
@@ -2504,14 +2924,14 @@ public class CodeFlowAuthorizationTest {
             // the test REST endpoint listens on '/code-flow'
             HtmlPage page = webClient.getPage("http://localhost:8081/code-flow");
 
-            HtmlForm form = page.getFormByName("form");
+            HtmlForm form = page.getForms().get(0);
             // user 'alice' has the 'user' role
             form.getInputByName("username").type("alice");
             form.getInputByName("password").type("alice");
 
-            page = form.getInputByValue("login").click();
+            page = form.getButtonByName("login").click();
 
-            assertEquals("alice", page.getBody().asText());
+            assertEquals("alice", page.getBody().asNormalizedText());
         }
     }
 
@@ -2536,50 +2956,10 @@ The user <code>admin</code> has the <code>user</code> and <code>admin</code> rol
 </div>
 </div>
 <div class="sect2">
-<h3 id="integration-testing-keycloak-devservices"><a class="anchor" href="#integration-testing-keycloak-devservices"></a>Dev Services for Keycloak</h3>
-<div class="paragraph">
-<p>Using <a href="security-openid-connect-dev-services">Dev Services for Keycloak</a> is recommended for integration testing against Keycloak.
-<code>Dev Services for Keycloak</code> will start and initialize a test container: it will create a <code>quarkus</code> realm, a <code>quarkus-app</code> client (<code>secret</code> secret), and add <code>alice</code> (<code>admin</code> and <code>user</code> roles) and <code>bob</code> (<code>user</code> role) users, where all of these properties can be customized.</p>
-</div>
-<div class="paragraph">
-<p>First, prepare <code>application.properties</code>.
-You can start with a completely empty <code>application.properties</code> file as <code>Dev Services for Keycloak</code> will register <code>quarkus.oidc.auth-server-url</code> pointing to the running test container as well as <code>quarkus.oidc.client-id=quarkus-app</code> and <code>quarkus.oidc.credentials.secret=secret</code>.</p>
-</div>
-<div class="paragraph">
-<p>However, if you already have all the required <code>quarkus-oidc</code> properties configured, then you only need to associate <code>quarkus.oidc.auth-server-url</code> with the <code>prod</code> profile for <code>Dev Services for Keycloak</code> to start a container.
-For example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">%prod.quarkus.oidc.auth-server-url=http://localhost:8180/realms/quarkus</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If a custom realm file has to be imported into Keycloak before running the tests, then you can configure <code>Dev Services for Keycloak</code> as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">%prod.quarkus.oidc.auth-server-url=http://localhost:8180/realms/quarkus
-quarkus.keycloak.devservices.realm-path=quarkus-realm.json</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Finally, write a test code the same way as it is described in the <a href="#integration-testing-wiremock">Wiremock</a> section.
-The only difference is that <code>@QuarkusTestResource</code> is no longer needed:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@QuarkusTest
-public class CodeFlowAuthorizationTest {
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="integration-testing-keycloak"><a class="anchor" href="#integration-testing-keycloak"></a>Using KeycloakTestResourceLifecycleManager</h3>
+<h3 id="code-flow-integration-testing-keycloak"><a class="anchor" href="#code-flow-integration-testing-keycloak"></a>Using KeycloakTestResourceLifecycleManager</h3>
 <div class="paragraph">
 <p>Use <code>KeycloakTestResourceLifecycleManager</code> for your tests only if there is a good reason not to use <code>Dev Services for Keycloak</code>.
-If you need to do the integration testing against Keycloak then you are encouraged to do it with <a href="#integration-testing-keycloak-devservices">Dev Services for Keycloak</a>.</p>
+If you need to do the integration testing against Keycloak then you are encouraged to do it with <a href="#code-flow-integration-testing-keycloak-devservices">Dev Services for Keycloak</a>.</p>
 </div>
 <div class="paragraph">
 <p>First, add the following dependency:</p>
@@ -2624,7 +3004,7 @@ If you need to do the integration testing against Keycloak then you are encourag
 </div>
 </div>
 <div class="paragraph">
-<p>Now, set the configuration and write the test code the same way as it is described in the <a href="#integration-testing-wiremock">Wiremock</a> section.
+<p>Now, set the configuration and write the test code the same way as it is described in the <a href="#code-flow-integration-testing-wiremock">Wiremock</a> section.
 The only difference is the name of <code>QuarkusTestResource</code>:</p>
 </div>
 <div class="listingblock">
@@ -2648,9 +3028,9 @@ The default realm name is <code>quarkus</code> and client id is <code>quarkus-we
 </div>
 </div>
 <div class="sect2">
-<h3 id="integration-testing-security-annotation"><a class="anchor" href="#integration-testing-security-annotation"></a>TestSecurity annotation</h3>
+<h3 id="code-flow-integration-testing-security-annotation"><a class="anchor" href="#code-flow-integration-testing-security-annotation"></a>TestSecurity annotation</h3>
 <div class="paragraph">
-<p>You can use @TestSecurity and @OidcSecurity annotations to test the <code>web-app</code> application endpoint code, which depends on either one of the following injections, or all four:</p>
+<p>You can use <code>@TestSecurity</code> and <code>@OidcSecurity</code> annotations to test the <code>web-app</code> application endpoint code, which depends on either one of the following injections, or all four:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2669,7 +3049,7 @@ The default realm name is <code>quarkus</code> and client id is <code>quarkus-we
 </ul>
 </div>
 <div class="paragraph">
-<p>For more information, see <a href="security-oidc-bearer-token-authentication#integration-testing-security-annotation">Use TestingSecurity with injected JsonWebToken</a>.</p>
+<p>For more information, see <a href="security-oidc-bearer-token-authentication#bearer-token-integration-testing-security-annotation">Use TestingSecurity with injected JsonWebToken</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2699,12 +3079,79 @@ quarkus.log.category."io.quarkus.oidc.runtime.OidcRecorder".min-level=TRACE</cod
 </div>
 </div>
 <div class="sect1">
+<h2 id="programmatic-oidc-start-up"><a class="anchor" href="#programmatic-oidc-start-up"></a>Programmatic OIDC start-up</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>OIDC tenants can be created programmatically like in the example below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package io.quarkus.it.oidc;
+
+import io.quarkus.oidc.Oidc;
+import jakarta.enterprise.event.Observes;
+
+public class OidcStartup {
+
+    void observe(@Observes Oidc oidc) {
+        oidc.createWebApp("http://localhost:8180/realms/quarkus", "quarkus-app", "mysecret");
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The code above is a programmatic equivalent to the following configuration in the <code>application.properties</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.oidc.auth-server-url=http://localhost:8180/realms/quarkus
+quarkus.oidc.application-type=web-app
+quarkus.oidc.client-id=quarkus-app
+quarkus.oidc.credentials.secret=mysecret</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Should you need to configure more OIDC tenant properties, use the <code>OidcTenantConfig</code> builder like in the example below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package io.quarkus.it.oidc;
+
+import io.quarkus.oidc.Oidc;
+import io.quarkus.oidc.OidcTenantConfig;
+import io.quarkus.oidc.common.runtime.config.OidcClientCommonConfig.Credentials.Secret.Method;
+import jakarta.enterprise.event.Observes;
+
+public class OidcStartup {
+
+    void createDefaultTenant(@Observes Oidc oidc) {
+        var defaultTenant = OidcTenantConfig
+                .authServerUrl("http://localhost:8180/realms/quarkus/")
+                .clientId("quarkus-app")
+                .credentials().clientSecret("mysecret", Method.POST).end()
+                .build();
+        oidc.create(defaultTenant);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For more complex setup involving multiple tenants please see the <a href="security-openid-connect-multitenancy#programmatic-startup">Programmatic OIDC start-up for multitenant application</a>
+section of the OpenID Connect Multi-Tenancy guide.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="references"><a class="anchor" href="#references"></a>References</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
 <p><a href="security-oidc-configuration-properties-reference">OIDC configuration properties</a></p>
+</li>
+<li>
+<p><a href="security-oidc-expanded-configuration">Expanded OIDC Configuration Reference</a></p>
 </li>
 <li>
 <p><a href="security-openid-connect-providers">Configuring well-known OpenID Connect providers</a></p>
@@ -2743,18 +3190,66 @@ quarkus.log.category."io.quarkus.oidc.runtime.OidcRecorder".min-level=TRACE</cod
 <li><a href="#overview-of-the-oidc-authorization-code-flow-mechanism">Overview of the OIDC authorization code flow mechanism</a></li>
 <li><a href="#using-the-authorization-code-flow-mechanism">Using the authorization code flow mechanism</a>
 <ul class="sectlevel2">
+<li><a href="#configuring-quarkus-to-support-authorization-code-flow">Configuring Quarkus to support authorization code flow</a></li>
 <li><a href="#configuring-access-to-the-oidc-provider-endpoint">Configuring access to the OIDC provider endpoint</a></li>
-<li><a href="#oidc-provider-client-authentication">OIDC provider client authentication</a></li>
-<li><a href="#oidc-request-filters">OIDC request filters</a></li>
-<li><a href="#redirecting-to-and-from-the-oidc-provider">Redirecting to and from the OIDC provider</a></li>
+<li><a href="#oidc-provider-client-authentication">OIDC provider client authentication</a>
+<ul class="sectlevel3">
+<li><a href="#additional-jwt-authentication-options">Additional JWT authentication options</a></li>
+<li><a href="#apple-post-jwt">Apple POST JWT</a></li>
+<li><a href="#mutual-tls-mtls">mutual TLS (mTLS)</a></li>
+<li><a href="#post-query">POST query</a></li>
+<li><a href="#introspection-endpoint-authentication">Introspection endpoint authentication</a></li>
+</ul>
+</li>
+<li><a href="#code-flow-oidc-request-filters">OIDC request filters</a></li>
+<li><a href="#code-flow-oidc-response-filters">OIDC response filters</a></li>
+<li><a href="#redirecting-to-and-from-the-oidc-provider">Redirecting to and from the OIDC provider</a>
+<ul class="sectlevel3">
+<li><a href="#customize-authentication-requests">Customizing authentication requests</a></li>
+<li><a href="#customizing-the-authentication-error-response">Customizing the authentication error response</a></li>
+</ul>
+</li>
 <li><a href="#oidc-redirect-filters">OIDC redirect filters</a></li>
-<li><a href="#accessing-authorization-data">Accessing authorization data</a></li>
-<li><a href="#ensuring-validity-of-tokens-and-authentication-data">Ensuring validity of tokens and authentication data</a></li>
+<li><a href="#accessing-authorization-data">Accessing authorization data</a>
+<ul class="sectlevel3">
+<li><a href="#access_id_and_access_tokens">Accessing ID and access tokens</a></li>
+<li><a href="#code-flow-user-info">User info</a></li>
+<li><a href="#code-flow-config-metadata">Accessing the OIDC configuration information</a></li>
+<li><a href="#token-claims-roles">Mapping token claims and <code>SecurityIdentity</code> roles</a></li>
+</ul>
+</li>
+<li><a href="#ensuring-validity-of-tokens-and-authentication-data">Ensuring validity of tokens and authentication data</a>
+<ul class="sectlevel3">
+<li><a href="#code-flow-token-verification-introspection">Token verification and introspection</a></li>
+<li><a href="#code-flow-token-introspection-userinfo-cache">Token introspection and UserInfo cache</a></li>
+<li><a href="#code-flow-jwt-claim-verification">JSON web token claim verification</a></li>
+<li><a href="#jose4j-validator-code">Jose4j Validator</a></li>
+</ul>
+</li>
 <li><a href="#proof-key-for-code-exchange-pkce">Proof Key for Code Exchange (PKCE)</a></li>
-<li><a href="#handling-and-controlling-the-lifetime-of-authentication">Handling and controlling the lifetime of authentication</a></li>
-<li><a href="#logout-and-expiration">Logout and expiration</a></li>
+<li><a href="#handling-and-controlling-the-lifetime-of-authentication">Handling and controlling the lifetime of authentication</a>
+<ul class="sectlevel3">
+<li><a href="#oidc-cookies">Cookies</a></li>
+<li><a href="#state-cookies">State cookies</a></li>
+<li><a href="#token-state-manager">Session cookie and default TokenStateManager</a></li>
+<li><a href="#custom-token-state-manager">Session cookie and custom TokenStateManager</a></li>
+<li><a href="#db-token-state-manager">Database TokenStateManager</a></li>
+<li><a href="#redis-token-state-manager">Redis TokenStateManager</a></li>
+</ul>
+</li>
+<li><a href="#logout-and-expiration">Logout and expiration</a>
+<ul class="sectlevel3">
+<li><a href="#user-initiated-logout">User-initiated logout</a></li>
+<li><a href="#back-channel-logout">Back-channel logout</a></li>
+<li><a href="#front-channel-logout">Front-channel logout</a></li>
+<li><a href="#local-logout">Local logout</a></li>
+<li><a href="#oidc-session">Using <code>OidcSession</code> for local logout</a></li>
+<li><a href="#session-management">Session management</a></li>
+</ul>
+</li>
 <li><a href="#oauth2">Integration with GitHub and non-OIDC OAuth2 providers</a></li>
 <li><a href="#listen-to-authentication-events">Listening to important authentication events</a></li>
+<li><a href="#oidc-token-revocation">Token revocation</a></li>
 <li><a href="#propagating-tokens-to-downstream-services">Propagating tokens to downstream services</a></li>
 </ul>
 </li>
@@ -2762,21 +3257,27 @@ quarkus.log.category."io.quarkus.oidc.runtime.OidcRecorder".min-level=TRACE</cod
 <ul class="sectlevel2">
 <li><a href="#single-page-applications">Single-page applications</a></li>
 <li><a href="#cross-origin-resource-sharing">Cross-origin resource sharing</a></li>
-<li><a href="#calling-cloud-provider-services">Calling Cloud provider services</a></li>
+<li><a href="#calling-cloud-provider-services">Calling Cloud provider services</a>
+<ul class="sectlevel3">
+<li><a href="#google-cloud">Google Cloud</a></li>
+</ul>
+</li>
 <li><a href="#running-quarkus-application-behind-a-reverse-proxy">Running Quarkus application behind a reverse proxy</a></li>
 <li><a href="#external-and-internal-access-to-the-oidc-provider">External and internal access to the OIDC provider</a></li>
+<li><a href="#oidc-http-client-redirects">OIDC HTTP client redirects</a></li>
 </ul>
 </li>
 <li><a href="#oidc-saml-broker">OIDC SAML identity broker</a></li>
-<li><a href="#integration-testing">Testing</a>
+<li><a href="#code-flow-integration-testing">Testing</a>
 <ul class="sectlevel2">
-<li><a href="#integration-testing-wiremock">Wiremock</a></li>
-<li><a href="#integration-testing-keycloak-devservices">Dev Services for Keycloak</a></li>
-<li><a href="#integration-testing-keycloak">Using KeycloakTestResourceLifecycleManager</a></li>
-<li><a href="#integration-testing-security-annotation">TestSecurity annotation</a></li>
+<li><a href="#code-flow-integration-testing-keycloak-devservices">Dev Services for Keycloak</a></li>
+<li><a href="#code-flow-integration-testing-wiremock">Wiremock</a></li>
+<li><a href="#code-flow-integration-testing-keycloak">Using KeycloakTestResourceLifecycleManager</a></li>
+<li><a href="#code-flow-integration-testing-security-annotation">TestSecurity annotation</a></li>
 <li><a href="#checking-errors-in-the-logs">Checking errors in the logs</a></li>
 </ul>
 </li>
+<li><a href="#programmatic-oidc-start-up">Programmatic OIDC start-up</a></li>
 <li><a href="#references">References</a></li>
 </ul></div>
     </div>
@@ -2847,10 +3348,13 @@ quarkus.log.category."io.quarkus.oidc.runtime.OidcRecorder".min-level=TRACE</cod
         <li class="howto"><a href="/guides/security-basic-authentication-howto">Enable Basic authentication</a></li>
       
         
-        <li class="tutorial"><a href="/guides/security-getting-started-tutorial">Getting started with Security by using Basic authentication and Jakarta Persistence</a></li>
+        <li class="tutorial"><a href="/guides/security-getting-started-tutorial">Getting started with security by using Basic authentication and Jakarta Persistence</a></li>
       
         
         <li class="reference"><a href="/guides/security-openid-connect-client-reference">OpenID Connect (OIDC) and OAuth2 client and filters</a></li>
+      
+        
+        <li class="reference"><a href="/guides/security-openid-connect-client-registration">OpenID Connect (OIDC) and OAuth2 dynamic client registration</a></li>
       
         
         <li class="reference"><a href="/guides/security-oidc-configuration-properties-reference">OpenID Connect (OIDC) configuration properties</a></li>
@@ -2868,13 +3372,10 @@ quarkus.log.category."io.quarkus.oidc.runtime.OidcRecorder".min-level=TRACE</cod
         <li class="reference"><a href="/guides/security-authorize-web-endpoints-reference">Authorization of web endpoints</a></li>
       
         
-        <li class="guide"><a href="/guides/security-jwt-build">Build, Sign and Encrypt JSON Web Tokens</a></li>
+        <li class="guide"><a href="/guides/security-jwt-build">Build, sign, and encrypt JSON Web Tokens</a></li>
       
         
         <li class="guide"><a href="/guides/security-csrf-prevention">Cross-Site Request Forgery Prevention</a></li>
-      
-        
-        <li class="concepts"><a href="/guides/security-identity-providers">Identity providers</a></li>
       </ul>
     </div>
     </div>
@@ -2889,7 +3390,7 @@ quarkus.log.category."io.quarkus.oidc.runtime.OidcRecorder".min-level=TRACE</cod
     </div>
   </div>
   <div class="grid-wrapper">
-    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
+    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license. <i class='fab fa-creative-commons'></i><i class='fab fa-creative-commons-by'></i> <a href='https://creativecommons.org/licenses/by/3.0/' target='_blank'>CC by 3.0</a><br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
 
     
       <div class="width-1-12 project-links">
@@ -2921,6 +3422,10 @@ quarkus.log.category."io.quarkus.oidc.runtime.OidcRecorder".min-level=TRACE</cod
           
           
           
+            <li><a href="/userstories" target="_blank">User Stories</a></li>
+          
+          
+          
             <li><a href="https://github.com/orgs/quarkusio/projects/13/views/1" target="_blank">Roadmap</a></li>
           
           
@@ -2940,6 +3445,10 @@ quarkus.log.category."io.quarkus.oidc.runtime.OidcRecorder".min-level=TRACE</cod
             <li><a href="/desktopwallpapers" target="_blank">Wallpapers</a></li>
           
           
+          
+            <li><a href="https://www.redhat.com/en/about/privacy-policy" target="_blank">Privacy Policy</a></li>
+          
+          
         </ul>
       </div>
     
@@ -2952,8 +3461,16 @@ quarkus.log.category."io.quarkus.oidc.runtime.OidcRecorder".min-level=TRACE</cod
           
           
           
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
+          
+          
+          
             <li><a rel="me" href="https://fosstodon.org/@quarkusio" target="_blank">Mastodon</a></li>
             
+          
+          
+            <li><a href="https://www.threads.com/@quarkusio" target="_blank">Threads</a></li>
+          
           
           
             <li><a href="https://www.facebook.com/quarkusio" target="_blank">Facebook</a></li>
@@ -3064,17 +3581,22 @@ quarkus.log.category."io.quarkus.oidc.runtime.OidcRecorder".min-level=TRACE</cod
   </div>
 </div>
 
-  <div class="content redhat-footer">
-  <div class="grid-wrapper">
-    <span class="licence">
-      <i class="fab fa-creative-commons"></i><i class="fab fa-creative-commons-by"></i> <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC by 3.0</a> | <a href="https://www.redhat.com/en/about/privacy-policy">Privacy Policy</a>
-    </span>
-    <span class="redhat">
-      Sponsored by
-    </span>
-    <span class="redhat-logo">
-      <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
-    </span>
+  <div class="content cf-footer">
+  <div class="flexcontainer">
+    <div class="cf-logo">
+      <img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/>
+    </div>
+    <div class="license">
+      Copyright © Quarkus. All rights reserved. For details on our trademarks, please visit our <a href="https://www.commonhaus.org/policies/trademark-policy/">Trademark Policy</a> and <a href="https://www.commonhaus.org/trademarks/">Trademark List</a>. Trademarks of third parties are owned by their respective holders and their mention here does not suggest any endorsement or association.
+    </div>
+    <div class="sponsorcontainer">
+      <div class="sponsor">
+        Sponsored by
+      </div>
+      <div class="sponsor-logo">
+        <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -3090,6 +3612,7 @@ quarkus.log.category."io.quarkus.oidc.runtime.OidcRecorder".min-level=TRACE</cod
   <script src="/assets/javascript/copy.js" type="text/javascript"></script>
   <script src="/assets/javascript/asciidoc-tabs.js" type="text/javascript"></script>
   <script src="/assets/javascript/future-date.js" type="text/javascript"></script>
+  <script src="/assets/javascript/randomize.js" type="text/javascript"></script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 
 
@@ -11,8 +11,33 @@
   <title>Infinispan Cache - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://analytics.ossupstream.org https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://analytics.ossupstream.org; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://analytics.ossupstream.org * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://analytics.ossupstream.org/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://analytics.ossupstream.org/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://player.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -51,7 +76,6 @@
   
   <link rel="alternate" hreflang="x-default" href="https://quarkus.io/" />  
   <script src="/assets/javascript/tracking.js"></script>
-  <script src="https://analytics.ossupstream.org/matomo.js" async defer></script>
   
   <script src="/assets/javascript/colormode.js" type="text/javascript"></script>
 
@@ -76,11 +100,13 @@
         <span href="/about/">Why<i class="fas fa-chevron-down"></i></span>
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
-          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
           <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/versatility" class="">VERSATILITY</a></li>
+          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>  
+          <li><a href="/spring" class="">USING SPRING?</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -88,6 +114,7 @@
         <ul class="submenu">
           <li><a href="/get-started" class="">GET STARTED</a></li>
           <li><a href="/guides" class="active">DOCUMENTATION</a></li>
+          <li><a href="/userstories/" class="">USER STORIES</a></li>  
           <li><a href="/qtips" class="">"Q" TIP VIDEOS</a></li>          
           <li><a href="/books" class="">BOOKS</a></li>
           </ul>
@@ -108,6 +135,7 @@
           <li><a href="/support/" class="">SUPPORT</a></li>
           <li><a href="/blog" class="">BLOG</a></li>
           <li><a href="/discussion" class="">DISCUSSION</a></li>
+          <li><a href="/working-groups" class="">WORKING GROUPS</a></li>
           <li><a href="/insights" class="">PODCAST</a></li>
           <li><a href="/events" class="">EVENTS</a></li>
           <li><a href="/newsletter" class="">NEWSLETTER</a></li>
@@ -144,6 +172,7 @@
 
 
 
+
 <section class="full-width-version-bg flexfilterbar guides">
   <div class="guideflexcontainer">
     <div class="docslink">
@@ -161,10 +190,15 @@
         
         
         
-        <option value="latest" selected>3.11.1 - Latest</option>
+        <option value="latest" selected>3.24.4 - Latest</option>
         
         
         
+        <option value="3.20" >3.20</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -318,10 +352,120 @@ In dev mode, you can use the <a href="infinispan-dev-services">Infinispan Dev Se
 <h2 id="marshalling"><a class="anchor" href="#marshalling"></a>Marshalling</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When interacting with Infinispan in Quarkus, you can easily marshal and unmarshal
-Java simple types when writing to or reading from the cache. However, when dealing
-with Plain Old Java Objects (POJOs), users of Infinispan need to provide the marshalling
-schema.</p>
+<p>When interacting with Infinispan in Quarkus, you can easily serialize and deserialize Java primitive types when storing or retrieving data from the cache. No additional marshalling configuration is required for Infinispan.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@CacheResult(cacheName = "weather-cache") <i class="conum" data-value="1"></i><b>(1)</b>
+public String getDailyForecast(String dayOfWeek, int dayOfMonth, String city) { <i class="conum" data-value="2"></i><b>(2)</b>
+    return dayOfWeek + " will be " + getDailyResult(dayOfMonth % 4) + " in " + city;
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Ask this method execution to be cached in the 'weather-cache'</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The key combines <code>String</code> dayOfWeek, <code>int</code> dayOfMonth and <code>String</code> city. The associated value is of type <code>String</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Quarkus uses Protobuf for data serialization in Infinispan by default. Infinispan recommends using Protobuf as the preferred
+way to structure data. Therefore, when working with Plain Old Java Objects (POJOs), users need
+to supply the schema for marshalling in Infinispan.</p>
+</div>
+<div class="sect2">
+<h3 id="marshalling-java-types"><a class="anchor" href="#marshalling-java-types"></a>Marshalling Java types</h3>
+<div class="paragraph">
+<p>Let&#8217;s say we want a composite Key using <code>java.time.LocalDate</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@CacheResult(cacheName = "weather-cache") <i class="conum" data-value="1"></i><b>(1)</b>
+public String getDailyForecast(LocalDate date, String city) { <i class="conum" data-value="2"></i><b>(2)</b>
+    return date.getDayOfWeek() + " will be " + getDailyResult(date.getDayOfMonth() % 4) + " in " + city;
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Request that the response of this method execution be cached in 'weather-cache'</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The key combines a <code>java.util.LocalDate</code> date and a <code>String</code> city. The associated value is of type 'String'.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Since Infinispan serializes data by default using Protobuf in Quarkus, executing the code will result in the following error:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">java.lang.IllegalArgumentException:
+No marshaller registered for object of Java type java.time.LocalDate</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Protobuf does not inherently know how to marshal <code>java.time.LocalDate</code>. Fortunately, Protostream provides a straightforward solution to this problem using <code>@ProtoAdapter</code> and <code>@ProtoSchema</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ProtoAdapter(LocalDate.class)
+public class LocalDateAdapter {
+    @ProtoFactory
+    LocalDate create(String localDate) {
+        return LocalDate.parse(localDate);
+    }
+
+    @ProtoField(1)
+    String getLocalDate(LocalDate localDate) {
+        return localDate.toString();
+    }
+}
+
+@ProtoSchema(includeClasses = LocalDateAdapter.class, schemaPackageName = "quarkus")
+public interface Schema extends GeneratedSchema {
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="marshalling-your-pojos"><a class="anchor" href="#marshalling-your-pojos"></a>Marshalling your POJOs</h3>
+<div class="paragraph">
+<p>Just like with Java types, when using your POJOs as keys or values, you can follow this approach:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@CacheResult(cacheName = "my-cache") <i class="conum" data-value="1"></i><b>(1)</b>
+public ExpensiveResponse requestApi(String id) { <i class="conum" data-value="2"></i><b>(2)</b>
+    // very expensive call
+
+    return new ExpensiveResponse(...);
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Request that the response of this method execution be cached in 'my-cache'</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The key is a <code>String</code>. The associated value is of type <code>org.acme.ExpensiveResponse</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In this case, you&#8217;ll need to define the schema for your Java type using <code>@Proto</code> and <code>@ProtoSchema</code>. This schema can encompass all types and adapters used in your Quarkus application.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -337,6 +481,7 @@ interface Schema extends GeneratedSchema {
 <div class="paragraph">
 <p>Read more about it in the <a href="infinispan-client-reference">Infinispan reference</a> in the Annotation
 based serialization section.</p>
+</div>
 </div>
 </div>
 </div>
@@ -391,13 +536,14 @@ the cache.</p>
 </colgroup>
 <tbody>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-cache-infinispan_configuration"></a><a href="#quarkus-cache-infinispan_configuration">Configuration property</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><span class="header-title">Configuration property</span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-cache-infinispan_quarkus-cache-infinispan-client-name"></a><code><a href="#quarkus-cache-infinispan_quarkus-cache-infinispan-client-name">quarkus.cache.infinispan.client-name</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-cache_quarkus-cache-infinispan-client-name"></a> <span class="property-path"><a href="#quarkus-infinispan-cache_quarkus-cache-infinispan-client-name"><code>quarkus.cache.infinispan.client-name</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.cache.infinispan.client-name' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
 <div class="content">
@@ -405,7 +551,7 @@ the cache.</p>
 <p>The name of the named Infinispan client to be used for communicating with Infinispan. If not set, use the default Infinispan client.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4071">QUARKUS_CACHE_INFINISPAN_CLIENT_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4071" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4277">QUARKUS_CACHE_INFINISPAN_CLIENT_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4277" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -417,7 +563,8 @@ the cache.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-cache-infinispan_quarkus-cache-infinispan-lifespan"></a><code><a href="#quarkus-cache-infinispan_quarkus-cache-infinispan-lifespan">quarkus.cache.infinispan.lifespan</a></code></p>
+<p><a id="quarkus-infinispan-cache_quarkus-cache-infinispan-lifespan"></a> <span class="property-path"><a href="#quarkus-infinispan-cache_quarkus-cache-infinispan-lifespan"><code>quarkus.cache.infinispan.lifespan</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.cache.infinispan.lifespan' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
@@ -425,20 +572,20 @@ the cache.</p>
 <p>The default lifespan of the item stored in the cache</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4072">QUARKUS_CACHE_INFINISPAN_LIFESPAN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4072" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4278">QUARKUS_CACHE_INFINISPAN_LIFESPAN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4278" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
-  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-infinispan-cache_quarkus-cache"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-cache-infinispan_quarkus-cache-infinispan-max-idle"></a><code><a href="#quarkus-cache-infinispan_quarkus-cache-infinispan-max-idle">quarkus.cache.infinispan.max-idle</a></code></p>
+<p><a id="quarkus-infinispan-cache_quarkus-cache-infinispan-max-idle"></a> <span class="property-path"><a href="#quarkus-infinispan-cache_quarkus-cache-infinispan-max-idle"><code>quarkus.cache.infinispan.max-idle</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.cache.infinispan.max-idle' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
@@ -446,25 +593,25 @@ the cache.</p>
 <p>The default max-idle of the item stored in the cache</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4073">QUARKUS_CACHE_INFINISPAN_MAX_IDLE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4073" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4279">QUARKUS_CACHE_INFINISPAN_MAX_IDLE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4279" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
-  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-infinispan-cache_quarkus-cache"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-cache-infinispan_quarkus-cache-infinispan-caches-config-additional-configuration-applied-to-a-specific-infinispan-cache-highest-precedence"></a><a href="#quarkus-cache-infinispan_quarkus-cache-infinispan-caches-config-additional-configuration-applied-to-a-specific-infinispan-cache-highest-precedence">Additional configuration applied to a specific Infinispan cache (highest precedence)</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-infinispan-cache_section_quarkus-cache-infinispan"></a> <span class="section-name section-level0"><a href="#quarkus-infinispan-cache_section_quarkus-cache-infinispan">Additional configuration applied to a specific Infinispan cache (highest precedence)</a></span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-cache-infinispan_quarkus-cache-infinispan-cache-name-lifespan"></a><code><a href="#quarkus-cache-infinispan_quarkus-cache-infinispan-cache-name-lifespan">quarkus.cache.infinispan."cache-name".lifespan</a></code></p>
+<p><a id="quarkus-infinispan-cache_quarkus-cache-infinispan-cache-name-lifespan"></a> <span class="property-path"><a href="#quarkus-infinispan-cache_quarkus-cache-infinispan-cache-name-lifespan"><code>quarkus.cache.infinispan."cache-name".lifespan</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.cache.infinispan."cache-name".lifespan' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
@@ -472,20 +619,20 @@ the cache.</p>
 <p>The default lifespan of the item stored in the cache</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4074">QUARKUS_CACHE_INFINISPAN__CACHE_NAME__LIFESPAN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4074" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4280">QUARKUS_CACHE_INFINISPAN__CACHE_NAME__LIFESPAN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4280" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
-  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-infinispan-cache_quarkus-cache"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-cache-infinispan_quarkus-cache-infinispan-cache-name-max-idle"></a><code><a href="#quarkus-cache-infinispan_quarkus-cache-infinispan-cache-name-max-idle">quarkus.cache.infinispan."cache-name".max-idle</a></code></p>
+<p><a id="quarkus-infinispan-cache_quarkus-cache-infinispan-cache-name-max-idle"></a> <span class="property-path"><a href="#quarkus-infinispan-cache_quarkus-cache-infinispan-cache-name-max-idle"><code>quarkus.cache.infinispan."cache-name".max-idle</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.cache.infinispan."cache-name".max-idle' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
@@ -493,20 +640,19 @@ the cache.</p>
 <p>The default max-idle of the item stored in the cache</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4075">QUARKUS_CACHE_INFINISPAN__CACHE_NAME__MAX_IDLE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4075" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4281">QUARKUS_CACHE_INFINISPAN__CACHE_NAME__MAX_IDLE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4281" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
-  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-infinispan-cache_quarkus-cache"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 </tbody>
 </table>
-<div id="duration-note-anchor-quarkus-cache-infinispan" class="admonitionblock note">
+<div id="duration-note-anchor-quarkus-infinispan-cache_quarkus-cache" class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
@@ -557,7 +703,12 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <li><a href="#infinispan-as-cache-backend">Infinispan as cache backend</a></li>
 <li><a href="#use-the-infinispan-backend">Use the Infinispan backend</a></li>
 <li><a href="#infinispan-cache-configuration-reference">Configure the Infinispan backend</a></li>
-<li><a href="#marshalling">Marshalling</a></li>
+<li><a href="#marshalling">Marshalling</a>
+<ul class="sectlevel2">
+<li><a href="#marshalling-java-types">Marshalling Java types</a></li>
+<li><a href="#marshalling-your-pojos">Marshalling your POJOs</a></li>
+</ul>
+</li>
 <li><a href="#expiration">Expiration</a>
 <ul class="sectlevel2">
 <li><a href="#lifespan">Lifespan</a></li>
@@ -660,7 +811,7 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
     </div>
   </div>
   <div class="grid-wrapper">
-    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
+    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license. <i class='fab fa-creative-commons'></i><i class='fab fa-creative-commons-by'></i> <a href='https://creativecommons.org/licenses/by/3.0/' target='_blank'>CC by 3.0</a><br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
 
     
       <div class="width-1-12 project-links">
@@ -692,6 +843,10 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
           
           
           
+            <li><a href="/userstories" target="_blank">User Stories</a></li>
+          
+          
+          
             <li><a href="https://github.com/orgs/quarkusio/projects/13/views/1" target="_blank">Roadmap</a></li>
           
           
@@ -711,6 +866,10 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
             <li><a href="/desktopwallpapers" target="_blank">Wallpapers</a></li>
           
           
+          
+            <li><a href="https://www.redhat.com/en/about/privacy-policy" target="_blank">Privacy Policy</a></li>
+          
+          
         </ul>
       </div>
     
@@ -723,8 +882,16 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
           
           
           
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
+          
+          
+          
             <li><a rel="me" href="https://fosstodon.org/@quarkusio" target="_blank">Mastodon</a></li>
             
+          
+          
+            <li><a href="https://www.threads.com/@quarkusio" target="_blank">Threads</a></li>
+          
           
           
             <li><a href="https://www.facebook.com/quarkusio" target="_blank">Facebook</a></li>
@@ -835,17 +1002,22 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
   </div>
 </div>
 
-  <div class="content redhat-footer">
-  <div class="grid-wrapper">
-    <span class="licence">
-      <i class="fab fa-creative-commons"></i><i class="fab fa-creative-commons-by"></i> <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC by 3.0</a> | <a href="https://www.redhat.com/en/about/privacy-policy">Privacy Policy</a>
-    </span>
-    <span class="redhat">
-      Sponsored by
-    </span>
-    <span class="redhat-logo">
-      <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
-    </span>
+  <div class="content cf-footer">
+  <div class="flexcontainer">
+    <div class="cf-logo">
+      <img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/>
+    </div>
+    <div class="license">
+      Copyright © Quarkus. All rights reserved. For details on our trademarks, please visit our <a href="https://www.commonhaus.org/policies/trademark-policy/">Trademark Policy</a> and <a href="https://www.commonhaus.org/trademarks/">Trademark List</a>. Trademarks of third parties are owned by their respective holders and their mention here does not suggest any endorsement or association.
+    </div>
+    <div class="sponsorcontainer">
+      <div class="sponsor">
+        Sponsored by
+      </div>
+      <div class="sponsor-logo">
+        <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -861,6 +1033,7 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
   <script src="/assets/javascript/copy.js" type="text/javascript"></script>
   <script src="/assets/javascript/asciidoc-tabs.js" type="text/javascript"></script>
   <script src="/assets/javascript/future-date.js" type="text/javascript"></script>
+  <script src="/assets/javascript/randomize.js" type="text/javascript"></script>
 </body>
 
 </html>

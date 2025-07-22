@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 
 
@@ -11,8 +11,33 @@
   <title>Authorization of web endpoints - main - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://analytics.ossupstream.org https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://analytics.ossupstream.org; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://analytics.ossupstream.org * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://analytics.ossupstream.org/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://analytics.ossupstream.org/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://player.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -51,7 +76,6 @@
   
   <link rel="alternate" hreflang="x-default" href="https://quarkus.io/" />  
   <script src="/assets/javascript/tracking.js"></script>
-  <script src="https://analytics.ossupstream.org/matomo.js" async defer></script>
   
   <script src="/assets/javascript/colormode.js" type="text/javascript"></script>
 
@@ -76,11 +100,13 @@
         <span href="/about/">Why<i class="fas fa-chevron-down"></i></span>
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
-          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
           <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/versatility" class="">VERSATILITY</a></li>
+          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>  
+          <li><a href="/spring" class="">USING SPRING?</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -88,6 +114,7 @@
         <ul class="submenu">
           <li><a href="/get-started" class="">GET STARTED</a></li>
           <li><a href="/guides" class="active">DOCUMENTATION</a></li>
+          <li><a href="/userstories/" class="">USER STORIES</a></li>  
           <li><a href="/qtips" class="">"Q" TIP VIDEOS</a></li>          
           <li><a href="/books" class="">BOOKS</a></li>
           </ul>
@@ -108,6 +135,7 @@
           <li><a href="/support/" class="">SUPPORT</a></li>
           <li><a href="/blog" class="">BLOG</a></li>
           <li><a href="/discussion" class="">DISCUSSION</a></li>
+          <li><a href="/working-groups" class="">WORKING GROUPS</a></li>
           <li><a href="/insights" class="">PODCAST</a></li>
           <li><a href="/events" class="">EVENTS</a></li>
           <li><a href="/newsletter" class="">NEWSLETTER</a></li>
@@ -144,6 +172,7 @@
 
 
 
+
 <section class="full-width-version-bg flexfilterbar guides">
   <div class="guideflexcontainer">
     <div class="docslink">
@@ -161,7 +190,15 @@
         
         
         
-        <option value="latest" >3.11.1 - Latest</option>
+        <option value="latest" >3.24.4 - Latest</option>
+        
+        
+        
+        <option value="3.20" >3.20</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -177,9 +214,6 @@
         
         
         
-        
-        
-        
         </select>
     </div>
   </div>
@@ -189,7 +223,7 @@
   <div class="grid-wrapper">
     <div class="grid__item width-8-12 width-12-12-m">
       
-      <a class="editlink" href="https://github.com/quarkusio/quarkus/edit/main/docs/src/main/asciidoc/_versions/main/guides/security-authorize-web-endpoints-reference.adoc">Edit this Page</a>
+      <a class="editlink" href="https://github.com/quarkusio/quarkus/edit/main/docs/src/main/asciidoc/security-authorize-web-endpoints-reference.adoc">Edit this Page</a>
       
       <h1 class="text-caps">Authorization of web endpoints </h1>
       <div id="preamble">
@@ -386,9 +420,9 @@ public class CustomNamedHttpSecPolicy implements HttpSecurityPolicy {
     public Uni&lt;CheckResult&gt; checkPermission(RoutingContext event, Uni&lt;SecurityIdentity&gt; identity,
             AuthorizationRequestContext requestContext) {
         if (customRequestAuthorization(event)) {
-            return Uni.createFrom().item(CheckResult.PERMIT);
+            return CheckResult.permit();
         }
-        return Uni.createFrom().item(CheckResult.DENY);
+        return CheckResult.deny();
     }
 
     @Override
@@ -426,6 +460,43 @@ quarkus.http.auth.permission.custom1.policy=custom                              
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>Alternatively, you can bind custom named HttpSecurityPolicy to Jakarta REST endpoints with the <code>@AuthorizationPolicy</code> security annotation.</p>
+</div>
+<div id="authorization-policy-example" class="listingblock">
+<div class="title">Example of custom named HttpSecurityPolicy bound to a Jakarta REST endpoint</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import io.quarkus.vertx.http.security.AuthorizationPolicy;
+import jakarta.annotation.security.DenyAll;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+
+@DenyAll <i class="conum" data-value="1"></i><b>(1)</b>
+@Path("hello")
+public class HelloResource {
+
+    @AuthorizationPolicy(name = "custom") <i class="conum" data-value="2"></i><b>(2)</b>
+    @GET
+    public String hello() {
+        return "hello";
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>@AuthorizationPolicy</code> annotation can be used together with other standard security annotations.
+As usual, the method-level annotation has priority over class-level annotation.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Apply custom named HttpSecurityPolicy to the Jakarta REST <code>hello</code> endpoint.</td>
+</tr>
+</table>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -440,6 +511,26 @@ Just do not implement the <code>io.quarkus.vertx.http.runtime.security.HttpSecur
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="policy-active-cdi-request-context"><a class="anchor" href="#policy-active-cdi-request-context"></a>Inject <code>@RequestScoped</code> beans into <code>HttpSecurityPolicy</code></h3>
+<div class="paragraph">
+<p><code>@RequestScoped</code> beans can only be injected when the <a href="cdi-reference#request-context-lifecycle">CDI request context</a> is active.
+The context can be activated by users, for example with the <code>@ActivateRequestContext</code>, however authorization happens before Quarkus prepares some <code>@RequestScoped</code> beans.
+We recommend to let Quarkus activate and prepare CDI request context for you.
+For example, consider a situation where you want to inject a bean from the Jakarta REST context, such as the <code>jakarta.ws.rs.core.UriInfo</code> bean.
+In this case, you must apply the <code>HttpSecurityPolicy</code> to Jakarta REST endpoints. This can be achieved in one of the following ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use the <code>@AuthorizationPolicy</code> security annotation.</p>
+</li>
+<li>
+<p>Set the <code>quarkus.http.auth.permission.custom1.applies-to=jaxrs</code> configuration property.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -554,7 +645,7 @@ wildcard.</p>
 </div>
 <div class="paragraph">
 <p>This wildcard also applies in the middle of a path, representing a single path segment.
-It cannot be mixed with other path segment characters; thus, path separators always enclose the <code>*</code> wildcard, as seen in the <code>/public/</code>*<code>/about-us</code> path.</p>
+It cannot be mixed with other path segment characters; thus, path separators always enclose the <code>*</code> wildcard, as seen in the <code>/public/*/about-us</code> path.</p>
 </div>
 <div class="paragraph">
 <p>When several path patterns correspond to the same request path, the system selects the longest sub-path leading to the <code>*</code> wildcard.
@@ -829,6 +920,24 @@ quarkus.http.auth.permission.roles1.policy=admin-policy1</code></pre>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>If you prefer a programmatic configuration, the same mapping can be added with the <code>io.quarkus.vertx.http.security.HttpSecurity</code> CDI event:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.http.security;
+
+import io.quarkus.vertx.http.security.HttpSecurity;
+import jakarta.enterprise.event.Observes;
+
+public class HttpSecurityConfiguration {
+
+    void configure(@Observes HttpSecurity httpSecurity) {
+        httpSecurity.rolesMapping("admin", "Admin1");
+    }
+}</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="shared-permission-checks"><a class="anchor" href="#shared-permission-checks"></a>Shared permission checks</h3>
@@ -905,6 +1014,128 @@ quarkus.http.auth.permission.roles3.policy=role-policy3</code></pre>
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="path-specific-authz-programmatic-set-up"><a class="anchor" href="#path-specific-authz-programmatic-set-up"></a>Set up path-specific authorization programmatically</h3>
+<div class="paragraph">
+<p>You can also configure the authorization policies presented by this guide so far programmatically.
+Consider the example mentioned earlier:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.http.auth.permission.permit1.paths=/public/*
+quarkus.http.auth.permission.permit1.policy=permit
+quarkus.http.auth.permission.permit1.methods=GET
+
+quarkus.http.auth.permission.deny1.paths=/forbidden
+quarkus.http.auth.permission.deny1.policy=deny
+
+quarkus.http.auth.permission.roles1.paths=/roles-secured/*,/other/*,/api/*
+quarkus.http.auth.permission.roles1.policy=role-policy1
+quarkus.http.auth.policy.role-policy1.roles-allowed=user,admin</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The same authorization policies can be configured programmatically:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.http.security;
+
+import jakarta.enterprise.event.Observes;
+
+import io.quarkus.vertx.http.security.HttpSecurity;
+
+public class HttpSecurityConfiguration {
+
+    void configure(@Observes HttpSecurity httpSecurity) {
+        httpSecurity
+                .get("/public/*").permit()
+                .path("/roles-secured/*", "/other/*", "/api/*").roles("admin", "user")
+                .path("/forbidden").authorization().deny();
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Additionally, the <code>io.quarkus.vertx.http.security.HttpSecurity</code> CDI event can be used to configure specific authentication mechanisms and policies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.http.security;
+
+import io.quarkus.vertx.http.security.HttpSecurity;
+import jakarta.enterprise.event.Observes;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
+public class HttpSecurityConfiguration {
+
+    void configure(@Observes HttpSecurity httpSecurity, CustomHttpSecurityPolicy customHttpSecurityPolicy,
+                        @ConfigProperty(name = "secured-path") String securedPath) {
+
+        httpSecurity.path("/other/*").basic().policy(customHttpSecurityPolicy); <i class="conum" data-value="1"></i><b>(1)</b>
+
+        httpSecurity.path("/roles-secured/*").bearer().authorization()
+                .policy(identity -&gt; identity.hasRole("user") || "root".equals(identity.getPrincipal().getName()));  <i class="conum" data-value="2"></i><b>(2)</b>
+
+        httpSecurity.path("/other/administration").authorizationCodeFlow()
+                .authorization().policy((identity, routingContext) -&gt; {
+                    if (!identity.isAnonymous()) {
+                        String customAuthorization = routingContext.request().getHeader("Custom Authorization");
+                        return yourCustomAuthorizationCheck(customAuthorization);
+                    }
+                    return false;
+                });     <i class="conum" data-value="3"></i><b>(3)</b>
+
+        httpSecurity.path(securedPath).form();  <i class="conum" data-value="4"></i><b>(4)</b>
+
+        httpSecurity.path("/user-info").bearer().authorization().permissions("openid", "email", "profile"); <i class="conum" data-value="5"></i><b>(5)</b>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Use the Basic authentication and authorize the requests with a custom <code>io.quarkus.vertx.http.runtime.security.HttpSecurityPolicy</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Use the Bearer token authentication and authorize the <code>SecurityIdentity</code> with your own policy.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Use Authorization Code Flow mechanism and write your own policy based on incoming request headers.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>When Quarkus fires the <code>HttpSecurity</code> CDI event, the runtime configuration is ready.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Require that all the requests to the <code>/user-info</code> path have string permissions <code>openid</code>, <code>email</code> and <code>profile</code>.
+The same authorization can be required with the <code>@PermissionsAllowed(value = { "openid", "email", "profile" }, inclusive = true)</code> annotation instance placed on an endpoint.</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="programmatic-set-up-references"><a class="anchor" href="#programmatic-set-up-references"></a>Programmatic set up references</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="security-basic-authentication#basic-auth-programmatic-set-up">Set up Basic authentication programmatically</a></p>
+</li>
+<li>
+<p><a href="security-openid-connect-multitenancy#programmatic-startup">Programmatic OIDC start-up for multitenant application</a></p>
+</li>
+<li>
+<p><a href="security-authentication-mechanisms#form-based-auth-programmatic-set-up">Set up Form-based authentication programmatically</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -938,8 +1169,20 @@ based on the common security annotations <code>@RolesAllowed</code>, <code>@Deny
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>@RolesAllowed</code></strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the list of security roles allowed to access methods in an application.</p>
-<p class="tableblock">As an equivalent to <code>@RolesAllowed("**")</code>, Quarkus also provides the <code>io.quarkus.security.Authenticated</code> annotation that permits any authenticated user to access the resource.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the list of security roles allowed to access methods in an application.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>@Authenticated</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quarkus provides the <code>io.quarkus.security.Authenticated</code> annotation that permits any authenticated user to access the resource. It&#8217;s equivalent to <code>@RolesAllowed("**")</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>@PermissionsAllowed</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the list of permissions that are allowed to invoke the specified methods.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>@AuthorizationPolicy</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies named <code>io.quarkus.vertx.http.runtime.security.HttpSecurityPolicy</code> that should authorize access to the specified Jakarta REST endpoints.
+Named HttpSecurityPolicy can be used for general authorization checks as demonstrated by <a href="#authorization-policy-example">Example of custom named HttpSecurityPolicy bound to a Jakarta REST endpoint</a>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -951,6 +1194,8 @@ based on the common security annotations <code>@RolesAllowed</code>, <code>@Deny
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.security.Principal;
 
+import jakarta.annotation.security.DenyAll;
+import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -970,17 +1215,26 @@ public class SubjectExposingResource {
     }
 
     @GET
+    @Path("authenticated")
+    @Authenticated <i class="conum" data-value="3"></i><b>(3)</b>
+    public String getSubjectAuthenticated(@Context SecurityContext sec) {
+        Principal user = sec.getUserPrincipal();
+        String name = user != null ? user.getName() : "anonymous";
+        return name;
+    }
+
+    @GET
     @Path("unsecured")
-    @PermitAll <i class="conum" data-value="3"></i><b>(3)</b>
+    @PermitAll <i class="conum" data-value="4"></i><b>(4)</b>
     public String getSubjectUnsecured(@Context SecurityContext sec) {
-        Principal user = sec.getUserPrincipal(); <i class="conum" data-value="4"></i><b>(4)</b>
+        Principal user = sec.getUserPrincipal(); <i class="conum" data-value="5"></i><b>(5)</b>
         String name = user != null ? user.getName() : "anonymous";
         return name;
     }
 
     @GET
     @Path("denied")
-    @DenyAll <i class="conum" data-value="5"></i><b>(5)</b>
+    @DenyAll <i class="conum" data-value="6"></i><b>(6)</b>
     public String getSubjectDenied(@Context SecurityContext sec) {
         Principal user = sec.getUserPrincipal();
         String name = user != null ? user.getName() : "anonymous";
@@ -1002,14 +1256,18 @@ This returns <code>non-null</code> for a secured endpoint.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The <code>/subject/unsecured</code> endpoint allows for unauthenticated access by specifying the <code>@PermitAll</code> annotation.</td>
+<td>The <code>/subject/authenticated</code> endpoint allows any authenticated user by specifying the <code>@Authenticated</code> annotation.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>The call to obtain the user principal returns <code>null</code> if the caller is unauthenticated and <code>non-null</code> if the caller is authenticated.</td>
+<td>The <code>/subject/unsecured</code> endpoint allows for unauthenticated access by specifying the <code>@PermitAll</code> annotation.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The call to obtain the user principal returns <code>null</code> if the caller is unauthenticated and <code>non-null</code> if the caller is authenticated.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
 <td>The <code>/subject/denied</code> endpoint declares the <code>@DenyAll</code> annotation, disallowing all direct access to it as a REST method, regardless of the user calling it.
 The method is still invokable internally by other methods in this class.</td>
 </tr>
@@ -1076,8 +1334,6 @@ all-roles=Administrator,Software,Tester,User</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.security.Principal;
 
-import jakarta.annotation.security.DenyAll;
-import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -1155,6 +1411,87 @@ In development mode, it allows any authenticated user.</td>
 <td>Property expression <code>all-roles</code> will be treated as a collection type <code>List</code>, therefore, the endpoint will be accessible for roles <code>Administrator</code>, <code>Software</code>, <code>Tester</code> and <code>User</code>.</td>
 </tr>
 </table>
+</div>
+<div class="sect2">
+<h3 id="endpoint-security-annotations-and-jakarta-rest-inheritance"><a class="anchor" href="#endpoint-security-annotations-and-jakarta-rest-inheritance"></a>Endpoint security annotations and Jakarta REST inheritance</h3>
+<div class="paragraph">
+<p>Quarkus supports security annotations placed on the endpoint implementation or its class like in the example below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Path("hello")
+public interface HelloInterface {
+
+    @GET
+    String hello();
+
+}
+
+@DenyAll <i class="conum" data-value="1"></i><b>(1)</b>
+public class HelloInterfaceImpl implements HelloInterface {
+
+    @RolesAllowed("admin") <i class="conum" data-value="2"></i><b>(2)</b>
+    @Override
+    public String hello() {
+        return "Hello";
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Class-level security annotation must be placed on the class where the endpoint implementation is declared.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Method-level security annotation must be placed on the endpoint implementation.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <a href="resteasy">RESTEasy</a> subresource locators declared as default interface methods cannot be secured
+by standard security annotations.
+Secured subresource locators must be implemented and secured on the interface implementors like in the example below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Path("hello")
+public interface HelloInterface {
+
+    @RolesAllowed("admin")
+    @Path("sub")
+    default HelloSubResource wrongWay() {
+        // not supported
+    }
+
+    @Path("sub")
+    HelloSubResource rightWay();
+
+}
+
+public class HelloInterfaceImpl implements HelloInterface {
+
+    @RolesAllowed("admin")
+    @Override
+    public HelloSubResource rightWay() {
+        return new HelloSubResource();
+    }
+}</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="permission-annotation"><a class="anchor" href="#permission-annotation"></a>Permission annotation</h3>
@@ -1326,7 +1663,7 @@ In this scenario, the permission <code>list</code> is added to the <code>Securit
 </div>
 <div class="paragraph">
 <p>You can also create a custom <code>java.security.Permission</code> class with additional constructor parameters.
-These additional parameters get matched with arguments of the method annotated with the <code>@PermissionsAllowed</code> annotation.
+These additional parameters names get matched with arguments names of the method annotated with the <code>@PermissionsAllowed</code> annotation.
 Later, Quarkus instantiates your custom permission with actual arguments, with which the method annotated with the <code>@PermissionsAllowed</code> has been invoked.</p>
 </div>
 <div class="listingblock">
@@ -1414,12 +1751,12 @@ import org.acme.library.LibraryPermission.Library;
 public class LibraryService {
 
     @PermissionsAllowed(value = "tv:write", permission = LibraryPermission.class) <i class="conum" data-value="1"></i><b>(1)</b>
-    public Library updateLibrary(String newDesc, Library update) {
-        update.description = newDesc;
-        return update;
+    public Library updateLibrary(String newDesc, Library library) {
+        library.description = newDesc;
+        return library;
     }
 
-    @PermissionsAllowed(value = "tv:write", permission = LibraryPermission.class, params = "library") <i class="conum" data-value="2"></i><b>(2)</b>
+    @PermissionsAllowed(value = "tv:write", permission = LibraryPermission.class) <i class="conum" data-value="2"></i><b>(2)</b>
     @PermissionsAllowed(value = {"tv:read", "tv:list"}, permission = LibraryPermission.class)
     public Library migrateLibrary(Library migrate, Library library) {
         // migrate libraries
@@ -1433,13 +1770,14 @@ public class LibraryService {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The formal parameter <code>update</code> is identified as the first <code>Library</code> parameter and gets passed to the <code>LibraryPermission</code> class.
+<td>The formal parameter <code>library</code> is identified as the parameter matching same-named <code>LibraryPermission</code> constructor parameter.
+Therefore, Quarkus will pass the <code>library</code> parameter to the <code>LibraryPermission</code> class constructor.
 However, the <code>LibraryPermission</code> must be instantiated each time the <code>updateLibrary</code> method is invoked.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Here, the first <code>Library</code> parameter is <code>migrate</code>; therefore, the <code>library</code> parameter gets marked explicitly through <code>PermissionsAllowed#params</code>.
-The permission constructor and the annotated method must have the parameter <code>library</code> set; otherwise, validation fails.</td>
+<td>Here, the second <code>Library</code> parameter matches the name <code>library</code>,
+while the <code>migrate</code> parameter is ignored during the <code>LibraryPermission</code> permission instantiation.</td>
 </tr>
 </table>
 </div>
@@ -1548,7 +1886,6 @@ In the following example, <a href="security-customization#security-identity-cust
 <div class="title">Example of adding the <code>LibraryPermission</code> programmatically to <code>SecurityIdentity</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.security.Permission;
-import java.util.function.Function;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -1574,16 +1911,8 @@ public class PermissionsIdentityAugmentor implements SecurityIdentityAugmentor {
     }
 
     SecurityIdentity build(SecurityIdentity identity) {
-        Permission possessedPermission = new MediaLibraryPermission("media-library",
-                new String[] { "read", "write", "list"}); <i class="conum" data-value="1"></i><b>(1)</b>
         return QuarkusSecurityIdentity.builder(identity)
-                .addPermissionChecker(new Function&lt;Permission, Uni&lt;Boolean&gt;&gt;() { <i class="conum" data-value="2"></i><b>(2)</b>
-                    @Override
-                    public Uni&lt;Boolean&gt; apply(Permission requiredPermission) {
-                        boolean accessGranted = possessedPermission.implies(requiredPermission);
-                        return Uni.createFrom().item(accessGranted);
-                    }
-                })
+                .addPermission(new MediaLibraryPermission("media-library", new String[] { "read", "write", "list"}); <i class="conum" data-value="1"></i><b>(1)</b>
                 .build();
     }
 
@@ -1594,12 +1923,8 @@ public class PermissionsIdentityAugmentor implements SecurityIdentityAugmentor {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The permission <code>media-library</code> that was created can perform <code>read</code>, <code>write</code>, and <code>list</code> actions.
+<td>Add a <code>media-library</code> permission that was created can perform <code>read</code>, <code>write</code>, and <code>list</code> actions.
 Because <code>MediaLibrary</code> is the <code>TvLibrary</code> class parent, a user with the <code>admin</code> role is also permitted to modify <code>TvLibrary</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>You can add a permission checker through <code>io.quarkus.security.runtime.QuarkusSecurityIdentity.Builder#addPermissionChecker</code>.</td>
 </tr>
 </table>
 </div>
@@ -1614,6 +1939,352 @@ Annotation-based permissions do not work with custom <a href="security-customiza
 </td>
 </tr>
 </table>
+</div>
+<div class="sect3">
+<h4 id="permission-checker"><a class="anchor" href="#permission-checker"></a>Create permission checkers</h4>
+<div class="paragraph">
+<p>By default, <code>SecurityIdentity</code> must be configured with permissions which can be used to check if this identity passes <code>@PermissionAllowed</code> authorization restrictions.
+Alternatively, you can use a <code>@PermissionChecker</code> annotation to mark any CDI bean method as a permission checker.
+The <code>@PermissionChecker</code> annotation value should match required permission declared by the <code>@PermissionsAllowed</code> annotation value.
+For example, a permission checker can be created like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.security.rest.resource;
+
+import io.quarkus.security.PermissionChecker;
+import io.quarkus.security.PermissionsAllowed;
+import io.quarkus.security.identity.SecurityIdentity;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+
+import org.jboss.resteasy.reactive.RestForm;
+import org.jboss.resteasy.reactive.RestPath;
+
+@Path("/project/{projectName}")
+public class ProjectResource {
+
+    @PermissionsAllowed("rename-project") <i class="conum" data-value="1"></i><b>(1)</b>
+    @POST
+    public void renameProject(@RestPath String projectName, @RestForm String newName) {
+        Project project = Project.findByName(projectName);
+        project.name = newName;
+    }
+
+    @PermissionChecker("rename-project") <i class="conum" data-value="2"></i><b>(2)</b>
+    boolean canRenameProject(SecurityIdentity identity, String projectName) { <i class="conum" data-value="3"></i><b>(3)</b> <i class="conum" data-value="4"></i><b>(4)</b>
+        var principalName = identity.getPrincipal().getName();
+        var user = User.getUserByName(principalName);
+        return userOwnsProject(projectName, user);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The permission required to access the <code>ProjectResource#renameProject</code> is the <code>rename-project</code> permission.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>ProjectResource#canRenameProject</code> method authorizes access to the <code>ProjectResource#renameProject</code> endpoint.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>SecurityIdentity</code> instance can be injected into any permission checker method.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>In this example, the <code>rename-project</code> permission checker is declared on the same resource.
+However, there is no restriction on where this permission checker can be declared as demonstrated in the next example.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Permission checker methods can be declared on a normal scoped CDI bean or on a <code>@Singleton</code> bean.
+The <code>@Dependent</code> CDI bean scope is currently not supported.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The permission checker above requires the <code>SecurityIdentity</code> instance to authorize the <code>renameProject</code> endpoint.
+Instead of declaring the <code>rename-project</code> permission checker directly on the resource, you can declare it on any CDI bean like in this example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.security.rest.resource;
+
+import io.quarkus.security.PermissionChecker;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+@ApplicationScoped <i class="conum" data-value="1"></i><b>(1)</b>
+public class ProjectPermissionChecker {
+
+    @PermissionChecker("rename-project")
+    boolean canRenameProject(String projectName, SecurityIdentity identity) {   <i class="conum" data-value="2"></i><b>(2)</b>
+        var principalName = identity.getPrincipal().getName();
+        var user = User.getUserByName(principalName);
+        return userOwnsProject(projectName, user);
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A CDI bean with the permission checker must be either a normal scoped bean or a <code>@Singleton</code> bean.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The permission checker method must return either <code>boolean</code> or <code>Uni&lt;Boolean&gt;</code>. Private checker methods are not supported.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Permission checks run by default on event loops.
+Annotate a permission checker method with the <code>io.smallrye.common.annotation.Blocking</code> annotation if you want to run the check on a worker thread.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Matching between the <code>@PermissionsAllowed</code> values and the <code>@PermissionChecker</code> value is based on string equality as shown in the example below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.security;
+
+import io.quarkus.security.PermissionChecker;
+import io.quarkus.security.PermissionsAllowed;
+import jakarta.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
+public class FileService {
+
+    @PermissionsAllowed({ "delete:all", "delete:dir" }) <i class="conum" data-value="1"></i><b>(1)</b>
+    void deleteDirectory(Path directoryPath) {
+        // delete directory
+    }
+
+    @PermissionsAllowed(value = { "delete:service", "delete:file" }, inclusive = true) <i class="conum" data-value="2"></i><b>(2)</b>
+    void deleteServiceFile(Path serviceFilePath) {
+        // delete service file
+    }
+
+    @PermissionChecker("delete:all")
+    boolean canDeleteAllDirectories(SecurityIdentity identity) {
+        String filePermissions = identity.getAttribute("user-group-file-permissions");
+        return filePermissions != null &amp;&amp; filePermissions.contains("w");
+    }
+
+    @PermissionChecker("delete:service")
+    boolean canDeleteService(SecurityIdentity identity) {
+        return identity.hasRole("admin");
+    }
+
+    @PermissionChecker("delete:file")
+    boolean canDeleteFile(Path serviceFilePath) {
+        return serviceFilePath != null &amp;&amp; !serviceFilePath.endsWith("critical");
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The permission checker method <code>canDeleteAllDirectories</code> grants access to the <code>deleteDirectory</code> because the <code>delete:all</code> values are equal.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>There must be exactly two permission checker methods, one for the <code>delete:service</code> permission and other for the <code>delete:file</code> permission.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="permission-meta-annotation"><a class="anchor" href="#permission-meta-annotation"></a>Create permission meta-annotations</h4>
+<div class="paragraph">
+<p><code>@PermissionsAllowed</code> can also be used in meta-annotations.
+For example, a new <code>@CanWrite</code> security annotation can be created like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import io.quarkus.security.PermissionsAllowed;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.METHOD, ElementType.TYPE })
+@PermissionsAllowed(value = "write", permission = CustomPermission.class) <i class="conum" data-value="1"></i><b>(1)</b>
+public @interface CanWrite {
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Any method or class annotated with the <code>@CanWrite</code> annotation is secured with this <code>@PermissionsAllowed</code> annotation instance.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="permission-bean-params"><a class="anchor" href="#permission-bean-params"></a>Pass <code>@BeanParam</code> parameters into a custom permission</h4>
+<div class="paragraph">
+<p>Quarkus can map fields of a secured method parameters to a custom permission constructor parameters.
+You can use this feature to pass <code>jakarta.ws.rs.BeanParam</code> parameters into your custom permission.
+Let&#8217;s consider following Jakarta REST resource:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.security.rest.resource;
+
+import io.quarkus.security.PermissionsAllowed;
+import jakarta.ws.rs.BeanParam;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+
+@Path("/hello")
+public class HelloResource {
+
+    @PermissionsAllowed(value = "say-hello", params = "beanParam.securityContext.userPrincipal.name") <i class="conum" data-value="1"></i><b>(1)</b>
+    @GET
+    public String sayHello(@BeanParam SimpleBeanParam beanParam) {
+        return "Hello from " + beanParam.uriInfo.getPath();
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>params</code> annotation attribute specifies that user principal name should be passed to the <code>BeanParamPermissionChecker#canSayHello</code> method.
+Other <code>BeanParamPermissionChecker#canSayHello</code> method parameters like <code>customAuthorizationHeader</code> and <code>query</code> are matched automatically.
+Quarkus identifies the <code>BeanParamPermissionChecker#canSayHello</code> method parameters among <code>beanParam</code> fields and their public accessors.
+To avoid ambiguous resolution, automatic detection only works for the <code>beanParam</code> fields.
+For that reason, we had to specify path to the user principal name explicitly.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Where the <code>SimpleBeanParam</code> class is declared like in the example below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.security.rest.dto;
+
+import java.util.List;
+
+import jakarta.ws.rs.HeaderParam;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.SecurityContext;
+import jakarta.ws.rs.core.UriInfo;
+
+public class SimpleBeanParam {
+
+    @HeaderParam("CustomAuthorization")
+    private String customAuthorizationHeader;
+
+    @Context
+    SecurityContext securityContext;
+
+    @Context
+    public UriInfo uriInfo;
+
+    @QueryParam("query")
+    public String query;    <i class="conum" data-value="1"></i><b>(1)</b>
+
+    public SecurityContext getSecurityContext() { <i class="conum" data-value="2"></i><b>(2)</b>
+        return securityContext;
+    }
+
+    public String customAuthorizationHeader() { <i class="conum" data-value="3"></i><b>(3)</b>
+        return customAuthorizationHeader;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Quarkus Security can only pass public fields to a custom permission constructor.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Quarkus Security automatically uses public getter methods if they are available.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>customAuthorizationHeader</code> field is not public, therefore Quarkus access this field with the <code>customAuthorizationHeader</code> accessor.
+That is particularly useful with Java records, where generated accessors are not prefixed with <code>get</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Here is an example of a <code>@PermissionChecker</code> method that checks the <code>say-hello</code> permission based on a user principal, custom header and query parameter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.security.permission;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import io.quarkus.security.PermissionChecker;
+
+@ApplicationScoped
+public class BeanParamPermissionChecker {
+
+    @PermissionChecker("say-hello")
+    boolean canSayHello(String customAuthorizationHeader, String name, String query) {
+        boolean queryParamAllowedForPermissionName = checkQueryParams(query);
+        boolean usernameWhitelisted = isUserNameWhitelisted(name);
+        boolean customAuthorizationMatches = checkCustomAuthorization(customAuthorizationHeader);
+        return queryParamAllowedForPermissionName &amp;&amp; usernameWhitelisted &amp;&amp; customAuthorizationMatches;
+    }
+
+    ...
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can pass <code>@BeanParam</code> directly into a <code>@PermissionChecker</code> method and access its fields programmatically.
+Ability to reference <code>@BeanParam</code> fields with the <code>@PermissionsAllowed#params</code> attribute is useful when you have multiple differently structured <code>@BeanParam</code> classes.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -1651,6 +2322,7 @@ Annotation-based permissions do not work with custom <a href="security-customiza
 <li><a href="#authorization-using-configuration">Authorization using configuration</a>
 <ul class="sectlevel2">
 <li><a href="#custom-http-security-policy">Custom HttpSecurityPolicy</a></li>
+<li><a href="#policy-active-cdi-request-context">Inject <code>@RequestScoped</code> beans into <code>HttpSecurityPolicy</code></a></li>
 <li><a href="#matching-on-paths-and-methods">Matching on paths and methods</a></li>
 <li><a href="#matching-a-path-but-not-a-method">Matching a path but not a method</a></li>
 <li><a href="#matching-multiple-paths">Matching multiple paths: longest path wins</a></li>
@@ -1662,10 +2334,12 @@ Annotation-based permissions do not work with custom <a href="security-customiza
 <li><a href="#permission-paths-and-http-root-path">Permission paths and HTTP root path</a></li>
 <li><a href="#map-security-identity-roles">Map <code>SecurityIdentity</code> roles</a></li>
 <li><a href="#shared-permission-checks">Shared permission checks</a></li>
+<li><a href="#path-specific-authz-programmatic-set-up">Set up path-specific authorization programmatically</a></li>
 </ul>
 </li>
 <li><a href="#standard-security-annotations">Authorization using annotations</a>
 <ul class="sectlevel2">
+<li><a href="#endpoint-security-annotations-and-jakarta-rest-inheritance">Endpoint security annotations and Jakarta REST inheritance</a></li>
 <li><a href="#permission-annotation">Permission annotation</a></li>
 </ul>
 </li>
@@ -1683,13 +2357,13 @@ Annotation-based permissions do not work with custom <a href="security-customiza
         <li class="concepts"><a href="/version/main/guides/security-basic-authentication">Basic authentication</a></li>
       
         
-        <li class="concepts"><a href="/version/main/guides/security-cors">Cross-origin resource sharing</a></li>
+        <li class="reference"><a href="/version/main/guides/security-cors">Cross-Origin Resource Sharing (CORS)</a></li>
       
         
         <li class="howto"><a href="/version/main/guides/security-basic-authentication-howto">Enable Basic authentication</a></li>
       
         
-        <li class="tutorial"><a href="/version/main/guides/security-getting-started-tutorial">Getting started with Security by using Basic authentication and Jakarta Persistence</a></li>
+        <li class="tutorial"><a href="/version/main/guides/security-getting-started-tutorial">Getting started with security by using Basic authentication and Jakarta Persistence</a></li>
       
         
         <li class="reference"><a href="/version/main/guides/http-reference">HTTP Reference</a></li>
@@ -1730,7 +2404,7 @@ Annotation-based permissions do not work with custom <a href="security-customiza
         <li class="howto"><a href="/version/main/guides/security-basic-authentication-howto">Enable Basic authentication</a></li>
       
         
-        <li class="tutorial"><a href="/version/main/guides/security-getting-started-tutorial">Getting started with Security by using Basic authentication and Jakarta Persistence</a></li>
+        <li class="tutorial"><a href="/version/main/guides/security-getting-started-tutorial">Getting started with security by using Basic authentication and Jakarta Persistence</a></li>
       
         
         <li class="tutorial"><a href="/version/main/guides/security-oidc-code-flow-authentication-tutorial">Protect a web application by using OpenID Connect (OIDC) authorization code flow</a></li>
@@ -1751,7 +2425,7 @@ Annotation-based permissions do not work with custom <a href="security-customiza
         <li class="concepts"><a href="/version/main/guides/security-authentication-mechanisms">Authentication mechanisms in Quarkus</a></li>
       
         
-        <li class="guide"><a href="/version/main/guides/security-jwt-build">Build, Sign and Encrypt JSON Web Tokens</a></li>
+        <li class="guide"><a href="/version/main/guides/security-jwt-build">Build, sign, and encrypt JSON Web Tokens</a></li>
       
         
         <li class="concepts"><a href="/version/main/guides/security-openid-connect-providers">Configuring Well-Known OpenID Connect Providers</a></li>
@@ -1769,16 +2443,16 @@ Annotation-based permissions do not work with custom <a href="security-customiza
         <li class="concepts"><a href="/version/main/guides/security-identity-providers">Identity providers</a></li>
       
         
+        <li class="tutorial"><a href="/version/main/guides/security-vertx-oidc-to-quarkus-oidc-migration">Migrate from Vert.x OIDC to Quarkus OIDC</a></li>
+      
+        
         <li class="guide"><a href="/version/main/guides/rest-migration">Migrating to Quarkus REST (formerly RESTEasy Reactive)</a></li>
       
         
         <li class="reference"><a href="/version/main/guides/security-openid-connect-client-reference">OpenID Connect (OIDC) and OAuth2 client and filters</a></li>
       
         
-        <li class="concepts"><a href="/version/main/guides/security-oidc-bearer-token-authentication">OpenID Connect (OIDC) Bearer token authentication</a></li>
-      
-        
-        <li class="reference"><a href="/version/main/guides/security-oidc-configuration-properties-reference">OpenID Connect (OIDC) configuration properties</a></li>
+        <li class="reference"><a href="/version/main/guides/security-openid-connect-client-registration">OpenID Connect (OIDC) and OAuth2 dynamic client registration</a></li>
       </ul>
     </div>
     </div>
@@ -1793,7 +2467,7 @@ Annotation-based permissions do not work with custom <a href="security-customiza
     </div>
   </div>
   <div class="grid-wrapper">
-    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
+    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license. <i class='fab fa-creative-commons'></i><i class='fab fa-creative-commons-by'></i> <a href='https://creativecommons.org/licenses/by/3.0/' target='_blank'>CC by 3.0</a><br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
 
     
       <div class="width-1-12 project-links">
@@ -1825,6 +2499,10 @@ Annotation-based permissions do not work with custom <a href="security-customiza
           
           
           
+            <li><a href="/userstories" target="_blank">User Stories</a></li>
+          
+          
+          
             <li><a href="https://github.com/orgs/quarkusio/projects/13/views/1" target="_blank">Roadmap</a></li>
           
           
@@ -1844,6 +2522,10 @@ Annotation-based permissions do not work with custom <a href="security-customiza
             <li><a href="/desktopwallpapers" target="_blank">Wallpapers</a></li>
           
           
+          
+            <li><a href="https://www.redhat.com/en/about/privacy-policy" target="_blank">Privacy Policy</a></li>
+          
+          
         </ul>
       </div>
     
@@ -1856,8 +2538,16 @@ Annotation-based permissions do not work with custom <a href="security-customiza
           
           
           
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
+          
+          
+          
             <li><a rel="me" href="https://fosstodon.org/@quarkusio" target="_blank">Mastodon</a></li>
             
+          
+          
+            <li><a href="https://www.threads.com/@quarkusio" target="_blank">Threads</a></li>
+          
           
           
             <li><a href="https://www.facebook.com/quarkusio" target="_blank">Facebook</a></li>
@@ -1968,17 +2658,22 @@ Annotation-based permissions do not work with custom <a href="security-customiza
   </div>
 </div>
 
-  <div class="content redhat-footer">
-  <div class="grid-wrapper">
-    <span class="licence">
-      <i class="fab fa-creative-commons"></i><i class="fab fa-creative-commons-by"></i> <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC by 3.0</a> | <a href="https://www.redhat.com/en/about/privacy-policy">Privacy Policy</a>
-    </span>
-    <span class="redhat">
-      Sponsored by
-    </span>
-    <span class="redhat-logo">
-      <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
-    </span>
+  <div class="content cf-footer">
+  <div class="flexcontainer">
+    <div class="cf-logo">
+      <img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/>
+    </div>
+    <div class="license">
+      Copyright © Quarkus. All rights reserved. For details on our trademarks, please visit our <a href="https://www.commonhaus.org/policies/trademark-policy/">Trademark Policy</a> and <a href="https://www.commonhaus.org/trademarks/">Trademark List</a>. Trademarks of third parties are owned by their respective holders and their mention here does not suggest any endorsement or association.
+    </div>
+    <div class="sponsorcontainer">
+      <div class="sponsor">
+        Sponsored by
+      </div>
+      <div class="sponsor-logo">
+        <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1994,6 +2689,7 @@ Annotation-based permissions do not work with custom <a href="security-customiza
   <script src="/assets/javascript/copy.js" type="text/javascript"></script>
   <script src="/assets/javascript/asciidoc-tabs.js" type="text/javascript"></script>
   <script src="/assets/javascript/future-date.js" type="text/javascript"></script>
+  <script src="/assets/javascript/randomize.js" type="text/javascript"></script>
 </body>
 
 </html>

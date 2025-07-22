@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 
 
@@ -11,8 +11,33 @@
   <title>Use Hibernate Search in Standalone mode with Elasticsearch/OpenSearch - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://analytics.ossupstream.org https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://analytics.ossupstream.org; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://analytics.ossupstream.org * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://analytics.ossupstream.org/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://analytics.ossupstream.org/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://player.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -51,7 +76,6 @@
   
   <link rel="alternate" hreflang="x-default" href="https://quarkus.io/" />  
   <script src="/assets/javascript/tracking.js"></script>
-  <script src="https://analytics.ossupstream.org/matomo.js" async defer></script>
   
   <script src="/assets/javascript/colormode.js" type="text/javascript"></script>
 
@@ -76,11 +100,13 @@
         <span href="/about/">Why<i class="fas fa-chevron-down"></i></span>
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
-          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
           <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/versatility" class="">VERSATILITY</a></li>
+          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>  
+          <li><a href="/spring" class="">USING SPRING?</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -88,6 +114,7 @@
         <ul class="submenu">
           <li><a href="/get-started" class="">GET STARTED</a></li>
           <li><a href="/guides" class="active">DOCUMENTATION</a></li>
+          <li><a href="/userstories/" class="">USER STORIES</a></li>  
           <li><a href="/qtips" class="">"Q" TIP VIDEOS</a></li>          
           <li><a href="/books" class="">BOOKS</a></li>
           </ul>
@@ -108,6 +135,7 @@
           <li><a href="/support/" class="">SUPPORT</a></li>
           <li><a href="/blog" class="">BLOG</a></li>
           <li><a href="/discussion" class="">DISCUSSION</a></li>
+          <li><a href="/working-groups" class="">WORKING GROUPS</a></li>
           <li><a href="/insights" class="">PODCAST</a></li>
           <li><a href="/events" class="">EVENTS</a></li>
           <li><a href="/newsletter" class="">NEWSLETTER</a></li>
@@ -144,6 +172,7 @@
 
 
 
+
 <section class="full-width-version-bg flexfilterbar guides">
   <div class="guideflexcontainer">
     <div class="docslink">
@@ -161,10 +190,15 @@
         
         
         
-        <option value="latest" selected>3.11.1 - Latest</option>
+        <option value="latest" selected>3.24.4 - Latest</option>
         
         
         
+        <option value="3.20" >3.20</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -233,7 +267,7 @@ see <a href="hibernate-search-orm-elasticsearch">this dedicated guide</a> instea
 <p>JDK 17+ installed with <code>JAVA_HOME</code> configured appropriately</p>
 </li>
 <li>
-<p>Apache Maven 3.9.6</p>
+<p>Apache Maven 3.9.9</p>
 </li>
 <li>
 <p>A working container runtime (Docker or <a href="podman">Podman</a>)</p>
@@ -318,7 +352,7 @@ cd hibernate-search-standalone-elasticsearch-quickstart</code></pre>
 <div class="title">Maven</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.11.1:create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.24.4:create \
     -DprojectGroupId=org.acme \
     -DprojectArtifactId=hibernate-search-standalone-elasticsearch-quickstart \
     -Dextensions='hibernate-search-standalone-elasticsearch,rest-jackson' \
@@ -530,7 +564,7 @@ public class Author {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>First, let&#8217;s mark the <code>Author</code> type as an <a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#concepts-entity">entity type</a>.
+<td>First, let&#8217;s mark the <code>Author</code> type as an <a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#concepts-entity">entity type</a>.
 In short, this implies the <code>Author</code> type it has its own, distinct lifecycle (not tied to another type),
 and that every `BookAuthor instance carries an immutable, unique identifier.</td>
 </tr>
@@ -608,7 +642,7 @@ public class Book {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>We also mark the Book type as an <a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#concepts-entity">entity type</a>,
+<td>We also mark the Book type as an <a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#concepts-entity">entity type</a>,
 but we don&#8217;t use <code>@Indexed</code>, because we decided we don&#8217;t need a dedicated index for books.</td>
 </tr>
 <tr>
@@ -762,7 +796,7 @@ It is definitely too aggressive for person names, but it is perfect for the book
 </div>
 <div class="paragraph">
 <p>For more information about configuring analyzers,
-see <a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#backend-elasticsearch-analysis">this section of the reference documentation</a>.</p>
+see <a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#backend-elasticsearch-analysis">this section of the reference documentation</a>.</p>
 </div>
 </div>
 </div>
@@ -979,7 +1013,7 @@ Feel free to explore the DSL using autocompletion.</p>
 </div>
 <div class="paragraph">
 <p>When that&#8217;s not enough, you can always fall back to
-<a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#search-dsl-predicate-extensions-elasticsearch-from-json">defining a predicate using JSON directly</a>.</p>
+<a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#search-dsl-predicate-extensions-elasticsearch-from-json">defining a predicate using JSON directly</a>.</p>
 </div>
 </td>
 </tr>
@@ -1067,23 +1101,17 @@ Feel free to explore the DSL using autocompletion.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.ssl.native=false <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.hibernate-search-standalone.mapping.structure=document <i class="conum" data-value="1"></i><b>(1)</b>
+quarkus.hibernate-search-standalone.elasticsearch.version=9 <i class="conum" data-value="2"></i><b>(2)</b>
+quarkus.hibernate-search-standalone.indexing.plan.synchronization.strategy=sync <i class="conum" data-value="3"></i><b>(3)</b>
 
-quarkus.hibernate-search-standalone.mapping.structure=document <i class="conum" data-value="2"></i><b>(2)</b>
-quarkus.hibernate-search-standalone.elasticsearch.version=8 <i class="conum" data-value="3"></i><b>(3)</b>
-quarkus.hibernate-search-standalone.indexing.plan.synchronization.strategy=sync <i class="conum" data-value="4"></i><b>(4)</b>
-
-%prod.quarkus.hibernate-search-standalone.elasticsearch.hosts=localhost:9200 <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+%prod.quarkus.hibernate-search-standalone.elasticsearch.hosts=localhost:9200 <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>We won&#8217;t use SSL, so we disable it to have a more compact native executable.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>We need to tell Hibernate Search about the structure of our entities.
 <div class="paragraph">
 <p>In this application we consider an indexed entity (the author) is the root of a "document":
@@ -1095,7 +1123,7 @@ which <strong>cannot</strong> be updated independently of the author.</p>
 </div></td>
 </tr>
 <tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>We need to tell Hibernate Search about the version of Elasticsearch we will use.
 <div class="paragraph">
 <p>It is important because there are significant differences between Elasticsearch mapping syntax depending on the version.
@@ -1104,13 +1132,13 @@ Note that, for OpenSearch, you need to prefix the version with <code>opensearch:
 </div></td>
 </tr>
 <tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
 <td>This means that we wait for the entities to be searchable before considering a write complete.
 On a production setup, the <code>write-sync</code> default will provide better performance.
 Using <code>sync</code> is especially important when testing as you need the entities to be searchable immediately.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
 <td>For development and tests, we rely on <a href="#dev-services">Dev Services</a>,
 which means Quarkus will start an Elasticsearch cluster automatically.
 In production mode, however,
@@ -1335,7 +1363,7 @@ that is exposed via a mapping configurer (<code>HibernateOrmSearchMappingConfigu
 <td class="content">
 <div class="paragraph">
 <p>A mapping configurer (<code>StandalonePojoMappingConfigurer</code>) allows much more than just programmatic mapping capabilities.
-It also allows <a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#mapper-pojo-standalone-mapping-configurer">configuring annotation mapping, bridges, and more</a>.</p>
+It also allows <a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#mapper-pojo-standalone-mapping-configurer">configuring annotation mapping, bridges, and more</a>.</p>
 </div>
 </td>
 </tr>
@@ -1419,12 +1447,12 @@ but it assumes it is working with an Elasticsearch cluster by default.</p>
 </div>
 <div class="paragraph">
 <p>To have Hibernate Search work with an OpenSearch cluster instead,
-<a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#backend-elasticsearch-configuration-version">prefix the configured version with <code>opensearch:</code></a>,
+<a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#backend-elasticsearch-configuration-version">prefix the configured version with <code>opensearch:</code></a>,
 as shown below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.hibernate-search-standalone.elasticsearch.version=opensearch:2.13</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.hibernate-search-standalone.elasticsearch.version=opensearch:3.0</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1432,7 +1460,7 @@ as shown below.</p>
 </div>
 <div class="paragraph">
 <p>You can find more information about compatible distributions and versions of Elasticsearch in
-<a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#compatibility">this section of Hibernate Search&#8217;s reference documentation</a>.</p>
+<a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#compatibility">this section of Hibernate Search&#8217;s reference documentation</a>.</p>
 </div>
 </div>
 </div>
@@ -1477,7 +1505,7 @@ when it makes sense for the type of the component being injected.</p>
 <p>Scope: one per application.</p>
 </div>
 <div class="paragraph">
-<p>See <a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#configuration-background-failure-handling">this section of the reference documentation</a>
+<p>See <a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#configuration-background-failure-handling">this section of the reference documentation</a>
 for more information.</p>
 </div>
 </dd>
@@ -1502,7 +1530,7 @@ for more information.</p>
 <a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-indexing-plan-synchronization-strategy"><code>quarkus.hibernate-search-standalone.indexing.plan.synchronization.strategy</code></a>.</p>
 </div>
 <div class="paragraph">
-<p>See <a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#indexing-plan-synchronization">this section of the reference documentation</a>
+<p>See <a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#indexing-plan-synchronization">this section of the reference documentation</a>
 for more information.</p>
 </div>
 </dd>
@@ -1527,7 +1555,7 @@ for more information.</p>
 <a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-layout-strategy"><code>quarkus.hibernate-search-standalone.elasticsearch.layout.strategy</code></a>.</p>
 </div>
 <div class="paragraph">
-<p>See <a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#backend-elasticsearch-indexlayout">this section of the reference documentation</a>
+<p>See <a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#backend-elasticsearch-indexlayout">this section of the reference documentation</a>
 for more information.</p>
 </div>
 </dd>
@@ -1578,7 +1606,7 @@ you will have to create the schema manually at some point before your applicatio
 and executing search requests.</p>
 </div>
 <div class="paragraph">
-<p>See <a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#schema-management-manager">this section of the reference documentation</a>
+<p>See <a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#schema-management-manager">this section of the reference documentation</a>
 for more information.</p>
 </div>
 </td>
@@ -1854,7 +1882,7 @@ then this information can be passed through the request body as shown below.</p>
 </div>
 <div class="paragraph">
 <p>For more detailed information on mass indexer configuration see the
-<a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#indexing-massindexer-parameters">corresponding section of the Hibernate Search reference documentation</a>.</p>
+<a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#indexing-massindexer-parameters">corresponding section of the Hibernate Search reference documentation</a>.</p>
 </div>
 <div class="paragraph">
 <p>Submitting the reindexing request will trigger indexing in the background. Mass indexing progress will appear in the application logs.
@@ -1907,7 +1935,7 @@ that data is derived from that of a (transactional) relational database.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>If you are interested in learning more about Hibernate Search,
-the Hibernate team publishes <a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/">an extensive reference documentation</a>,
+the Hibernate team publishes <a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/">an extensive reference documentation</a>,
 as well as a page listing <a href="https://hibernate.org/search/more-resources/">other relevant resources</a>.</p>
 </div>
 </div>
@@ -1946,13 +1974,14 @@ though there is an issue tracking progress on such an implementation in the Quar
 </colgroup>
 <tbody>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-search-standalone-elasticsearch_configuration"></a><a href="#quarkus-hibernate-search-standalone-elasticsearch_configuration">Configuration property</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><span class="header-title">Configuration property</span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-enabled"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-enabled">quarkus.hibernate-search-standalone.enabled</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-enabled"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-enabled"><code>quarkus.hibernate-search-standalone.enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
 <div class="content">
@@ -1965,7 +1994,7 @@ but it will not be possible to activate Hibernate Search at runtime:
 <code>quarkus.hibernate-search-standalone.active</code> will default to <code>false</code> and setting it to <code>true</code> will lead to an error.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6259">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6259" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6483">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6483" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1977,12 +2006,13 @@ but it will not be possible to activate Hibernate Search at runtime:
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-background-failure-handler"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-background-failure-handler">quarkus.hibernate-search-standalone.background-failure-handler</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-background-failure-handler"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-background-failure-handler"><code>quarkus.hibernate-search-standalone.background-failure-handler</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.background-failure-handler' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
-<p>A <a href="hibernate-search-stqndqlone-elasticsearch#bean-reference-note-anchor">bean reference</a> to a component
+<p>A <a href="#bean-reference-note-anchor">bean reference</a> to a component
 that should be notified of any failure occurring in a background process
 (mainly index operations).</p>
 </div>
@@ -1991,7 +2021,7 @@ that should be notified of any failure occurring in a background process
 </div>
 <div class="paragraph">
 <p>See
-<a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#configuration-background-failure-handling">this section of the reference documentation</a>
+<a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#configuration-background-failure-handling">this section of the reference documentation</a>
 for more information.</p>
 </div>
 <div class="admonitionblock note">
@@ -2005,7 +2035,7 @@ for more information.</p>
 <p>Instead of setting this configuration property,
 you can simply annotate your custom <code>FailureHandler</code> implementation with <code>@SearchExtension</code>
 and leave the configuration property unset: Hibernate Search will use the annotated implementation automatically.
-See <a href="hibernate-search-stqndqlone-elasticsearch#plugging-in-custom-components">this section</a>
+See <a href="#plugging-in-custom-components">this section</a>
 for more information.</p>
 </div>
 <div class="paragraph">
@@ -2016,7 +2046,7 @@ for more information.</p>
 </table>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6260">QUARKUS_HIBERNATE_SEARCH_STANDALONE_BACKGROUND_FAILURE_HANDLER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6260" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6484">QUARKUS_HIBERNATE_SEARCH_STANDALONE_BACKGROUND_FAILURE_HANDLER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6484" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2028,7 +2058,8 @@ for more information.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-mapping-configurer"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-mapping-configurer">quarkus.hibernate-search-standalone.mapping.configurer</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-mapping-configurer"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-mapping-configurer"><code>quarkus.hibernate-search-standalone.mapping.configurer</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.mapping.configurer' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
@@ -2066,7 +2097,7 @@ for more information.</p>
 </table>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6261">QUARKUS_HIBERNATE_SEARCH_STANDALONE_MAPPING_CONFIGURER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6261" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6485">QUARKUS_HIBERNATE_SEARCH_STANDALONE_MAPPING_CONFIGURER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6485" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2078,7 +2109,8 @@ for more information.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-mapping-structure"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-mapping-structure">quarkus.hibernate-search-standalone.mapping.structure</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-mapping-structure"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-mapping-structure"><code>quarkus.hibernate-search-standalone.mapping.structure</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.mapping.structure' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
@@ -2101,7 +2133,7 @@ specifying the inverse side of associations through <code>@AssociationInverseSid
 unless reindexing is disabled for that association through <code>@IndexingDependency(reindexOnUpdate = &#8230;&#8203;)</code>.</p>
 </div>
 </dd>
-<dt class="hdlist1"><code>tree</code></dt>
+<dt class="hdlist1"><code>document</code></dt>
 <dd>
 <p>Entities indexed through Hibernate Search are the root of a document,
 i.e. an indexed entity "owns" other entities it references through associations,
@@ -2114,11 +2146,11 @@ specifying the inverse side of associations through <code>@AssociationInverseSid
 </dl>
 </div>
 <div class="paragraph">
-<p>See also <a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#mapping-reindexing-associationinverseside"><code>@AssociationInverseSide</code></a>
-<a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#mapping-reindexing-reindexonupdate"><code>@IndexingDependency(reindexOnUpdate = &#8230;&#8203;)</code></a>.</p>
+<p>See also <a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#mapping-reindexing-associationinverseside"><code>@AssociationInverseSide</code></a>
+<a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#mapping-reindexing-reindexonupdate"><code>@IndexingDependency(reindexOnUpdate = &#8230;&#8203;)</code></a>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6262">QUARKUS_HIBERNATE_SEARCH_STANDALONE_MAPPING_STRUCTURE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6262" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6486">QUARKUS_HIBERNATE_SEARCH_STANDALONE_MAPPING_STRUCTURE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6486" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2126,13 +2158,14 @@ specifying the inverse side of associations through <code>@AssociationInverseSid
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>graph</code>, <code>document</code></p>
+<p><span class="asciidoc-tooltip-wrapper"><code>graph</code><span class="asciidoc-tooltip">Entities indexed through Hibernate Search are nodes in an entity graph.  With this structure\: * An indexed entity is independent of other entities it references through associations, which <strong>can</strong> be updated independently of the indexed entity; in particular they may be passed to {@link org.hibernate.search.mapper.pojo.standalone.work.SearchIndexingPlan#addOrUpdate(Object)}. * Therefore, when an entity changes, Hibernate Search may need to resolve other entities to reindex, which means in particular that associations between entities must be bi-directional\: specifying the inverse side of associations through <code>@AssociationInverseSide</code> <strong>is required</strong>, unless reindexing is disabled for that association through <code>@IndexingDependency(reindexOnUpdate = &#8230;&#8203;)</code>.  See also link\:https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#mapping-reindexing-associationinverseside\]<code>@AssociationInverseSide</code>] link\:https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#mapping-reindexing-reindexonupdate\]<code>@IndexingDependency(reindexOnUpdate = &#8230;&#8203;)</code>].</span></span>, <span class="asciidoc-tooltip-wrapper"><code>document</code><span class="asciidoc-tooltip">Entities indexed through Hibernate Search are the root of a document.  With this structure\: * An indexed entity "owns" other entities it references through associations, which <strong>cannot</strong> be updated independently of the indexed entity; in particular they cannot be passed to {@link org.hibernate.search.mapper.pojo.standalone.work.SearchIndexingPlan#addOrUpdate(Object)}. * Therefore, when an entity changes, Hibernate Search doesn&#8217;t need to resolve other entities to reindex, which means in particular that associations between entities can be uni-directional\: specifying the inverse side of associations through <code>@AssociationInverseSide</code> <strong>is not required</strong>.  See also link\:https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#mapping-reindexing-associationinverseside\]<code>@AssociationInverseSide</code>].</span></span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>graph</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><span class="asciidoc-tooltip-wrapper"><code>graph</code><span class="asciidoc-tooltip">Entities indexed through Hibernate Search are nodes in an entity graph.  With this structure\: * An indexed entity is independent of other entities it references through associations, which <strong>can</strong> be updated independently of the indexed entity; in particular they may be passed to {@link org.hibernate.search.mapper.pojo.standalone.work.SearchIndexingPlan#addOrUpdate(Object)}. * Therefore, when an entity changes, Hibernate Search may need to resolve other entities to reindex, which means in particular that associations between entities must be bi-directional\: specifying the inverse side of associations through <code>@AssociationInverseSide</code> <strong>is required</strong>, unless reindexing is disabled for that association through <code>@IndexingDependency(reindexOnUpdate = &#8230;&#8203;)</code>.  See also link\:https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#mapping-reindexing-associationinverseside\]<code>@AssociationInverseSide</code>] link\:https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#mapping-reindexing-reindexonupdate\]<code>@IndexingDependency(reindexOnUpdate = &#8230;&#8203;)</code>].</span></span></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-active"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-active">quarkus.hibernate-search-standalone.active</a></code></p>
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-active"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-active"><code>quarkus.hibernate-search-standalone.active</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.active' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
@@ -2149,7 +2182,7 @@ and accessing the SearchMapping for search or other operations will not be possi
 it won&#8217;t be active, and setting this property to <code>true</code> will fail.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6263">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ACTIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6263" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6487">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ACTIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6487" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2161,7 +2194,8 @@ it won&#8217;t be active, and setting this property to <code>true</code> will fa
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-schema-management-strategy"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-schema-management-strategy">quarkus.hibernate-search-standalone.schema-management.strategy</a></code></p>
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-schema-management-strategy"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-schema-management-strategy"><code>quarkus.hibernate-search-standalone.schema-management.strategy</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.schema-management.strategy' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
 <div class="content">
@@ -2225,23 +2259,26 @@ but can be useful when developing.</p></td>
 </tbody>
 </table>
 <div class="paragraph">
-<p>See <a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#schema-management-strategy">this section of the reference documentation</a>
+<p>See <a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#schema-management-strategy">this section of the reference documentation</a>
 for more information.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6264">QUARKUS_HIBERNATE_SEARCH_STANDALONE_SCHEMA_MANAGEMENT_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6264" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6488">QUARKUS_HIBERNATE_SEARCH_STANDALONE_SCHEMA_MANAGEMENT_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6488" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">SchemaManagementStrategyName</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>none</code>, <code>validate</code>, <code>create</code>, <code>create-or-validate</code>, <code>create-or-update</code>, <code>drop-and-create</code>, <code>drop-and-create-and-drop</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>drop-and-create-and-drop when using Dev Services; create-or-validate otherwise</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-indexing-plan-synchronization-strategy"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-indexing-plan-synchronization-strategy">quarkus.hibernate-search-standalone.indexing.plan.synchronization.strategy</a></code></p>
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-indexing-plan-synchronization-strategy"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-indexing-plan-synchronization-strategy"><code>quarkus.hibernate-search-standalone.indexing.plan.synchronization.strategy</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.indexing.plan.synchronization.strategy' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
 <div class="content">
@@ -2312,7 +2349,7 @@ to a custom implementations of <code>IndexingPlanSynchronizationStrategy</code>.
 </div>
 <div class="paragraph">
 <p>See
-<a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#indexing-plan-synchronization">this section of the reference documentation</a>
+<a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#indexing-plan-synchronization">this section of the reference documentation</a>
 for more information.</p>
 </div>
 <div class="admonitionblock note">
@@ -2333,7 +2370,7 @@ If this configuration property is set, it takes precedence over any <code>@Searc
 </table>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6265">QUARKUS_HIBERNATE_SEARCH_STANDALONE_INDEXING_PLAN_SYNCHRONIZATION_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6265" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6489">QUARKUS_HIBERNATE_SEARCH_STANDALONE_INDEXING_PLAN_SYNCHRONIZATION_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6489" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2343,61 +2380,21 @@ If this configuration property is set, it takes precedence over any <code>@Searc
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>write-sync</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-management-root-path"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-management-root-path">quarkus.hibernate-search-standalone.management.root-path</a></code></p>
-</div>
-<div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Root path for reindexing endpoints.
-This value will be resolved as a path relative to <code>${quarkus.management.root-path}</code>.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6266">QUARKUS_HIBERNATE_SEARCH_STANDALONE_MANAGEMENT_ROOT_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6266" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>hibernate-search/standalone/</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-management-enabled"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-management-enabled">quarkus.hibernate-search-standalone.management.enabled</a></code></p>
-</div>
-<div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>If management interface is turned on the reindexing endpoints will be published under the management interface.
-This property allows to enable this functionality by setting it to <code>`true</code>.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6267">QUARKUS_HIBERNATE_SEARCH_STANDALONE_MANAGEMENT_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6267" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
-</tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-backends-configuration-for-backends"></a><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-backends-configuration-for-backends">Configuration for backends</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-search-standalone-elasticsearch_section_quarkus-hibernate-search-standalone-elasticsearch"></a> <span class="section-name section-level0"><a href="#quarkus-hibernate-search-standalone-elasticsearch_section_quarkus-hibernate-search-standalone-elasticsearch">Configuration for Elasticsearch/OpenSearch backends</a></span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-version"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-version">quarkus.hibernate-search-standalone.elasticsearch.version</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-version"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-version"><code>quarkus.hibernate-search-standalone.elasticsearch.version</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.version' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-version">quarkus.hibernate-search-standalone.elasticsearch."backend-name".version</a></code></p>
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".version</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".version' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The version of Elasticsearch used in the cluster.</p>
@@ -2415,7 +2412,7 @@ to communicate with Elasticsearch).</p>
 any case, if there is a problem, you will have an error when Hibernate Search tries to connect to the cluster.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6268">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_VERSION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6268" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6490">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_VERSION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6490" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2427,12 +2424,666 @@ any case, if there is a problem, you will have an error when Hibernate Search tr
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-layout-strategy"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-layout-strategy">quarkus.hibernate-search-standalone.elasticsearch.layout.strategy</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-settings-file"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-settings-file"><code>quarkus.hibernate-search-standalone.elasticsearch.schema-management.settings-file</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.schema-management.settings-file' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-layout-strategy">quarkus.hibernate-search-standalone.elasticsearch."backend-name".layout.strategy</a></code></p>
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".schema-management.settings-file</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".schema-management.settings-file' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Path to a file in the classpath holding custom index settings to be included in the index definition
+when creating an Elasticsearch index.</p>
+</div>
+<div class="paragraph">
+<p>The provided settings will be merged with those generated by Hibernate Search, including analyzer definitions.
+When analysis is configured both through an analysis configurer and these custom settings, the behavior is undefined;
+it should not be relied upon.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#backend-elasticsearch-configuration-index-settings">this section of the reference documentation</a>
+for more information.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6491">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_SCHEMA_MANAGEMENT_SETTINGS_FILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6491" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-mapping-file"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-mapping-file"><code>quarkus.hibernate-search-standalone.elasticsearch.schema-management.mapping-file</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.schema-management.mapping-file' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".schema-management.mapping-file</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".schema-management.mapping-file' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Path to a file in the classpath holding a custom index mapping to be included in the index definition
+when creating an Elasticsearch index.</p>
+</div>
+<div class="paragraph">
+<p>The file does not need to (and generally shouldn&#8217;t) contain the full mapping:
+Hibernate Search will automatically inject missing properties (index fields) in the given mapping.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#backend-elasticsearch-mapping-custom">this section of the reference documentation</a>
+for more information.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6492">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_SCHEMA_MANAGEMENT_MAPPING_FILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6492" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-analysis-configurer"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-analysis-configurer"><code>quarkus.hibernate-search-standalone.elasticsearch.analysis.configurer</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.analysis.configurer' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".analysis.configurer</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".analysis.configurer' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>One or more <a href="#bean-reference-note-anchor">bean references</a>
+to the component(s) used to configure full text analysis (e.g. analyzers, normalizers).</p>
+</div>
+<div class="paragraph">
+<p>The referenced beans must implement <code>ElasticsearchAnalysisConfigurer</code>.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="#analysis-configurer">Setting up the analyzers</a> for more
+information.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Instead of setting this configuration property,
+you can simply annotate your custom <code>ElasticsearchAnalysisConfigurer</code> implementations with <code>@SearchExtension</code>
+and leave the configuration property unset: Hibernate Search will use the annotated implementation automatically.
+See <a href="#plugging-in-custom-components">this section</a>
+for more information.</p>
+</div>
+<div class="paragraph">
+<p>If this configuration property is set, it takes precedence over any <code>@SearchExtension</code> annotation.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6493">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_ANALYSIS_CONFIGURER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6493" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-hosts"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-hosts"><code>quarkus.hibernate-search-standalone.elasticsearch.hosts</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.hosts' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".hosts</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".hosts' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-12" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The list of hosts of the Elasticsearch servers.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6494">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_HOSTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6494" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>localhost:9200</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-protocol"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-protocol"><code>quarkus.hibernate-search-standalone.elasticsearch.protocol</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.protocol' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".protocol</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".protocol' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-13" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The protocol to use when contacting Elasticsearch servers. Set to "https" to enable SSL/TLS.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6495">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_PROTOCOL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6495" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><span class="asciidoc-tooltip-wrapper"><code>http</code><span class="asciidoc-tooltip">Use clear-text HTTP, with SSL/TLS disabled.</span></span>, <span class="asciidoc-tooltip-wrapper"><code>https</code><span class="asciidoc-tooltip">Use HTTPS, with SSL/TLS enabled.</span></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><span class="asciidoc-tooltip-wrapper"><code>http</code><span class="asciidoc-tooltip">Use clear-text HTTP, with SSL/TLS disabled.</span></span></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-username"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-username"><code>quarkus.hibernate-search-standalone.elasticsearch.username</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.username' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".username</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".username' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-14" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The username used for authentication.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6496">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6496" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-password"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-password"><code>quarkus.hibernate-search-standalone.elasticsearch.password</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.password' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".password</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".password' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-15" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The password used for authentication.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6497">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6497" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-connection-timeout"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-connection-timeout"><code>quarkus.hibernate-search-standalone.elasticsearch.connection-timeout</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.connection-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".connection-timeout</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".connection-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-16" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The timeout when establishing a connection to an Elasticsearch server.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6498">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_CONNECTION_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6498" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>1S</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-read-timeout"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-read-timeout"><code>quarkus.hibernate-search-standalone.elasticsearch.read-timeout</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.read-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".read-timeout</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".read-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-17" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The timeout when reading responses from an Elasticsearch server.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6499">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_READ_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6499" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>30S</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-request-timeout"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-request-timeout"><code>quarkus.hibernate-search-standalone.elasticsearch.request-timeout</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.request-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".request-timeout</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".request-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-18" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The timeout when executing a request to an Elasticsearch server.</p>
+</div>
+<div class="paragraph">
+<p>This includes the time needed to wait for a connection to be available,
+send the request and read the response.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6500">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_REQUEST_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6500" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-max-connections"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-max-connections"><code>quarkus.hibernate-search-standalone.elasticsearch.max-connections</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.max-connections' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".max-connections</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".max-connections' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-19" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The maximum number of connections to all the Elasticsearch servers.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6501">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_MAX_CONNECTIONS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6501" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>20</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-max-connections-per-route"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-max-connections-per-route"><code>quarkus.hibernate-search-standalone.elasticsearch.max-connections-per-route</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.max-connections-per-route' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".max-connections-per-route</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".max-connections-per-route' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-20" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The maximum number of connections per Elasticsearch server.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6502">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_MAX_CONNECTIONS_PER_ROUTE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6502" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>10</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-discovery-enabled"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-discovery-enabled"><code>quarkus.hibernate-search-standalone.elasticsearch.discovery.enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.discovery.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".discovery.enabled</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".discovery.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-21" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Defines if automatic discovery is enabled.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6503">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_DISCOVERY_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6503" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-discovery-refresh-interval"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-discovery-refresh-interval"><code>quarkus.hibernate-search-standalone.elasticsearch.discovery.refresh-interval</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.discovery.refresh-interval' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".discovery.refresh-interval</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".discovery.refresh-interval' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-22" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Refresh interval of the node list.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6504">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_DISCOVERY_REFRESH_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6504" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>10S</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-thread-pool-size"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-thread-pool-size"><code>quarkus.hibernate-search-standalone.elasticsearch.thread-pool.size</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.thread-pool.size' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".thread-pool.size</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".thread-pool.size' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-23" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The size of the thread pool assigned to the backend.</p>
+</div>
+<div class="paragraph">
+<p>Note that number is <strong>per backend</strong>, not per index.
+Adding more indexes will not add more threads.</p>
+</div>
+<div class="paragraph">
+<p>As all operations happening in this thread-pool are non-blocking,
+raising its size above the number of processor cores available to the JVM will not bring noticeable performance
+benefit.
+The only reason to alter this setting would be to reduce the number of threads;
+for example, in an application with a single index with a single indexing queue,
+running on a machine with 64 processor cores,
+you might want to bring down the number of threads.</p>
+</div>
+<div class="paragraph">
+<p>Defaults to the number of processor cores available to the JVM on startup.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6505">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_THREAD_POOL_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6505" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-query-shard-failure-ignore"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-query-shard-failure-ignore"><code>quarkus.hibernate-search-standalone.elasticsearch.query.shard-failure.ignore</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.query.shard-failure.ignore' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".query.shard-failure.ignore</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".query.shard-failure.ignore' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-24" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Whether partial shard failures are ignored (<code>true</code>) or lead to Hibernate Search throwing an exception (<code>false</code>).</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6506">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_QUERY_SHARD_FAILURE_IGNORE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6506" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-version-check-enabled"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-version-check-enabled"><code>quarkus.hibernate-search-standalone.elasticsearch.version-check.enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.version-check.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".version-check.enabled</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".version-check.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-25" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Whether Hibernate Search should check the version of the Elasticsearch cluster on startup.</p>
+</div>
+<div class="paragraph">
+<p>Set to <code>false</code> if the Elasticsearch cluster may not be available on startup.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6507">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_VERSION_CHECK_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6507" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-required-status"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-required-status"><code>quarkus.hibernate-search-standalone.elasticsearch.schema-management.required-status</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.schema-management.required-status' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".schema-management.required-status</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".schema-management.required-status' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-26" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The minimal <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.17/cluster-health.html">Elasticsearch cluster
+status</a> required on startup.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6508">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_SCHEMA_MANAGEMENT_REQUIRED_STATUS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6508" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>green</code>, <code>yellow</code>, <code>red</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>yellow</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-required-status-wait-timeout"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-required-status-wait-timeout"><code>quarkus.hibernate-search-standalone.elasticsearch.schema-management.required-status-wait-timeout</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.schema-management.required-status-wait-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".schema-management.required-status-wait-timeout</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".schema-management.required-status-wait-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-27" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>How long we should wait for the status before failing the bootstrap.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6509">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_SCHEMA_MANAGEMENT_REQUIRED_STATUS_WAIT_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6509" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>10S</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexing-queue-count"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexing-queue-count"><code>quarkus.hibernate-search-standalone.elasticsearch.indexing.queue-count</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.indexing.queue-count' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexing.queue-count</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexing.queue-count' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-28" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The number of indexing queues assigned to each index.</p>
+</div>
+<div class="paragraph">
+<p>Higher values will lead to more connections being used in parallel,
+which may lead to higher indexing throughput,
+but incurs a risk of overloading Elasticsearch,
+i.e. of overflowing its HTTP request buffers and tripping
+<a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.9/circuit-breaker.html">circuit breakers</a>,
+leading to Elasticsearch giving up on some request and resulting in indexing failures.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6510">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXING_QUEUE_COUNT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6510" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>10</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexing-queue-size"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexing-queue-size"><code>quarkus.hibernate-search-standalone.elasticsearch.indexing.queue-size</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.indexing.queue-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexing.queue-size</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexing.queue-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-29" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The size of indexing queues.</p>
+</div>
+<div class="paragraph">
+<p>Lower values may lead to lower memory usage, especially if there are many queues,
+but values that are too low will reduce the likeliness of reaching the max bulk size
+and increase the likeliness of application threads blocking because the queue is full,
+which may lead to lower indexing throughput.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6511">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXING_QUEUE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6511" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>1000</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexing-max-bulk-size"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexing-max-bulk-size"><code>quarkus.hibernate-search-standalone.elasticsearch.indexing.max-bulk-size</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.indexing.max-bulk-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexing.max-bulk-size</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexing.max-bulk-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-30" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The maximum size of bulk requests created when processing indexing queues.</p>
+</div>
+<div class="paragraph">
+<p>Higher values will lead to more documents being sent in each HTTP request sent to Elasticsearch,
+which may lead to higher indexing throughput,
+but incurs a risk of overloading Elasticsearch,
+i.e. of overflowing its HTTP request buffers and tripping
+<a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.9/circuit-breaker.html">circuit breakers</a>,
+leading to Elasticsearch giving up on some request and resulting in indexing failures.</p>
+</div>
+<div class="paragraph">
+<p>Note that raising this number above the queue size has no effect,
+as bulks cannot include more requests than are contained in the queue.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6512">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXING_MAX_BULK_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6512" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>100</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-layout-strategy"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-layout-strategy"><code>quarkus.hibernate-search-standalone.elasticsearch.layout.strategy</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.layout.strategy' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".layout.strategy</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".layout.strategy' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-31" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>A <a href="#bean-reference-note-anchor">bean reference</a> to the component
@@ -2462,7 +3113,7 @@ this strategy will create an index named <code>myindex</code>, and will not use 
 </div>
 <div class="paragraph">
 <p>See
-<a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#backend-elasticsearch-indexlayout">this section of the reference documentation</a>
+<a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#backend-elasticsearch-indexlayout">this section of the reference documentation</a>
 for more information.</p>
 </div>
 <div class="admonitionblock note">
@@ -2487,7 +3138,7 @@ for more information.</p>
 </table>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6269">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_LAYOUT_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6269" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6513">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_LAYOUT_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6513" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2496,633 +3147,22 @@ for more information.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-settings-file"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-settings-file">quarkus.hibernate-search-standalone.elasticsearch.schema-management.settings-file</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-settings-file">quarkus.hibernate-search-standalone.elasticsearch."backend-name".schema-management.settings-file</a></code></p>
-</div>
-<div id="conf-collapsible-desc-12" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Path to a file in the classpath holding custom index settings to be included in the index definition
-when creating an Elasticsearch index.</p>
-</div>
-<div class="paragraph">
-<p>The provided settings will be merged with those generated by Hibernate Search, including analyzer definitions.
-When analysis is configured both through an analysis configurer and these custom settings, the behavior is undefined;
-it should not be relied upon.</p>
-</div>
-<div class="paragraph">
-<p>See <a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#backend-elasticsearch-configuration-index-settings">this section of the reference documentation</a>
-for more information.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6270">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_SCHEMA_MANAGEMENT_SETTINGS_FILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6270" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-mapping-file"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-mapping-file">quarkus.hibernate-search-standalone.elasticsearch.schema-management.mapping-file</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-mapping-file">quarkus.hibernate-search-standalone.elasticsearch."backend-name".schema-management.mapping-file</a></code></p>
-</div>
-<div id="conf-collapsible-desc-13" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Path to a file in the classpath holding a custom index mapping to be included in the index definition
-when creating an Elasticsearch index.</p>
-</div>
-<div class="paragraph">
-<p>The file does not need to (and generally shouldn&#8217;t) contain the full mapping:
-Hibernate Search will automatically inject missing properties (index fields) in the given mapping.</p>
-</div>
-<div class="paragraph">
-<p>See <a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#backend-elasticsearch-mapping-custom">this section of the reference documentation</a>
-for more information.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6271">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_SCHEMA_MANAGEMENT_MAPPING_FILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6271" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-analysis-configurer"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-analysis-configurer">quarkus.hibernate-search-standalone.elasticsearch.analysis.configurer</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-analysis-configurer">quarkus.hibernate-search-standalone.elasticsearch."backend-name".analysis.configurer</a></code></p>
-</div>
-<div id="conf-collapsible-desc-14" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>One or more <a href="#bean-reference-note-anchor">bean references</a>
-to the component(s) used to configure full text analysis (e.g. analyzers, normalizers).</p>
-</div>
-<div class="paragraph">
-<p>The referenced beans must implement <code>ElasticsearchAnalysisConfigurer</code>.</p>
-</div>
-<div class="paragraph">
-<p>See <a href="#analysis-configurer">Setting up the analyzers</a> for more
-information.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Instead of setting this configuration property,
-you can simply annotate your custom <code>ElasticsearchAnalysisConfigurer</code> implementations with <code>@SearchExtension</code>
-and leave the configuration property unset: Hibernate Search will use the annotated implementation automatically.
-See <a href="#plugging-in-custom-components">this section</a>
-for more information.</p>
-</div>
-<div class="paragraph">
-<p>If this configuration property is set, it takes precedence over any <code>@SearchExtension</code> annotation.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6272">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_ANALYSIS_CONFIGURER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6272" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-hosts"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-hosts">quarkus.hibernate-search-standalone.elasticsearch.hosts</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-hosts">quarkus.hibernate-search-standalone.elasticsearch."backend-name".hosts</a></code></p>
-</div>
-<div id="conf-collapsible-desc-15" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The list of hosts of the Elasticsearch servers.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6273">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_HOSTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6273" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>localhost:9200</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-protocol"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-protocol">quarkus.hibernate-search-standalone.elasticsearch.protocol</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-protocol">quarkus.hibernate-search-standalone.elasticsearch."backend-name".protocol</a></code></p>
-</div>
-<div id="conf-collapsible-desc-16" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The protocol to use when contacting Elasticsearch servers. Set to "https" to enable SSL/TLS.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6274">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_PROTOCOL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6274" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>http</code>, <code>https</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>http</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-username"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-username">quarkus.hibernate-search-standalone.elasticsearch.username</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-username">quarkus.hibernate-search-standalone.elasticsearch."backend-name".username</a></code></p>
-</div>
-<div id="conf-collapsible-desc-17" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The username used for authentication.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6275">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6275" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-password"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-password">quarkus.hibernate-search-standalone.elasticsearch.password</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-password">quarkus.hibernate-search-standalone.elasticsearch."backend-name".password</a></code></p>
-</div>
-<div id="conf-collapsible-desc-18" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The password used for authentication.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6276">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6276" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-connection-timeout"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-connection-timeout">quarkus.hibernate-search-standalone.elasticsearch.connection-timeout</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-connection-timeout">quarkus.hibernate-search-standalone.elasticsearch."backend-name".connection-timeout</a></code></p>
-</div>
-<div id="conf-collapsible-desc-19" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The timeout when establishing a connection to an Elasticsearch server.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6277">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_CONNECTION_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6277" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
-  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>1S</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-read-timeout"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-read-timeout">quarkus.hibernate-search-standalone.elasticsearch.read-timeout</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-read-timeout">quarkus.hibernate-search-standalone.elasticsearch."backend-name".read-timeout</a></code></p>
-</div>
-<div id="conf-collapsible-desc-20" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The timeout when reading responses from an Elasticsearch server.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6278">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_READ_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6278" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
-  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>30S</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-request-timeout"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-request-timeout">quarkus.hibernate-search-standalone.elasticsearch.request-timeout</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-request-timeout">quarkus.hibernate-search-standalone.elasticsearch."backend-name".request-timeout</a></code></p>
-</div>
-<div id="conf-collapsible-desc-21" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The timeout when executing a request to an Elasticsearch server.</p>
-</div>
-<div class="paragraph">
-<p>This includes the time needed to wait for a connection to be available,
-send the request and read the response.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6279">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_REQUEST_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6279" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
-  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-max-connections"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-max-connections">quarkus.hibernate-search-standalone.elasticsearch.max-connections</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-max-connections">quarkus.hibernate-search-standalone.elasticsearch."backend-name".max-connections</a></code></p>
-</div>
-<div id="conf-collapsible-desc-22" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The maximum number of connections to all the Elasticsearch servers.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6280">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_MAX_CONNECTIONS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6280" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>20</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-max-connections-per-route"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-max-connections-per-route">quarkus.hibernate-search-standalone.elasticsearch.max-connections-per-route</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-max-connections-per-route">quarkus.hibernate-search-standalone.elasticsearch."backend-name".max-connections-per-route</a></code></p>
-</div>
-<div id="conf-collapsible-desc-23" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The maximum number of connections per Elasticsearch server.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6281">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_MAX_CONNECTIONS_PER_ROUTE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6281" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>10</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-discovery-enabled"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-discovery-enabled">quarkus.hibernate-search-standalone.elasticsearch.discovery.enabled</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-discovery-enabled">quarkus.hibernate-search-standalone.elasticsearch."backend-name".discovery.enabled</a></code></p>
-</div>
-<div id="conf-collapsible-desc-24" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Defines if automatic discovery is enabled.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6282">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_DISCOVERY_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6282" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-discovery-refresh-interval"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-discovery-refresh-interval">quarkus.hibernate-search-standalone.elasticsearch.discovery.refresh-interval</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-discovery-refresh-interval">quarkus.hibernate-search-standalone.elasticsearch."backend-name".discovery.refresh-interval</a></code></p>
-</div>
-<div id="conf-collapsible-desc-25" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Refresh interval of the node list.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6283">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_DISCOVERY_REFRESH_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6283" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
-  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>10S</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-thread-pool-size"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-thread-pool-size">quarkus.hibernate-search-standalone.elasticsearch.thread-pool.size</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-thread-pool-size">quarkus.hibernate-search-standalone.elasticsearch."backend-name".thread-pool.size</a></code></p>
-</div>
-<div id="conf-collapsible-desc-26" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The size of the thread pool assigned to the backend.</p>
-</div>
-<div class="paragraph">
-<p>Note that number is <strong>per backend</strong>, not per index.
-Adding more indexes will not add more threads.</p>
-</div>
-<div class="paragraph">
-<p>As all operations happening in this thread-pool are non-blocking,
-raising its size above the number of processor cores available to the JVM will not bring noticeable performance
-benefit.
-The only reason to alter this setting would be to reduce the number of threads;
-for example, in an application with a single index with a single indexing queue,
-running on a machine with 64 processor cores,
-you might want to bring down the number of threads.</p>
-</div>
-<div class="paragraph">
-<p>Defaults to the number of processor cores available to the JVM on startup.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6284">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_THREAD_POOL_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6284" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-query-shard-failure-ignore"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-query-shard-failure-ignore">quarkus.hibernate-search-standalone.elasticsearch.query.shard-failure.ignore</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-query-shard-failure-ignore">quarkus.hibernate-search-standalone.elasticsearch."backend-name".query.shard-failure.ignore</a></code></p>
-</div>
-<div id="conf-collapsible-desc-27" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Whether partial shard failures are ignored (<code>true</code>) or lead to Hibernate Search throwing an exception (<code>false</code>).</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6285">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_QUERY_SHARD_FAILURE_IGNORE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6285" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-version-check-enabled"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-version-check-enabled">quarkus.hibernate-search-standalone.elasticsearch.version-check.enabled</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-version-check-enabled">quarkus.hibernate-search-standalone.elasticsearch."backend-name".version-check.enabled</a></code></p>
-</div>
-<div id="conf-collapsible-desc-28" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Whether Hibernate Search should check the version of the Elasticsearch cluster on startup.</p>
-</div>
-<div class="paragraph">
-<p>Set to <code>false</code> if the Elasticsearch cluster may not be available on startup.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6286">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_VERSION_CHECK_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6286" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-required-status"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-required-status">quarkus.hibernate-search-standalone.elasticsearch.schema-management.required-status</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-required-status">quarkus.hibernate-search-standalone.elasticsearch."backend-name".schema-management.required-status</a></code></p>
-</div>
-<div id="conf-collapsible-desc-29" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The minimal <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.17/cluster-health.html">Elasticsearch cluster
-status</a> required on startup.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6287">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_SCHEMA_MANAGEMENT_REQUIRED_STATUS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6287" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>green</code>, <code>yellow</code>, <code>red</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>yellow</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-required-status-wait-timeout"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-required-status-wait-timeout">quarkus.hibernate-search-standalone.elasticsearch.schema-management.required-status-wait-timeout</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-schema-management-required-status-wait-timeout">quarkus.hibernate-search-standalone.elasticsearch."backend-name".schema-management.required-status-wait-timeout</a></code></p>
-</div>
-<div id="conf-collapsible-desc-30" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>How long we should wait for the status before failing the bootstrap.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6288">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_SCHEMA_MANAGEMENT_REQUIRED_STATUS_WAIT_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6288" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
-  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>10S</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexing-queue-count"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexing-queue-count">quarkus.hibernate-search-standalone.elasticsearch.indexing.queue-count</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexing-queue-count">quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexing.queue-count</a></code></p>
-</div>
-<div id="conf-collapsible-desc-31" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The number of indexing queues assigned to each index.</p>
-</div>
-<div class="paragraph">
-<p>Higher values will lead to more connections being used in parallel,
-which may lead to higher indexing throughput,
-but incurs a risk of overloading Elasticsearch,
-i.e. of overflowing its HTTP request buffers and tripping
-<a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.9/circuit-breaker.html">circuit breakers</a>,
-leading to Elasticsearch giving up on some request and resulting in indexing failures.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6289">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXING_QUEUE_COUNT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6289" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>10</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexing-queue-size"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexing-queue-size">quarkus.hibernate-search-standalone.elasticsearch.indexing.queue-size</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexing-queue-size">quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexing.queue-size</a></code></p>
-</div>
-<div id="conf-collapsible-desc-32" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The size of indexing queues.</p>
-</div>
-<div class="paragraph">
-<p>Lower values may lead to lower memory usage, especially if there are many queues,
-but values that are too low will reduce the likeliness of reaching the max bulk size
-and increase the likeliness of application threads blocking because the queue is full,
-which may lead to lower indexing throughput.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6290">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXING_QUEUE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6290" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>1000</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexing-max-bulk-size"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexing-max-bulk-size">quarkus.hibernate-search-standalone.elasticsearch.indexing.max-bulk-size</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexing-max-bulk-size">quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexing.max-bulk-size</a></code></p>
-</div>
-<div id="conf-collapsible-desc-33" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The maximum size of bulk requests created when processing indexing queues.</p>
-</div>
-<div class="paragraph">
-<p>Higher values will lead to more documents being sent in each HTTP request sent to Elasticsearch,
-which may lead to higher indexing throughput,
-but incurs a risk of overloading Elasticsearch,
-i.e. of overflowing its HTTP request buffers and tripping
-<a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.9/circuit-breaker.html">circuit breakers</a>,
-leading to Elasticsearch giving up on some request and resulting in indexing failures.</p>
-</div>
-<div class="paragraph">
-<p>Note that raising this number above the queue size has no effect,
-as bulks cannot include more requests than are contained in the queue.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6291">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXING_MAX_BULK_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6291" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>100</code></p></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-per-index-configuration-overrides"></a><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-per-index-configuration-overrides">Per-index configuration overrides</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-search-standalone-elasticsearch_section_quarkus-hibernate-search-standalone-elasticsearch-indexes"></a> <span class="section-name section-level1"><a href="#quarkus-hibernate-search-standalone-elasticsearch_section_quarkus-hibernate-search-standalone-elasticsearch-indexes">Per-index configuration overrides</a></span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-settings-file"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-settings-file">quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".schema-management.settings-file</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-settings-file"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-settings-file"><code>quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".schema-management.settings-file</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".schema-management.settings-file' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-settings-file">quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".schema-management.settings-file</a></code></p>
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".schema-management.settings-file</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".schema-management.settings-file' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-34" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-32" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Path to a file in the classpath holding custom index settings to be included in the index definition
@@ -3134,11 +3174,11 @@ When analysis is configured both through an analysis configurer and these custom
 it should not be relied upon.</p>
 </div>
 <div class="paragraph">
-<p>See <a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#backend-elasticsearch-configuration-index-settings">this section of the reference documentation</a>
+<p>See <a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#backend-elasticsearch-configuration-index-settings">this section of the reference documentation</a>
 for more information.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6292">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXES__INDEX_NAME__SCHEMA_MANAGEMENT_SETTINGS_FILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6292" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6514">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXES__INDEX_NAME__SCHEMA_MANAGEMENT_SETTINGS_FILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6514" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3150,12 +3190,14 @@ for more information.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-mapping-file"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-mapping-file">quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".schema-management.mapping-file</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-mapping-file"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-mapping-file"><code>quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".schema-management.mapping-file</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".schema-management.mapping-file' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-mapping-file">quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".schema-management.mapping-file</a></code></p>
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".schema-management.mapping-file</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".schema-management.mapping-file' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-35" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-33" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Path to a file in the classpath holding a custom index mapping to be included in the index definition
@@ -3166,11 +3208,11 @@ when creating an Elasticsearch index.</p>
 Hibernate Search will automatically inject missing properties (index fields) in the given mapping.</p>
 </div>
 <div class="paragraph">
-<p>See <a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#backend-elasticsearch-mapping-custom">this section of the reference documentation</a>
+<p>See <a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#backend-elasticsearch-mapping-custom">this section of the reference documentation</a>
 for more information.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6293">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXES__INDEX_NAME__SCHEMA_MANAGEMENT_MAPPING_FILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6293" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6515">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXES__INDEX_NAME__SCHEMA_MANAGEMENT_MAPPING_FILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6515" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3182,12 +3224,14 @@ for more information.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-analysis-configurer"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-analysis-configurer">quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".analysis.configurer</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-analysis-configurer"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-analysis-configurer"><code>quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".analysis.configurer</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".analysis.configurer' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-analysis-configurer">quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".analysis.configurer</a></code></p>
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".analysis.configurer</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".analysis.configurer' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-36" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-34" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>One or more <a href="#bean-reference-note-anchor">bean references</a>
@@ -3222,7 +3266,7 @@ for more information.</p>
 </table>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6294">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXES__INDEX_NAME__ANALYSIS_CONFIGURER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6294" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6516">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXES__INDEX_NAME__ANALYSIS_CONFIGURER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6516" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3234,19 +3278,21 @@ for more information.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-required-status"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-required-status">quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".schema-management.required-status</a></code></p>
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-required-status"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-required-status"><code>quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".schema-management.required-status</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".schema-management.required-status' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-required-status">quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".schema-management.required-status</a></code></p>
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".schema-management.required-status</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".schema-management.required-status' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-37" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-35" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The minimal <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.17/cluster-health.html">Elasticsearch cluster
 status</a> required on startup.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6295">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXES__INDEX_NAME__SCHEMA_MANAGEMENT_REQUIRED_STATUS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6295" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6517">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXES__INDEX_NAME__SCHEMA_MANAGEMENT_REQUIRED_STATUS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6517" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3260,36 +3306,39 @@ status</a> required on startup.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-required-status-wait-timeout"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-required-status-wait-timeout">quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".schema-management.required-status-wait-timeout</a></code></p>
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-required-status-wait-timeout"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-required-status-wait-timeout"><code>quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".schema-management.required-status-wait-timeout</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".schema-management.required-status-wait-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-schema-management-required-status-wait-timeout">quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".schema-management.required-status-wait-timeout</a></code></p>
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".schema-management.required-status-wait-timeout</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".schema-management.required-status-wait-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-38" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-36" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>How long we should wait for the status before failing the bootstrap.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6296">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXES__INDEX_NAME__SCHEMA_MANAGEMENT_REQUIRED_STATUS_WAIT_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6296" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6518">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXES__INDEX_NAME__SCHEMA_MANAGEMENT_REQUIRED_STATUS_WAIT_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6518" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
-  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>10S</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-indexing-queue-count"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-indexing-queue-count">quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".indexing.queue-count</a></code></p>
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-indexing-queue-count"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-indexing-queue-count"><code>quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".indexing.queue-count</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".indexing.queue-count' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-indexing-queue-count">quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".indexing.queue-count</a></code></p>
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".indexing.queue-count</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".indexing.queue-count' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-39" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-37" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The number of indexing queues assigned to each index.</p>
@@ -3303,7 +3352,7 @@ i.e. of overflowing its HTTP request buffers and tripping
 leading to Elasticsearch giving up on some request and resulting in indexing failures.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6297">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXES__INDEX_NAME__INDEXING_QUEUE_COUNT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6297" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6519">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXES__INDEX_NAME__INDEXING_QUEUE_COUNT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6519" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3315,12 +3364,14 @@ leading to Elasticsearch giving up on some request and resulting in indexing fai
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-indexing-queue-size"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-indexing-queue-size">quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".indexing.queue-size</a></code></p>
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-indexing-queue-size"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-indexing-queue-size"><code>quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".indexing.queue-size</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".indexing.queue-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-indexing-queue-size">quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".indexing.queue-size</a></code></p>
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".indexing.queue-size</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".indexing.queue-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-40" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-38" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The size of indexing queues.</p>
@@ -3332,7 +3383,7 @@ and increase the likeliness of application threads blocking because the queue is
 which may lead to lower indexing throughput.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6298">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXES__INDEX_NAME__INDEXING_QUEUE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6298" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6520">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXES__INDEX_NAME__INDEXING_QUEUE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6520" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3344,12 +3395,14 @@ which may lead to lower indexing throughput.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-indexing-max-bulk-size"></a><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-indexing-max-bulk-size">quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".indexing.max-bulk-size</a></code></p>
+<p><a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-indexing-max-bulk-size"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-indexing-max-bulk-size"><code>quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".indexing.max-bulk-size</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch.indexes."index-name".indexing.max-bulk-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-elasticsearch-indexes-index-name-indexing-max-bulk-size">quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".indexing.max-bulk-size</a></code></p>
+<p><code>quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".indexing.max-bulk-size</code>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.elasticsearch."backend-name".indexes."index-name".indexing.max-bulk-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-41" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-39" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The maximum size of bulk requests created when processing indexing queues.</p>
@@ -3367,7 +3420,7 @@ leading to Elasticsearch giving up on some request and resulting in indexing fai
 as bulks cannot include more requests than are contained in the queue.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6299">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXES__INDEX_NAME__INDEXING_MAX_BULK_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6299" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6521">QUARKUS_HIBERNATE_SEARCH_STANDALONE_ELASTICSEARCH_INDEXES__INDEX_NAME__INDEXING_MAX_BULK_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6521" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3377,9 +3430,58 @@ as bulks cannot include more requests than are contained in the queue.</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>100</code></p></td>
 </tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-search-standalone-elasticsearch_section_quarkus-hibernate-search-standalone-management"></a> <span class="section-name section-level0"><a href="#quarkus-hibernate-search-standalone-elasticsearch_section_quarkus-hibernate-search-standalone-management">Management interface</a></span></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-management-root-path"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-management-root-path"><code>quarkus.hibernate-search-standalone.management.root-path</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.management.root-path' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-40" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Root path for reindexing endpoints.
+This value will be resolved as a path relative to <code>${quarkus.management.root-path}</code>.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6522">QUARKUS_HIBERNATE_SEARCH_STANDALONE_MANAGEMENT_ROOT_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6522" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>hibernate-search/standalone/</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-management-enabled"></a> <span class="property-path"><a href="#quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone-management-enabled"><code>quarkus.hibernate-search-standalone.management.enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.hibernate-search-standalone.management.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-41" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>If management interface is turned on the reindexing endpoints will be published under the management interface.
+This property allows to enable this functionality by setting it to <code>`true</code>.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6523">QUARKUS_HIBERNATE_SEARCH_STANDALONE_MANAGEMENT_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6523" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
 </tbody>
 </table>
-<div id="duration-note-anchor-quarkus-hibernate-search-standalone-elasticsearch" class="admonitionblock note">
+<div id="duration-note-anchor-quarkus-hibernate-search-standalone-elasticsearch_quarkus-hibernate-search-standalone" class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
@@ -3459,7 +3561,7 @@ such as <code>async</code>/<code>read-sync</code>/<code>write-sync</code>/<code>
 </div>
 <div class="paragraph">
 <p>Other formats are also accepted, but are only useful for advanced use cases.
-See <a href="https://docs.jboss.org/hibernate/search/7.1/reference/en-US/html_single/#configuration-bean-reference-parsing">this section of Hibernate Search&#8217;s reference documentation</a>
+See <a href="https://docs.jboss.org/hibernate/search/8.0/reference/en-US/html_single/#configuration-bean-reference-parsing">this section of Hibernate Search&#8217;s reference documentation</a>
 for more information.</p>
 </div>
 </td>
@@ -3595,7 +3697,7 @@ for more information.</p>
     </div>
   </div>
   <div class="grid-wrapper">
-    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
+    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license. <i class='fab fa-creative-commons'></i><i class='fab fa-creative-commons-by'></i> <a href='https://creativecommons.org/licenses/by/3.0/' target='_blank'>CC by 3.0</a><br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
 
     
       <div class="width-1-12 project-links">
@@ -3627,6 +3729,10 @@ for more information.</p>
           
           
           
+            <li><a href="/userstories" target="_blank">User Stories</a></li>
+          
+          
+          
             <li><a href="https://github.com/orgs/quarkusio/projects/13/views/1" target="_blank">Roadmap</a></li>
           
           
@@ -3646,6 +3752,10 @@ for more information.</p>
             <li><a href="/desktopwallpapers" target="_blank">Wallpapers</a></li>
           
           
+          
+            <li><a href="https://www.redhat.com/en/about/privacy-policy" target="_blank">Privacy Policy</a></li>
+          
+          
         </ul>
       </div>
     
@@ -3658,8 +3768,16 @@ for more information.</p>
           
           
           
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
+          
+          
+          
             <li><a rel="me" href="https://fosstodon.org/@quarkusio" target="_blank">Mastodon</a></li>
             
+          
+          
+            <li><a href="https://www.threads.com/@quarkusio" target="_blank">Threads</a></li>
+          
           
           
             <li><a href="https://www.facebook.com/quarkusio" target="_blank">Facebook</a></li>
@@ -3770,17 +3888,22 @@ for more information.</p>
   </div>
 </div>
 
-  <div class="content redhat-footer">
-  <div class="grid-wrapper">
-    <span class="licence">
-      <i class="fab fa-creative-commons"></i><i class="fab fa-creative-commons-by"></i> <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC by 3.0</a> | <a href="https://www.redhat.com/en/about/privacy-policy">Privacy Policy</a>
-    </span>
-    <span class="redhat">
-      Sponsored by
-    </span>
-    <span class="redhat-logo">
-      <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
-    </span>
+  <div class="content cf-footer">
+  <div class="flexcontainer">
+    <div class="cf-logo">
+      <img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/>
+    </div>
+    <div class="license">
+      Copyright © Quarkus. All rights reserved. For details on our trademarks, please visit our <a href="https://www.commonhaus.org/policies/trademark-policy/">Trademark Policy</a> and <a href="https://www.commonhaus.org/trademarks/">Trademark List</a>. Trademarks of third parties are owned by their respective holders and their mention here does not suggest any endorsement or association.
+    </div>
+    <div class="sponsorcontainer">
+      <div class="sponsor">
+        Sponsored by
+      </div>
+      <div class="sponsor-logo">
+        <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -3796,6 +3919,7 @@ for more information.</p>
   <script src="/assets/javascript/copy.js" type="text/javascript"></script>
   <script src="/assets/javascript/asciidoc-tabs.js" type="text/javascript"></script>
   <script src="/assets/javascript/future-date.js" type="text/javascript"></script>
+  <script src="/assets/javascript/randomize.js" type="text/javascript"></script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 
 
@@ -11,8 +11,33 @@
   <title>Writing Your Own Extension - main - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://analytics.ossupstream.org https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://analytics.ossupstream.org; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://analytics.ossupstream.org * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://analytics.ossupstream.org/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://analytics.ossupstream.org/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://player.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -51,7 +76,6 @@
   
   <link rel="alternate" hreflang="x-default" href="https://quarkus.io/" />  
   <script src="/assets/javascript/tracking.js"></script>
-  <script src="https://analytics.ossupstream.org/matomo.js" async defer></script>
   
   <script src="/assets/javascript/colormode.js" type="text/javascript"></script>
 
@@ -76,11 +100,13 @@
         <span href="/about/">Why<i class="fas fa-chevron-down"></i></span>
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
-          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
           <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/versatility" class="">VERSATILITY</a></li>
+          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>  
+          <li><a href="/spring" class="">USING SPRING?</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -88,6 +114,7 @@
         <ul class="submenu">
           <li><a href="/get-started" class="">GET STARTED</a></li>
           <li><a href="/guides" class="active">DOCUMENTATION</a></li>
+          <li><a href="/userstories/" class="">USER STORIES</a></li>  
           <li><a href="/qtips" class="">"Q" TIP VIDEOS</a></li>          
           <li><a href="/books" class="">BOOKS</a></li>
           </ul>
@@ -108,6 +135,7 @@
           <li><a href="/support/" class="">SUPPORT</a></li>
           <li><a href="/blog" class="">BLOG</a></li>
           <li><a href="/discussion" class="">DISCUSSION</a></li>
+          <li><a href="/working-groups" class="">WORKING GROUPS</a></li>
           <li><a href="/insights" class="">PODCAST</a></li>
           <li><a href="/events" class="">EVENTS</a></li>
           <li><a href="/newsletter" class="">NEWSLETTER</a></li>
@@ -144,6 +172,7 @@
 
 
 
+
 <section class="full-width-version-bg flexfilterbar guides">
   <div class="guideflexcontainer">
     <div class="docslink">
@@ -161,7 +190,15 @@
         
         
         
-        <option value="latest" >3.11.1 - Latest</option>
+        <option value="latest" >3.24.4 - Latest</option>
+        
+        
+        
+        <option value="3.20" >3.20</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -178,10 +215,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -191,7 +224,7 @@
   <div class="grid-wrapper">
     <div class="grid__item width-8-12 width-12-12-m">
       
-      <a class="editlink" href="https://github.com/quarkusio/quarkus/edit/main/docs/src/main/asciidoc/_versions/main/guides/writing-extensions.adoc">Edit this Page</a>
+      <a class="editlink" href="https://github.com/quarkusio/quarkus/edit/main/docs/src/main/asciidoc/writing-extensions.adoc">Edit this Page</a>
       
       <h1 class="text-caps">Writing Your Own Extension </h1>
       <div id="preamble">
@@ -210,7 +243,8 @@ usage as the classes etc that are used for processing are not loaded (or even pr
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This is an in-depth documentation, see the <a href="building-my-first-extension">building my first extension</a> if you need an introduction.
+This is an in-depth documentation, see the <a href="building-my-first-extension">building my first extension</a> if you need an introduction,
+or the <a href="extension-faq">frequently asked questions</a>.
 </td>
 </tr>
 </table>
@@ -637,7 +671,7 @@ In this chapter, we will cover a use case that can be used to initialize extensi
 @Record(STATIC_INIT)
 SyntheticBeanBuildItem syntheticBean(TestRecorder recorder) {
    return SyntheticBeanBuildItem.configure(Foo.class).scope(Singleton.class)
-                .runtimeValue(recorder.createFoo("parameters are recorder in the bytecode")) <i class="conum" data-value="1"></i><b>(1)</b>
+                .runtimeValue(recorder.createFoo("parameters are recorded in the bytecode")) <i class="conum" data-value="1"></i><b>(1)</b>
                 .done();
 }</code></pre>
 </div>
@@ -657,7 +691,7 @@ SyntheticBeanBuildItem syntheticBean(TestRecorder recorder) {
 @Record(STATIC_INIT)
 SyntheticBeanBuildItem syntheticBean(TestRecorder recorder) {
    return SyntheticBeanBuildItem.configure(TestContext.class).scope(Singleton.class)
-                .runtimeValue(recorder.createContext("parameters are recorder in the bytecode")) <i class="conum" data-value="1"></i><b>(1)</b>
+                .runtimeValue(recorder.createContext("parameters are recorded in the bytecode")) <i class="conum" data-value="1"></i><b>(1)</b>
                 .done();
 }</code></pre>
 </div>
@@ -699,6 +733,12 @@ Most extension we have seen do not make use of these extreme flexibility capabil
 The way to port a CDI extension to Quarkus is to rewrite it as a Quarkus extension which will define the various beans at build time (deployment time in extension parlance).</p>
 </dd>
 </dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="levels-of-capability"><a class="anchor" href="#levels-of-capability"></a>1.6. Levels of capability</h3>
+<div class="paragraph">
+<p>Quarkus extensions can do lots of things. The <a href="extension-maturity-matrix">extension maturity matrix</a> lays out a path through the various capabilities, with a suggested implementation order.</p>
 </div>
 </div>
 </div>
@@ -1857,14 +1897,6 @@ configuration, and when they are available to applications. The phases defined b
 <td class="tableblock halign-left valign-top"><p class="tableblock">Appropriate for things which affect build and must be visible for run time code.  Not read from config at run time.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BOOTSTRAP</code></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">✗</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">✓</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">✗</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">✓</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Used when runtime configuration needs to be obtained from an external system (like <code>Consul</code>), but details of that system need to be configurable (for example Consul&#8217;s URL). The high level way this works is by using the standard Quarkus config sources (such as properties files, system properties, etc.) and producing <code>ConfigSourceProvider</code> objects which are subsequently taken into account by Quarkus when creating the final runtime <code>Config</code> object.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>RUN_TIME</code></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">✗</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">✓</p></td>
@@ -1876,18 +1908,6 @@ configuration, and when they are available to applications. The phases defined b
 </table>
 <div class="paragraph">
 <p>For all cases other than the <code>BUILD_TIME</code> case, the configuration mapping interface and all the configuration groups and types contained therein must be located in, or reachable from, the extension&#8217;s run time artifact. Configuration mappings of phase <code>BUILD_TIME</code> may be located in or reachable from either of the extension&#8217;s run time or deployment artifacts.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<em>Bootstrap</em> configuration steps are executed during runtime-init <strong>before</strong> any of other runtime steps. This means that code executed as part of this step cannot access anything that gets initialized in runtime init steps (runtime synthetic CDI beans being one such example).
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect3">
@@ -2010,8 +2030,7 @@ quarkus.log.file.path=/tmp/debug.log</code></pre>
 <p>A configuration mapping name can contain an extra suffix segment for the case where there are configuration
 mappings for multiple <a href="#config-phases">Config Phases</a>. Classes which correspond to the <code>BUILD_TIME</code> and <code>BUILD_AND_RUN_TIME_FIXED</code>
 may end with <code>BuildTimeConfig</code> or <code>BuildTimeConfiguration</code>, classes which correspond to the <code>RUN_TIME</code> phase
-may end with <code>RuntimeConfig</code>, <code>RunTimeConfig</code>, <code>RuntimeConfiguration</code> or <code>RunTimeConfiguration</code> while classes which
-correspond to the <code>BOOTSTRAP</code> configuration may end with <code>BootstrapConfig</code> or <code>BootstrapConfiguration</code>.</p>
+may end with <code>RuntimeConfig</code>, <code>RunTimeConfig</code>, <code>RuntimeConfiguration</code> or <code>RunTimeConfiguration</code>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -2235,7 +2254,7 @@ is considered as the section title and the remaining sentences used as section i
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">include::{generated-dir}/config/hyphenated-config-group-class-name-with-runtime-or-deployment-namespace-replaced-by-config-group-namespace.adoc[opts=optional, leveloffset=+1]</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">include::{generated-dir}/hyphenated-config-group-class-name-with-runtime-or-deployment-namespace-replaced-by-config-group-namespace.adoc[opts=optional, leveloffset=+1]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2388,7 +2407,9 @@ class MyDevModeProcessor {
 </div>
 </div>
 <div class="sect2">
-<h3 id="bytecode-recording"><a class="anchor" href="#bytecode-recording"></a>2.6. Bytecode Recording</h3>
+<h3 id="bytecode-recording"><a class="anchor" href="#bytecode-recording"></a>2.6. Generating Bytecode</h3>
+<div class="sect3">
+<h4 id="bytecode-recording-2"><a class="anchor" href="#bytecode-recording-2"></a>2.6.1. Bytecode Recording</h4>
 <div class="paragraph">
 <p>One of the main outputs of the build process is recorded bytecode. This bytecode actually sets up the runtime environment. For example, in order to start Undertow, the resulting application will have some bytecode that directly registers all
 Servlet instances and then starts Undertow.</p>
@@ -2499,8 +2520,9 @@ control the order that generated bytecode is run. In the example above we know t
 </tr>
 </table>
 </div>
+</div>
 <div class="sect3">
-<h4 id="injecting-configuration-into-recorders"><a class="anchor" href="#injecting-configuration-into-recorders"></a>2.6.1. Injecting Configuration into Recorders</h4>
+<h4 id="injecting-configuration-into-recorders"><a class="anchor" href="#injecting-configuration-into-recorders"></a>2.6.2. Injecting Configuration into Recorders</h4>
 <div class="paragraph">
 <p>Configuration objects with phase <code>RUNTIME</code> or <code>BUILD_AND_RUNTIME_FIXED</code> can be injected into recorders via constructor
 injection. Just create a constructor that takes the configuration objects the recorder needs. If the recorder has multiple
@@ -2510,7 +2532,7 @@ when the runtime methods are being invoked.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="recordercontext"><a class="anchor" href="#recordercontext"></a>2.6.2. RecorderContext</h4>
+<h4 id="recordercontext"><a class="anchor" href="#recordercontext"></a>2.6.3. RecorderContext</h4>
 <div class="paragraph">
 <p><code>io.quarkus.deployment.recording.RecorderContext</code> provides some convenience methods to enhance bytecode recording,
 this includes the ability to register creation functions for classes without no-arg constructors, to register an object
@@ -2524,16 +2546,8 @@ However, this method should not be needed in most use cases because directly loa
 Therefore, this method is deprecated.
 Nonetheless, there are some use cases where this method comes in handy, such as referring to classes that were generated in previous build steps using <code>GeneratedClassBuildItem</code>.</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="runtime-classpath-check"><a class="anchor" href="#runtime-classpath-check"></a>2.6.3. Runtime Classpath check</h4>
-<div class="paragraph">
-<p>Extensions often need a way to determine whether a given class is part of the application&#8217;s runtime classpath.
-The proper way for an extension to perform this check is to use <code>io.quarkus.bootstrap.classloading.QuarkusClassLoader.isClassPresentAtRuntime</code>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="printing-step-execution-time"><a class="anchor" href="#printing-step-execution-time"></a>2.6.4. Printing step execution time</h4>
+<div class="sect4">
+<h5 id="printing-step-execution-time"><a class="anchor" href="#printing-step-execution-time"></a>2.6.3.1. Printing step execution time</h5>
 <div class="paragraph">
 <p>At times, it can be useful to know how the exact time each startup task (which is the result of each bytecode recording) takes when the application is run.
 The simplest way to determine this information is to launch the Quarkus application with the <code>-Dquarkus.debug.print-startup-times=true</code> system property.
@@ -2555,10 +2569,152 @@ Build step ShutdownListenerBuildStep.setupShutdown completed in: 1ms</code></pre
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="contexts-and-dependency-injection"><a class="anchor" href="#contexts-and-dependency-injection"></a>2.7. Contexts and Dependency Injection</h3>
 <div class="sect3">
-<h4 id="extension-points"><a class="anchor" href="#extension-points"></a>2.7.1. Extension Points</h4>
+<h4 id="using-gizmo"><a class="anchor" href="#using-gizmo"></a>2.6.4. Using Gizmo</h4>
+<div class="paragraph">
+<p>In some scenarios, more significant manipulation of bytecode may be needed.
+If bytecode recording isn&#8217;t sufficient, <a href="https://github.com/quarkusio/gizmo/blob/main/USAGE.adoc">Gizmo</a> is a convenient alternative to ASM, with a higher-level API.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="runtime-classpath-check"><a class="anchor" href="#runtime-classpath-check"></a>2.6.5. Runtime Classpath check</h4>
+<div class="paragraph">
+<p>Extensions often need a way to determine whether a given class is part of the application&#8217;s runtime classpath.
+The proper way for an extension to perform this check is to use <code>io.quarkus.bootstrap.classloading.QuarkusClassLoader.isClassPresentAtRuntime</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="generating-resources"><a class="anchor" href="#generating-resources"></a>2.7. Generating Resources</h3>
+<div class="paragraph">
+<p>It is possible to generate resources using extensions, in some scenarios you need to generate a resource into <code>META-INF</code> directory, the resource can be a service for SPI or a simple HTML, CSS, Javascript files.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * This build step aggregates all the produced service providers
+ * and outputs them as resources.
+ */
+@BuildStep
+public void produceServiceFiles(
+    BuildProducer&lt;GeneratedStaticResourceBuildItem&gt; generatedStaticResourceProducer,
+    BuildProducer&lt;GeneratedResourceBuildItem&gt; generatedResourceProducer
+) throws IOException {
+
+    generatedResourceProducer.produce( <i class="conum" data-value="1"></i><b>(1)</b>
+        new GeneratedResourceBuildItem(
+            "META-INF/services/io.quarkus.services.GreetingService",
+            """
+            public class HelloService implements GreetingService {
+
+                @Override
+                public void do() {
+                    System.out.println("Hello!");
+                }
+            }
+            """.getBytes(StandardCharsets.UTF_8)));
+
+
+    generatedStaticResourceProducer.produce( <i class="conum" data-value="2"></i><b>(2)</b>
+        new GeneratedStaticResourceBuildItem(
+            "/index.js",
+            "console.log('Hello World!')".getBytes(StandardCharsets.UTF_8))
+    );
+}</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Producing a SPI service implementation as a resource in META-INF/services</p>
+</li>
+<li>
+<p>Producing a static resource (e.g., JavaScript file) served by Vertx</p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="key-points"><a class="anchor" href="#key-points"></a>2.7.1. Key Points</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong><code>GeneratedResourceBuildItem</code></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Generates resources that are persisted in production mode.</p>
+</li>
+<li>
+<p>In development and other non-production modes, the resources are kept in memory and loaded using the <code>QuarkusClassLoader</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><code>GeneratedStaticResourceBuildItem</code></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Generates static resources (e.g., files like JavaScript, HTML, or CSS) served by Vertx.</p>
+</li>
+<li>
+<p>In development mode, Quarkus serves these resources using a Vertx handler backed by a classloader-based filesystem.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="differences-between-generatedresourcebuilditem-and-generatedstaticresourcebuilditem"><a class="anchor" href="#differences-between-generatedresourcebuilditem-and-generatedstaticresourcebuilditem"></a>2.7.2. Differences Between <code>GeneratedResourceBuildItem</code> and <code>GeneratedStaticResourceBuildItem</code></h4>
+<div class="paragraph">
+<p>While both are used to generate resources, their purposes and behaviors differ:</p>
+</div>
+<div class="paragraph">
+<p><strong><code>GeneratedResourceBuildItem</code>:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Used for resources required at runtime (e.g., SPI service definitions).</p>
+</li>
+<li>
+<p>Persisted only in production mode; otherwise, stored in memory.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong><code>GeneratedStaticResourceBuildItem</code>:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Designed for serving static resources via HTTP (e.g., JavaScript or CSS files).</p>
+</li>
+<li>
+<p>In development mode, these resources are served dynamically using Vertx.</p>
+</li>
+<li>
+<p>Generates a <code>GeneratedResourceBuildItem</code>.</p>
+</li>
+<li>
+<p>Generates a <code>AdditionalStaticResourceBuildItem</code> only on normal mode.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By using these build items appropriately, you can generate and manage resources effectively within your Quarkus extension.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="contexts-and-dependency-injection"><a class="anchor" href="#contexts-and-dependency-injection"></a>2.8. Contexts and Dependency Injection</h3>
+<div class="paragraph">
+<p>The <a href="cdi-integration">CDI integration guide</a> has more detail on common CDI-related use cases, and example code for solutions.</p>
+</div>
+<div class="sect3">
+<h4 id="extension-points"><a class="anchor" href="#extension-points"></a>2.8.1. Extension Points</h4>
 <div class="paragraph">
 <p>As a CDI based runtime, Quarkus extensions often make CDI beans available as part of the extension behavior.
 However, Quarkus DI solution does not support CDI Portable Extensions.
@@ -2567,13 +2723,13 @@ Instead, Quarkus extensions can make use of various <a href="cdi-reference">Buil
 </div>
 </div>
 <div class="sect2">
-<h3 id="quarkus-dev-ui"><a class="anchor" href="#quarkus-dev-ui"></a>2.8. Quarkus Dev UI</h3>
+<h3 id="quarkus-dev-ui"><a class="anchor" href="#quarkus-dev-ui"></a>2.9. Quarkus Dev UI</h3>
 <div class="paragraph">
 <p>You can make your extension support the <a href="dev-ui">Quarkus Dev UI</a> for a greater developer experience.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="extension-defined-endpoints"><a class="anchor" href="#extension-defined-endpoints"></a>2.9. Extension-defined endpoints</h3>
+<h3 id="extension-defined-endpoints"><a class="anchor" href="#extension-defined-endpoints"></a>2.10. Extension-defined endpoints</h3>
 <div class="paragraph">
 <p>Your extension can add additional, non-application endpoints to be served alongside endpoints
 for Health, Metrics, OpenAPI, Swagger UI, etc.</p>
@@ -2630,7 +2786,7 @@ for details on how the non-application root path is configured.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="extension-health-check"><a class="anchor" href="#extension-health-check"></a>2.10. Extension Health Check</h3>
+<h3 id="extension-health-check"><a class="anchor" href="#extension-health-check"></a>2.11. Extension Health Check</h3>
 <div class="paragraph">
 <p>Health checks are provided via the <code>quarkus-smallrye-health</code> extension. It provides both liveness and readiness checks capabilities.</p>
 </div>
@@ -2675,7 +2831,7 @@ HealthBuildItem addHealthCheck(AgroalBuildTimeConfig agroalBuildTimeConfig) {
 </div>
 </div>
 <div class="sect2">
-<h3 id="extension-metrics"><a class="anchor" href="#extension-metrics"></a>2.11. Extension Metrics</h3>
+<h3 id="extension-metrics"><a class="anchor" href="#extension-metrics"></a>2.12. Extension Metrics</h3>
 <div class="paragraph">
 <p>The <code>quarkus-micrometer</code> extension and the <code>quarkus-smallrye-metrics</code> extension provide support for collecting metrics.
 As a compatibility note, the <code>quarkus-micrometer</code> extension adapts the MP Metrics API to Micrometer library primitives, so the <code>quarkus-micrometer</code> extension can be enabled without breaking code that relies on the MP Metrics API.
@@ -2726,7 +2882,7 @@ The compatibility layer for MP Metrics APIs will move to a different extension i
 </ol>
 </div>
 <div class="sect3">
-<h4 id="case-1-the-library-uses-a-metrics-library-directly"><a class="anchor" href="#case-1-the-library-uses-a-metrics-library-directly"></a>2.11.1. Case 1: The library uses a metrics library directly</h4>
+<h4 id="case-1-the-library-uses-a-metrics-library-directly"><a class="anchor" href="#case-1-the-library-uses-a-metrics-library-directly"></a>2.12.1. Case 1: The library uses a metrics library directly</h4>
 <div class="paragraph">
 <p>If the library directly uses a metrics API, there are two options:</p>
 </div>
@@ -2745,7 +2901,7 @@ The compatibility layer for MP Metrics APIs will move to a different extension i
 </div>
 </div>
 <div class="sect3">
-<h4 id="case-2-the-library-provides-its-own-metric-api"><a class="anchor" href="#case-2-the-library-provides-its-own-metric-api"></a>2.11.2. Case 2: The library provides its own metric API</h4>
+<h4 id="case-2-the-library-provides-its-own-metric-api"><a class="anchor" href="#case-2-the-library-provides-its-own-metric-api"></a>2.12.2. Case 2: The library provides its own metric API</h4>
 <div class="paragraph">
 <p>There are two examples of a library providing its own metrics API:</p>
 </div>
@@ -2760,7 +2916,7 @@ The compatibility layer for MP Metrics APIs will move to a different extension i
 </ul>
 </div>
 <div class="sect4">
-<h5 id="observing-instrumentable-objects"><a class="anchor" href="#observing-instrumentable-objects"></a>2.11.2.1. Observing instrumentable objects</h5>
+<h5 id="observing-instrumentable-objects"><a class="anchor" href="#observing-instrumentable-objects"></a>2.12.2.1. Observing instrumentable objects</h5>
 <div class="paragraph">
 <p>Let&#8217;s take the instrumentable object (<code>io.agroal.api.AgroalDataSourceMetrics</code>) case first. In this case, you can do the following:</p>
 </div>
@@ -2820,7 +2976,7 @@ public Consumer&lt;MetricsFactory&gt; registerDataSourceMetrics(String dataSourc
 </div>
 </div>
 <div class="sect4">
-<h5 id="using-a-metrics-api-specific-implementation"><a class="anchor" href="#using-a-metrics-api-specific-implementation"></a>2.11.2.2. Using a Metrics API-specific implementation</h5>
+<h5 id="using-a-metrics-api-specific-implementation"><a class="anchor" href="#using-a-metrics-api-specific-implementation"></a>2.12.2.2. Using a Metrics API-specific implementation</h5>
 <div class="paragraph">
 <p>Using metrics-API specific implementations may be preferred in some cases. Jaeger, for example, defines its own metrics interface, <code>io.jaegertracing.spi.MetricsFactory</code>, that it uses to define counters and gauges. A direct mapping from that interface to the metrics system will be the most efficient. In this case, it is important to isolate these specialized implementations and to avoid eager classloading to ensure the metrics API remains an optional, compile-time dependency.</p>
 </div>
@@ -2862,7 +3018,7 @@ void setupTracer(JaegerDeploymentRecorder jdr, JaegerBuildTimeConfig buildTimeCo
 </div>
 </div>
 <div class="sect3">
-<h4 id="case-3-it-is-necessary-to-collect-metrics-within-the-extension-code"><a class="anchor" href="#case-3-it-is-necessary-to-collect-metrics-within-the-extension-code"></a>2.11.3. Case 3: It is necessary to collect metrics within the extension code</h4>
+<h4 id="case-3-it-is-necessary-to-collect-metrics-within-the-extension-code"><a class="anchor" href="#case-3-it-is-necessary-to-collect-metrics-within-the-extension-code"></a>2.12.3. Case 3: It is necessary to collect metrics within the extension code</h4>
 <div class="paragraph">
 <p>To define your own metrics from scratch, you have two basic options: Use the generic <code>MetricFactory</code> builders, or follow the binder pattern, and create instrumentation specific to the enabled metrics extension.</p>
 </div>
@@ -2908,7 +3064,7 @@ public Consumer&lt;MetricsFactory&gt; registerMetrics() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="customizing-json-handling-from-an-extension"><a class="anchor" href="#customizing-json-handling-from-an-extension"></a>2.12. Customizing JSON handling from an extension</h3>
+<h3 id="customizing-json-handling-from-an-extension"><a class="anchor" href="#customizing-json-handling-from-an-extension"></a>2.13. Customizing JSON handling from an extension</h3>
 <div class="paragraph">
 <p>Extensions often need to register serializers and/or deserializers for types the extension provides.</p>
 </div>
@@ -2924,7 +3080,7 @@ extension deployment module.</p>
 it is strongly advised to provide customization for both Jackson and JSON-B.</p>
 </div>
 <div class="sect3">
-<h4 id="customizing-jackson"><a class="anchor" href="#customizing-jackson"></a>2.12.1. Customizing Jackson</h4>
+<h4 id="customizing-jackson"><a class="anchor" href="#customizing-jackson"></a>2.13.1. Customizing Jackson</h4>
 <div class="paragraph">
 <p>First, add an <strong>optional</strong> dependency to <code>quarkus-jackson</code> on your extension&#8217;s runtime module.</p>
 </div>
@@ -2993,7 +3149,7 @@ More info about customizing Jackson can be found on the JSON guide <a href="rest
 </div>
 </div>
 <div class="sect3">
-<h4 id="customizing-json-b"><a class="anchor" href="#customizing-json-b"></a>2.12.2. Customizing JSON-B</h4>
+<h4 id="customizing-json-b"><a class="anchor" href="#customizing-json-b"></a>2.13.2. Customizing JSON-B</h4>
 <div class="paragraph">
 <p>First, add an <strong>optional</strong> dependency to <code>quarkus-jsonb</code> on your extension&#8217;s runtime module.</p>
 </div>
@@ -3054,12 +3210,12 @@ More info about customizing JSON-B can be found on the JSON guide <a href="rest-
 </div>
 </div>
 <div class="sect2">
-<h3 id="integrating-with-development-mode"><a class="anchor" href="#integrating-with-development-mode"></a>2.13. Integrating with Development Mode</h3>
+<h3 id="integrating-with-development-mode"><a class="anchor" href="#integrating-with-development-mode"></a>2.14. Integrating with Development Mode</h3>
 <div class="paragraph">
 <p>There are various APIS that you can use to integrate with development mode, and to get information about the current state.</p>
 </div>
 <div class="sect3">
-<h4 id="handling-restarts"><a class="anchor" href="#handling-restarts"></a>2.13.1. Handling restarts</h4>
+<h4 id="handling-restarts"><a class="anchor" href="#handling-restarts"></a>2.14.1. Handling restarts</h4>
 <div class="paragraph">
 <p>When Quarkus is starting the <code>io.quarkus.deployment.builditem.LiveReloadBuildItem</code> is guaranteed to be present that gives
 information about this start, in particular:</p>
@@ -3078,9 +3234,51 @@ information about this start, in particular:</p>
 <p>It also provides a global context map you can use to store information between restarts, without needing to resort to
 static fields.</p>
 </div>
+<div class="paragraph">
+<p>Here is an example of a build step that persists context across live reloads:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@BuildStep(onlyIf = {IsDevelopment.class})
+public void keyPairDevService(LiveReloadBuildItem liveReloadBuildItem, BuildProducer&lt;KeyPairBuildItem&gt; keyPairs) {
+
+    KeyPairContext ctx = liveReloadBuildItem.getContextObject(KeyPairContext.class);    <i class="conum" data-value="1"></i><b>(1)</b>
+    if (ctx == null &amp;&amp; !liveReloadBuildItem.isLiveReload()) {                           <i class="conum" data-value="2"></i><b>(2)</b>
+        KeyPair keyPair = generateKeyPair(2048);
+        Map&lt;String, String&gt; properties = generateDevServiceProperties(keyPair);
+    liveReloadBuildItem.setContextObject(                                               <i class="conum" data-value="3"></i><b>(3)</b>
+                KeyPairContext.class, new KeyPairContext(properties));
+        keyPairs.produce(new KeyPairBuildItem(properties));
+    }
+
+    if (ctx != null) {
+        Map&lt;String, String&gt; properties = ctx.getProperties();
+        keyPairs.produce(new KeyPairBuildItem(properties));
+    }
+}
+
+static record KeyPairContext(Map&lt;String, String&gt; properties) {}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>You can retrieve the context from <code>LiveReloadBuildItem</code>. This call returns <code>null</code> if there is no context for the specified type; otherwise, it returns the stored instance from a previous live reload execution.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>You can check if this is the first execution (not a live reload).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>LiveReloadBuildItem#setContextObject</code> method allows you to set a context across live reloads.</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect3">
-<h4 id="triggering-live-reload"><a class="anchor" href="#triggering-live-reload"></a>2.13.2. Triggering Live Reload</h4>
+<h4 id="triggering-live-reload"><a class="anchor" href="#triggering-live-reload"></a>2.14.2. Triggering Live Reload</h4>
 <div class="paragraph">
 <p>Live reload is generally triggered by an HTTP request, however not all applications are HTTP applications and some extensions
 may want to trigger live reload based on other events. To do this you need to implement <code>io.quarkus.dev.spi.HotReplacementSetup</code>
@@ -3091,9 +3289,16 @@ in your runtime module, and add a <code>META-INF/services/io.quarkus.dev.spi.Hot
 to initiate a scan for changed files.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="dev-services"><a class="anchor" href="#dev-services"></a>2.14.3. Dev Services</h4>
+<div class="paragraph">
+<p>Where extensions use an external service, adding a Dev Service can improve the user experience in development and test modes.
+See <a href="extension-writing-dev-service">how to write a Dev Service</a> for more details.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="testing-extensions"><a class="anchor" href="#testing-extensions"></a>2.14. Testing Extensions</h3>
+<h3 id="testing-extensions"><a class="anchor" href="#testing-extensions"></a>2.15. Testing Extensions</h3>
 <div class="paragraph">
 <p>Testing of Quarkus extensions should be done with the <code>io.quarkus.test.QuarkusUnitTest</code> JUnit 5 extension.
 This extension allows for Arquillian-style tests that test specific functionalities.
@@ -3235,7 +3440,7 @@ public class PersistenceAndQuarkusConfigTest {
 </div>
 </div>
 <div class="sect2">
-<h3 id="testing-hot-reload"><a class="anchor" href="#testing-hot-reload"></a>2.15. Testing hot reload</h3>
+<h3 id="testing-hot-reload"><a class="anchor" href="#testing-hot-reload"></a>2.16. Testing hot reload</h3>
 <div class="paragraph">
 <p>It is also possible to write tests that verify an extension works correctly in development mode and can correctly
 handle updates.</p>
@@ -3354,7 +3559,7 @@ of the current project.</td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="native-executable-support"><a class="anchor" href="#native-executable-support"></a>2.16. Native Executable Support</h3>
+<h3 id="native-executable-support"><a class="anchor" href="#native-executable-support"></a>2.17. Native Executable Support</h3>
 <div class="paragraph">
 <p>There Quarkus provides a lot of build items that control aspects of the native executable build. This allows for extensions
 to programmatically perform tasks such as registering classes for reflection or adding static resources to the native
@@ -3407,9 +3612,9 @@ When using this feature, remember to add your extension to the list of extension
 </div>
 </div>
 <div class="sect2">
-<h3 id="ide-support-tips"><a class="anchor" href="#ide-support-tips"></a>2.17. IDE support tips</h3>
+<h3 id="ide-support-tips"><a class="anchor" href="#ide-support-tips"></a>2.18. IDE support tips</h3>
 <div class="sect3">
-<h4 id="writing-quarkus-extensions-in-eclipse"><a class="anchor" href="#writing-quarkus-extensions-in-eclipse"></a>2.17.1. Writing Quarkus extensions in Eclipse</h4>
+<h4 id="writing-quarkus-extensions-in-eclipse"><a class="anchor" href="#writing-quarkus-extensions-in-eclipse"></a>2.18.1. Writing Quarkus extensions in Eclipse</h4>
 <div class="paragraph">
 <p>The only particular aspect of writing Quarkus extensions in Eclipse is that APT (Annotation Processing Tool) is required as part of extension builds, which means you need to:</p>
 </div>
@@ -3432,15 +3637,16 @@ When using this feature, remember to add your extension to the list of extension
 </div>
 </div>
 <div class="sect2">
-<h3 id="troubleshooting-debugging-tips"><a class="anchor" href="#troubleshooting-debugging-tips"></a>2.18. Troubleshooting / Debugging Tips</h3>
+<h3 id="troubleshooting-debugging-tips"><a class="anchor" href="#troubleshooting-debugging-tips"></a>2.19. Troubleshooting / Debugging Tips</h3>
 <div class="sect3">
-<h4 id="dump-the-generated-classes-to-the-file-system"><a class="anchor" href="#dump-the-generated-classes-to-the-file-system"></a>2.18.1. Inspecting the Generated/Transformed Classes</h4>
+<h4 id="dump-the-generated-classes-to-the-file-system"><a class="anchor" href="#dump-the-generated-classes-to-the-file-system"></a>2.19.1. Inspecting the Generated/Transformed Classes</h4>
 <div class="paragraph">
 <p>Quarkus generates a lot of classes during the build phase and in many cases also transforms existing classes.
 It is often extremely useful to see the generated bytecode and transformed classes during the development of an extension.</p>
 </div>
 <div class="paragraph">
-<p>If you set the <code>quarkus.package.jar.decompiler.enabled</code> property to <code>true</code> then Quarkus will download and invoke the <a href="https://github.com/Vineflower/vineflower">Vineflower decompiler</a> and dump the result in the <code>decompiled</code> directory of the build tool output (<code>target/decompiled</code> for Maven for example).</p>
+<p>If you set the <code>quarkus.package.jar.decompiler.enabled</code> property to <code>true</code> then Quarkus will download and invoke the <a href="https://github.com/Vineflower/vineflower">Vineflower decompiler</a> and dump the result in the <code>decompiled</code> directory of the build tool output (<code>target/decompiled</code> for Maven for example).
+The output directory can be changed with <code>quarkus.package.jar.decompiler.output-dir</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3514,35 +3720,101 @@ The property value could be either an absolute path, such as <code>/home/foo/dum
 </div>
 </div>
 <div class="sect3">
-<h4 id="multi-module-maven-projects-and-the-development-mode"><a class="anchor" href="#multi-module-maven-projects-and-the-development-mode"></a>2.18.2. Multi-module Maven Projects and the Development Mode</h4>
+<h4 id="dump-generated-transformed-classes-with-quarkusunittest"><a class="anchor" href="#dump-generated-transformed-classes-with-quarkusunittest"></a>2.19.2. Inspecting Generated/Transformed Classes in <code>QuarkusUnitTest</code></h4>
 <div class="paragraph">
-<p>It&#8217;s not uncommon to develop an extension in a multi-module Maven project that also contains an "example" module.
-However, if you want to run the example in the development mode then the <code>-DnoDeps</code> system property must be used in order to exclude the local project dependencies.
-Otherwise, Quarkus attempts to monitor the extension classes and this may result in weird class loading issues.</p>
+<p>When <a href="#testing-extensions">using <code>QuarkusUnitTest</code></a>,
+as an alternative to <a href="#dump-the-generated-classes-to-the-file-system">setting <code>quarkus.debug.*-dir</code> manually</a>,
+you may simply call <code>QuarkusUnitTest#debugBytecode</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw compile quarkus:dev -DnoDeps</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyTest {
+
+    @RegisterExtension
+    static QuarkusUnitTest runner = new QuarkusUnitTest()
+            .withApplicationRoot((jar) -&gt; jar
+                    .addClass(MyEntity.class))
+            .debugBytecode(true);
+
+    // ... test methods go here ...
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will automatically set up these configuration properties so that classes/sources
+are dumped to <code>target/debug</code>, for that test class only,
+in a subdirectory that is unique to each test execution.
+See the javadoc of <code>QuarkusUnitTest#debugBytecode</code> for details.</p>
+</div>
+<div class="paragraph">
+<p>This is handy to debug flaky tests that happen only in the CI environment, in particular;
+for example the GitHub Actions CI at <a href="https://github.com/quarkusio/quarkus/" class="bare">https://github.com/quarkusio/quarkus/</a>
+is set up so that such <code>target/debug</code> directories are
+collected into build artifacts available for download after each CI run.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="troubleshooting-trace-logs"><a class="anchor" href="#troubleshooting-trace-logs"></a>2.19.3. Enabling trace logs for a particular test only</h4>
+<div class="paragraph">
+<p>When <a href="#testing-extensions">using <code>QuarkusUnitTest</code></a>,
+if you need to enable trace logs for a particular test class,
+you may simply call <code>QuarkusUnitTest#traceCategories</code> and pass the logging categories in argument:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyTest {
+
+    @RegisterExtension
+    static QuarkusUnitTest runner = new QuarkusUnitTest()
+            .withApplicationRoot((jar) -&gt; jar
+                    .addClass(MyEntity.class))
+            .traceCategories("org.hibernate", "io.quarkus.hibernate", "io.quarkus.panache");
+
+    // ... test methods go here ...
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the javadoc of <code>QuarkusUnitTest#traceCategories</code> for details.</p>
+</div>
+<div class="paragraph">
+<p>This is handy to debug flaky tests that happen only in the CI environment, in particular,
+as this will only increase the verbosity of logs in the particular test where the option is enabled.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="multi-module-maven-projects-and-the-development-mode"><a class="anchor" href="#multi-module-maven-projects-and-the-development-mode"></a>2.19.4. Multi-module Maven Projects and the Development Mode</h4>
+<div class="paragraph">
+<p>It&#8217;s not uncommon to develop an extension in a multi-module Maven project that also contains an "example" module.</p>
+</div>
+<div class="paragraph">
+<p>In multi-module Maven projects we recommend to have an explicit <code>compile</code> call to ensure compilation happens before the <code>quarkus:dev</code> goal is executed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw compile quarkus:dev</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="indexer-does-not-include-your-external-dependency"><a class="anchor" href="#indexer-does-not-include-your-external-dependency"></a>2.18.3. Indexer does not include your external dependency</h4>
+<h4 id="indexer-does-not-include-your-external-dependency"><a class="anchor" href="#indexer-does-not-include-your-external-dependency"></a>2.19.5. Indexer does not include your external dependency</h4>
 <div class="paragraph">
 <p>Remember to add <code>IndexDependencyBuildItem</code> artifacts to your <code>@BuildStep</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sample-test-extension"><a class="anchor" href="#sample-test-extension"></a>2.19. Sample Test Extension</h3>
+<h3 id="sample-test-extension"><a class="anchor" href="#sample-test-extension"></a>2.20. Sample Test Extension</h3>
 <div class="paragraph">
 <p>We have an extension that is used to test for regressions in the extension processing. It is located in <a href="https://github.com/quarkusio/quarkus/tree/main/integration-tests/test-extension/extension" class="bare">https://github.com/quarkusio/quarkus/tree/main/integration-tests/test-extension/extension</a> directory. In this section we touch on some tasks an extension
 author will typically need to perform using the test-extension code to illustrate how the task could be done.</p>
 </div>
 <div class="sect3">
-<h4 id="features-and-capabilities"><a class="anchor" href="#features-and-capabilities"></a>2.19.1. Features and Capabilities</h4>
+<h4 id="features-and-capabilities"><a class="anchor" href="#features-and-capabilities"></a>2.20.1. Features and Capabilities</h4>
 <div class="sect4">
-<h5 id="features"><a class="anchor" href="#features"></a>2.19.1.1. Features</h5>
+<h5 id="features"><a class="anchor" href="#features"></a>2.20.1.1. Features</h5>
 <div class="paragraph">
 <p>A <em>feature</em> represents a functionality provided by an extension.
 The name of the feature gets displayed in the log during application bootstrap.</p>
@@ -3597,7 +3869,7 @@ cd rest-json</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="capabilities"><a class="anchor" href="#capabilities"></a>2.19.1.2. Capabilities</h5>
+<h5 id="capabilities"><a class="anchor" href="#capabilities"></a>2.20.1.2. Capabilities</h5>
 <div class="paragraph">
 <p>A <em>capability</em> represents a technical capability that can be queried by other extensions.
 An extension may provide multiple capabilities and multiple extensions can provide the same capability.
@@ -3638,7 +3910,7 @@ Capabilities provided by core extensions should be listed in the <code>io.quarku
 </div>
 </div>
 <div class="sect3">
-<h4 id="bean-defining-annotations"><a class="anchor" href="#bean-defining-annotations"></a>2.19.2. Bean Defining Annotations</h4>
+<h4 id="bean-defining-annotations"><a class="anchor" href="#bean-defining-annotations"></a>2.20.2. Bean Defining Annotations</h4>
 <div class="paragraph">
 <p>The CDI layer processes CDI beans that are either explicitly registered or that it discovers based on bean defining annotations as defined in <a href="https://jakarta.ee/specifications/cdi/4.1/jakarta-cdi-spec-4.1.html#bean_defining_annotations">2.5.1. Bean defining annotations</a>. You can expand this set of annotations to include annotations your extension processes using a <code>BeanDefiningAnnotationBuildItem</code> as shown in this <code>TestProcessor#registerBeanDefinningAnnotations</code> example:</p>
 </div>
@@ -3696,7 +3968,7 @@ public class ConfiguredBean implements IConfigConsumer {
 </div>
 </div>
 <div class="sect3">
-<h4 id="parsing-config-to-objects"><a class="anchor" href="#parsing-config-to-objects"></a>2.19.3. Parsing Config to Objects</h4>
+<h4 id="parsing-config-to-objects"><a class="anchor" href="#parsing-config-to-objects"></a>2.20.3. Parsing Config to Objects</h4>
 <div class="paragraph">
 <p>One of the main things an extension is likely to do is completely separate the configuration phase of behavior from the runtime phase.
 Frameworks often do parsing/load of configuration on startup that can be done during build time to both reduce the runtime dependencies on frameworks like xml parsers as well as reducing the startup time the parsing incurs.</p>
@@ -3772,7 +4044,7 @@ We will do this in <a href="#replacing-classes-in-native-image">Replacing Classe
 </div>
 </div>
 <div class="sect3">
-<h4 id="scanning-deployments-using-jandex"><a class="anchor" href="#scanning-deployments-using-jandex"></a>2.19.4. Scanning Deployments Using Jandex</h4>
+<h4 id="scanning-deployments-using-jandex"><a class="anchor" href="#scanning-deployments-using-jandex"></a>2.20.4. Scanning Deployments Using Jandex</h4>
 <div class="paragraph">
 <p>If your extension defines annotations or interfaces that mark beans needing to be processed, you can locate these beans using the Jandex API, a Java annotation indexer and offline reflection library. The following <code>TestProcessor#scanForBeans</code> method shows how to find the beans annotated with our <code>@TestAnnotation</code> that also implement the <code>IConfigConsumer</code> interface:</p>
 </div>
@@ -3832,7 +4104,7 @@ We will do this in <a href="#replacing-classes-in-native-image">Replacing Classe
 </div>
 </div>
 <div class="sect3">
-<h4 id="interacting-with-extension-beans"><a class="anchor" href="#interacting-with-extension-beans"></a>2.19.5. Interacting With Extension Beans</h4>
+<h4 id="interacting-with-extension-beans"><a class="anchor" href="#interacting-with-extension-beans"></a>2.20.5. Interacting With Extension Beans</h4>
 <div class="paragraph">
 <p>You can use the <code>io.quarkus.arc.runtime.BeanContainer</code> interface to interact with your extension beans. The following <code>configureBeans</code> methods illustrate interacting with the beans scanned for in the previous section:</p>
 </div>
@@ -3889,7 +4161,7 @@ We will do this in <a href="#replacing-classes-in-native-image">Replacing Classe
 </div>
 </div>
 <div class="sect3">
-<h4 id="manage-non-cdi-service"><a class="anchor" href="#manage-non-cdi-service"></a>2.19.6. Manage Non-CDI Service</h4>
+<h4 id="manage-non-cdi-service"><a class="anchor" href="#manage-non-cdi-service"></a>2.20.6. Manage Non-CDI Service</h4>
 <div class="paragraph">
 <p>A common purpose for an extension is to integrate a non-CDI aware service into the CDI based Quarkus runtime.
 Step 1 of this task is to load any configuration needed in a STATIC_INIT build step as we did in <a href="#parsing-config-to-objects">Parsing Config to Objects</a>.
@@ -3954,7 +4226,7 @@ Let&#8217;s return to the <code>TestProcessor#parseServiceXmlConfig</code> metho
 </table>
 </div>
 <div class="sect4">
-<h5 id="starting-service"><a class="anchor" href="#starting-service"></a>2.19.6.1. Starting a Service</h5>
+<h5 id="starting-service"><a class="anchor" href="#starting-service"></a>2.20.6.1. Starting a Service</h5>
 <div class="paragraph">
 <p>Now that you have recorded the creation of a service during the build phase, you need to record how to start the service at runtime during booting.
 You do this with a RUNTIME_INIT build step as shown in the <code>TestProcessor#startRuntimeService</code> method.</p>
@@ -4023,7 +4295,7 @@ You do this with a RUNTIME_INIT build step as shown in the <code>TestProcessor#s
 </div>
 </div>
 <div class="sect3">
-<h4 id="startup-shutdown-events"><a class="anchor" href="#startup-shutdown-events"></a>2.19.7. Startup and Shutdown Events</h4>
+<h4 id="startup-shutdown-events"><a class="anchor" href="#startup-shutdown-events"></a>2.20.7. Startup and Shutdown Events</h4>
 <div class="paragraph">
 <p>The Quarkus container supports startup and shutdown lifecycle events to notify components of the container startup
 and shutdown. There are CDI events fired that components can observe are illustrated in this example:</p>
@@ -4101,7 +4373,7 @@ we saw the production of a <code>ServiceStartBuildItem</code> in the previous se
 </div>
 </div>
 <div class="sect3">
-<h4 id="register-resources-for-use-in-native-image"><a class="anchor" href="#register-resources-for-use-in-native-image"></a>2.19.8. Register Resources for Use in Native Image</h4>
+<h4 id="register-resources-for-use-in-native-image"><a class="anchor" href="#register-resources-for-use-in-native-image"></a>2.20.8. Register Resources for Use in Native Image</h4>
 <div class="paragraph">
 <p>Not all configuration or resources can be consumed at build time. If you have classpath resources that the runtime needs to access, you need to inform the build phase that these resources need to be copied into the native image. This is done by producing one or more <code>NativeImageResourceBuildItem</code> or <code>NativeImageResourceBundleBuildItem</code> in the case of resource bundles. Examples of this are shown in this sample <code>registerNativeImageResources</code> build step:</p>
 </div>
@@ -4140,7 +4412,7 @@ we saw the production of a <code>ServiceStartBuildItem</code> in the previous se
 </div>
 </div>
 <div class="sect3">
-<h4 id="service-files"><a class="anchor" href="#service-files"></a>2.19.9. Service files</h4>
+<h4 id="service-files"><a class="anchor" href="#service-files"></a>2.20.9. Service files</h4>
 <div class="paragraph">
 <p>If you are using <code>META-INF/services</code> files you need to register the files as resources so that your native image can find them,
 but you also need to register each listed class for reflection so they can be instantiated or inspected at run-time:</p>
@@ -4280,7 +4552,7 @@ public class SomeServiceRecorder {
 </div>
 </div>
 <div class="sect3">
-<h4 id="object-substitution"><a class="anchor" href="#object-substitution"></a>2.19.10. Object Substitution</h4>
+<h4 id="object-substitution"><a class="anchor" href="#object-substitution"></a>2.20.10. Object Substitution</h4>
 <div class="paragraph">
 <p>Objects created during the build phase that are passed into the runtime need to have a default constructor in order for them to be created and configured at startup of the runtime from the build time state. If an object does not have a default constructor you will see an error similar to the following during generation of the augmented artifacts:</p>
 </div>
@@ -4377,7 +4649,7 @@ public class DSAPublicKeyObjectSubstitution implements ObjectSubstitution&lt;DSA
 </div>
 </div>
 <div class="sect3">
-<h4 id="replacing-classes-in-native-image"><a class="anchor" href="#replacing-classes-in-native-image"></a>2.19.11. Replacing Classes in the Native Image</h4>
+<h4 id="replacing-classes-in-native-image"><a class="anchor" href="#replacing-classes-in-native-image"></a>2.20.11. Replacing Classes in the Native Image</h4>
 <div class="paragraph">
 <p>The Graal SDK supports substitutions of classes in the native image.
 An example of how one could replace the <code>XmlConfig/XmlData</code> classes with versions that have no JAXB annotation dependencies is shown in these example classes:</p>
@@ -4475,10 +4747,10 @@ public final class Target_XmlData {
 <div class="sectionbody">
 <div class="paragraph">
 <p>Some extensions may be private, and some may wish to be part of the
-broader Quarkus ecosystem, and available for community re-use.
+broader Quarkus ecosystem, and <a href="https://quarkus.io/extensions/">available for community re-use</a>.
 Inclusion in the Quarkiverse Hub is a convenient mechanism for handling
 continuous testing and publication.
-The <a href="https://github.com/quarkiverse/quarkiverse/wiki#getting-an-extension-onboarded">Quarkiverse Hub wiki</a> has instructions
+The <a href="https://hub.quarkiverse.io/home/#getting-an-extension-onboarded">Quarkiverse Hub wiki</a> has instructions
 for on-boarding your extension.</p>
 </div>
 <div class="paragraph">
@@ -4558,6 +4830,7 @@ When your repository contains multiple extensions, you need to create a separate
 <li><a href="#how-to-expose-configuration">1.3. How to expose configuration</a></li>
 <li><a href="#expose-your-components-via-cdi">1.4. Expose your components via CDI</a></li>
 <li><a href="#some-types-of-extensions">1.5. Some types of extensions</a></li>
+<li><a href="#levels-of-capability">1.6. Levels of capability</a></li>
 </ul>
 </li>
 <li><a href="#technical-aspect">2. Technical aspect</a>
@@ -4567,20 +4840,21 @@ When your repository contains multiple extensions, you need to create a separate
 <li><a href="#build-step-processors">2.3. Build Step Processors</a></li>
 <li><a href="#configuration">2.4. Configuration</a></li>
 <li><a href="#conditional-step-inclusion">2.5. Conditional Step Inclusion</a></li>
-<li><a href="#bytecode-recording">2.6. Bytecode Recording</a></li>
-<li><a href="#contexts-and-dependency-injection">2.7. Contexts and Dependency Injection</a></li>
-<li><a href="#quarkus-dev-ui">2.8. Quarkus Dev UI</a></li>
-<li><a href="#extension-defined-endpoints">2.9. Extension-defined endpoints</a></li>
-<li><a href="#extension-health-check">2.10. Extension Health Check</a></li>
-<li><a href="#extension-metrics">2.11. Extension Metrics</a></li>
-<li><a href="#customizing-json-handling-from-an-extension">2.12. Customizing JSON handling from an extension</a></li>
-<li><a href="#integrating-with-development-mode">2.13. Integrating with Development Mode</a></li>
-<li><a href="#testing-extensions">2.14. Testing Extensions</a></li>
-<li><a href="#testing-hot-reload">2.15. Testing hot reload</a></li>
-<li><a href="#native-executable-support">2.16. Native Executable Support</a></li>
-<li><a href="#ide-support-tips">2.17. IDE support tips</a></li>
-<li><a href="#troubleshooting-debugging-tips">2.18. Troubleshooting / Debugging Tips</a></li>
-<li><a href="#sample-test-extension">2.19. Sample Test Extension</a></li>
+<li><a href="#bytecode-recording">2.6. Generating Bytecode</a></li>
+<li><a href="#generating-resources">2.7. Generating Resources</a></li>
+<li><a href="#contexts-and-dependency-injection">2.8. Contexts and Dependency Injection</a></li>
+<li><a href="#quarkus-dev-ui">2.9. Quarkus Dev UI</a></li>
+<li><a href="#extension-defined-endpoints">2.10. Extension-defined endpoints</a></li>
+<li><a href="#extension-health-check">2.11. Extension Health Check</a></li>
+<li><a href="#extension-metrics">2.12. Extension Metrics</a></li>
+<li><a href="#customizing-json-handling-from-an-extension">2.13. Customizing JSON handling from an extension</a></li>
+<li><a href="#integrating-with-development-mode">2.14. Integrating with Development Mode</a></li>
+<li><a href="#testing-extensions">2.15. Testing Extensions</a></li>
+<li><a href="#testing-hot-reload">2.16. Testing hot reload</a></li>
+<li><a href="#native-executable-support">2.17. Native Executable Support</a></li>
+<li><a href="#ide-support-tips">2.18. IDE support tips</a></li>
+<li><a href="#troubleshooting-debugging-tips">2.19. Troubleshooting / Debugging Tips</a></li>
+<li><a href="#sample-test-extension">2.20. Sample Test Extension</a></li>
 </ul>
 </li>
 <li><a href="#ecosystem">3. Ecosystem integration</a>
@@ -4597,6 +4871,9 @@ When your repository contains multiple extensions, you need to create a separate
     <div class="grid__item width-6-12 width-12-12-m">
       <h3>On the same topics</h3>
       <ul class="related-content">
+      
+        
+        <li class="concepts"><a href="/version/main/guides/extension-maturity-matrix">A maturity matrix for Quarkus extensions</a></li>
       
         
         <li class="guide"><a href="/version/main/guides/building-my-first-extension">Building my first extension</a></li>
@@ -4624,6 +4901,9 @@ When your repository contains multiple extensions, you need to create a separate
       
         
         <li class="guide"><a href="/version/main/guides/writing-native-applications-tips">Tips for writing native applications</a></li>
+      
+        
+        <li class="howto"><a href="/version/main/guides/extension-writing-dev-service">Writing a Dev Service</a></li>
       </ul>
     </div>
     </div>
@@ -4638,7 +4918,7 @@ When your repository contains multiple extensions, you need to create a separate
     </div>
   </div>
   <div class="grid-wrapper">
-    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
+    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license. <i class='fab fa-creative-commons'></i><i class='fab fa-creative-commons-by'></i> <a href='https://creativecommons.org/licenses/by/3.0/' target='_blank'>CC by 3.0</a><br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
 
     
       <div class="width-1-12 project-links">
@@ -4670,6 +4950,10 @@ When your repository contains multiple extensions, you need to create a separate
           
           
           
+            <li><a href="/userstories" target="_blank">User Stories</a></li>
+          
+          
+          
             <li><a href="https://github.com/orgs/quarkusio/projects/13/views/1" target="_blank">Roadmap</a></li>
           
           
@@ -4689,6 +4973,10 @@ When your repository contains multiple extensions, you need to create a separate
             <li><a href="/desktopwallpapers" target="_blank">Wallpapers</a></li>
           
           
+          
+            <li><a href="https://www.redhat.com/en/about/privacy-policy" target="_blank">Privacy Policy</a></li>
+          
+          
         </ul>
       </div>
     
@@ -4701,8 +4989,16 @@ When your repository contains multiple extensions, you need to create a separate
           
           
           
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
+          
+          
+          
             <li><a rel="me" href="https://fosstodon.org/@quarkusio" target="_blank">Mastodon</a></li>
             
+          
+          
+            <li><a href="https://www.threads.com/@quarkusio" target="_blank">Threads</a></li>
+          
           
           
             <li><a href="https://www.facebook.com/quarkusio" target="_blank">Facebook</a></li>
@@ -4813,17 +5109,22 @@ When your repository contains multiple extensions, you need to create a separate
   </div>
 </div>
 
-  <div class="content redhat-footer">
-  <div class="grid-wrapper">
-    <span class="licence">
-      <i class="fab fa-creative-commons"></i><i class="fab fa-creative-commons-by"></i> <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC by 3.0</a> | <a href="https://www.redhat.com/en/about/privacy-policy">Privacy Policy</a>
-    </span>
-    <span class="redhat">
-      Sponsored by
-    </span>
-    <span class="redhat-logo">
-      <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
-    </span>
+  <div class="content cf-footer">
+  <div class="flexcontainer">
+    <div class="cf-logo">
+      <img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/>
+    </div>
+    <div class="license">
+      Copyright © Quarkus. All rights reserved. For details on our trademarks, please visit our <a href="https://www.commonhaus.org/policies/trademark-policy/">Trademark Policy</a> and <a href="https://www.commonhaus.org/trademarks/">Trademark List</a>. Trademarks of third parties are owned by their respective holders and their mention here does not suggest any endorsement or association.
+    </div>
+    <div class="sponsorcontainer">
+      <div class="sponsor">
+        Sponsored by
+      </div>
+      <div class="sponsor-logo">
+        <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -4839,6 +5140,7 @@ When your repository contains multiple extensions, you need to create a separate
   <script src="/assets/javascript/copy.js" type="text/javascript"></script>
   <script src="/assets/javascript/asciidoc-tabs.js" type="text/javascript"></script>
   <script src="/assets/javascript/future-date.js" type="text/javascript"></script>
+  <script src="/assets/javascript/randomize.js" type="text/javascript"></script>
 </body>
 
 </html>

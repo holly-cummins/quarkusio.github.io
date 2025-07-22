@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 
 
@@ -11,8 +11,33 @@
   <title>Consuming a gRPC Service - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://analytics.ossupstream.org https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://analytics.ossupstream.org; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://analytics.ossupstream.org * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://analytics.ossupstream.org/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://analytics.ossupstream.org/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://player.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -51,7 +76,6 @@
   
   <link rel="alternate" hreflang="x-default" href="https://quarkus.io/" />  
   <script src="/assets/javascript/tracking.js"></script>
-  <script src="https://analytics.ossupstream.org/matomo.js" async defer></script>
   
   <script src="/assets/javascript/colormode.js" type="text/javascript"></script>
 
@@ -76,11 +100,13 @@
         <span href="/about/">Why<i class="fas fa-chevron-down"></i></span>
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
-          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
           <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/versatility" class="">VERSATILITY</a></li>
+          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>  
+          <li><a href="/spring" class="">USING SPRING?</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -88,6 +114,7 @@
         <ul class="submenu">
           <li><a href="/get-started" class="">GET STARTED</a></li>
           <li><a href="/guides" class="active">DOCUMENTATION</a></li>
+          <li><a href="/userstories/" class="">USER STORIES</a></li>  
           <li><a href="/qtips" class="">"Q" TIP VIDEOS</a></li>          
           <li><a href="/books" class="">BOOKS</a></li>
           </ul>
@@ -108,6 +135,7 @@
           <li><a href="/support/" class="">SUPPORT</a></li>
           <li><a href="/blog" class="">BLOG</a></li>
           <li><a href="/discussion" class="">DISCUSSION</a></li>
+          <li><a href="/working-groups" class="">WORKING GROUPS</a></li>
           <li><a href="/insights" class="">PODCAST</a></li>
           <li><a href="/events" class="">EVENTS</a></li>
           <li><a href="/newsletter" class="">NEWSLETTER</a></li>
@@ -144,6 +172,7 @@
 
 
 
+
 <section class="full-width-version-bg flexfilterbar guides">
   <div class="guideflexcontainer">
     <div class="docslink">
@@ -161,7 +190,15 @@
         
         
         
-        <option value="latest" selected>3.11.1 - Latest</option>
+        <option value="latest" selected>3.24.4 - Latest</option>
+        
+        
+        
+        <option value="3.20" >3.20</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -178,10 +215,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -453,6 +486,49 @@ public class StreamingEndpoint {
 <div class="paragraph">
 <p>For each gRPC service you inject in your application, you can configure the following attributes:</p>
 </div>
+<div class="sect2">
+<h3 id="global-configuration"><a class="anchor" href="#global-configuration"></a>Global configuration</h3>
+<div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> Configuration property fixed at build time - All other configuration properties are overridable at runtime <input type="search" id="config-search-0" placeholder="FILTER CONFIGURATION" disabled></p>
+</div>
+<table class="tableblock frame-all grid-all stretch configuration-reference searchable configuration-reference-all-rows">
+<colgroup>
+<col style="width: 80%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><span class="header-title">Configuration property</span></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-grpc_quarkus-grpc-client-stork-proactive-connections"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-client-stork-proactive-connections"><code>quarkus.grpc-client.stork-proactive-connections</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc-client.stork-proactive-connections' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>If set to true, and a Stork load balancer is used, connections with all available service instances will be requested proactively. This means better load balancing at the cost of having multiple active connections.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6198">QUARKUS_GRPC_CLIENT_STORK_PROACTIVE_CONNECTIONS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6198" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="per-client-configuration"><a class="anchor" href="#per-client-configuration"></a>Per-client configuration</h3>
 <div class="paragraph configuration-legend">
 <p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> Configuration property fixed at build time - All other configuration properties are overridable at runtime</p>
 </div>
@@ -464,41 +540,22 @@ public class StreamingEndpoint {
 </colgroup>
 <tbody>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-configures-the-grpc-clients"></a><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-configures-the-grpc-clients">Configures the gRPC clients</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><span class="header-title">Configuration property</span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-use-quarkus-grpc-client"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-use-quarkus-grpc-client">quarkus.grpc.clients."client-name".use-quarkus-grpc-client</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-use-quarkus-grpc-client"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-use-quarkus-grpc-client"><code>quarkus.grpc.clients."client-name".use-quarkus-grpc-client</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".use-quarkus-grpc-client' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Use new Vert.x gRPC client support. By default, we still use previous Java gRPC support.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-5989">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__USE_QUARKUS_GRPC_CLIENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-5989" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-xds-enabled"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-xds-enabled">quarkus.grpc.clients."client-name".xds.enabled</a></code></p>
-</div>
-<div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Explicitly enable use of XDS.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-5990">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-5990" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6199">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__USE_QUARKUS_GRPC_CLIENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6199" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -510,15 +567,63 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-xds-secure"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-xds-secure">quarkus.grpc.clients."client-name".xds.secure</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-use-vertx-event-loop"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-use-vertx-event-loop"><code>quarkus.grpc.clients."client-name".use-vertx-event-loop</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".use-vertx-event-loop' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Use Vert.x event loop(s) for gRPC client, if it&#8217;s using the previous Java gRPC support.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6200">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__USE_VERTX_EVENT_LOOP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6200" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-grpc_quarkus-grpc-clients_section_quarkus-grpc-clients-client-name-xds"></a> <span class="section-name section-level1"><a href="#quarkus-grpc_quarkus-grpc-clients_section_quarkus-grpc-clients-client-name-xds">Configure XDS usage, if enabled</a></span></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-xds-enabled"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-xds-enabled"><code>quarkus.grpc.clients."client-name".xds.enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".xds.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Explicitly enable use of XDS.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6201">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6201" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-xds-secure"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-xds-secure"><code>quarkus.grpc.clients."client-name".xds.secure</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".xds.secure' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Use secure credentials.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-5991">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_SECURE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-5991" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6202">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_SECURE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6202" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -530,15 +635,16 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-xds-target"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-xds-target">quarkus.grpc.clients."client-name".xds.target</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-xds-target"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-xds-target"><code>quarkus.grpc.clients."client-name".xds.target</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".xds.target' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Optional explicit target.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-5992">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_TARGET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-5992" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6203">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_TARGET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6203" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -550,15 +656,16 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-in-process-enabled"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-in-process-enabled">quarkus.grpc.clients."client-name".in-process.enabled</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-in-process-enabled"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-in-process-enabled"><code>quarkus.grpc.clients."client-name".in-process.enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".in-process.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Explicitly enable use of in-process.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-5993">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__IN_PROCESS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-5993" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6204">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__IN_PROCESS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6204" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -570,15 +677,16 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-in-process-name"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-in-process-name">quarkus.grpc.clients."client-name".in-process.name</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-in-process-name"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-in-process-name"><code>quarkus.grpc.clients."client-name".in-process.name</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".in-process.name' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Set in-process name.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-5994">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__IN_PROCESS_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-5994" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6205">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__IN_PROCESS_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6205" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -590,15 +698,16 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-stork-threads"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-stork-threads">quarkus.grpc.clients."client-name".stork.threads</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-stork-threads"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-stork-threads"><code>quarkus.grpc.clients."client-name".stork.threads</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".stork.threads' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Number of threads on a delayed gRPC ClientCall</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-5995">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_THREADS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-5995" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6206">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_THREADS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6206" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -610,15 +719,16 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-stork-deadline"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-stork-deadline">quarkus.grpc.clients."client-name".stork.deadline</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-stork-deadline"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-stork-deadline"><code>quarkus.grpc.clients."client-name".stork.deadline</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".stork.deadline' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Deadline in milliseconds of delayed gRPC call</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-5996">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_DEADLINE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-5996" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6207">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_DEADLINE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6207" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -630,15 +740,16 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-stork-retries"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-stork-retries">quarkus.grpc.clients."client-name".stork.retries</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-stork-retries"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-stork-retries"><code>quarkus.grpc.clients."client-name".stork.retries</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".stork.retries' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Number of retries on a gRPC ClientCall</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-5997">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_RETRIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-5997" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6208">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_RETRIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6208" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -650,15 +761,16 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-stork-delay"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-stork-delay">quarkus.grpc.clients."client-name".stork.delay</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-stork-delay"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-stork-delay"><code>quarkus.grpc.clients."client-name".stork.delay</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".stork.delay' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-12" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Initial delay in seconds on refresh check</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-5998">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_DELAY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-5998" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6209">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_DELAY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6209" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -670,15 +782,16 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-stork-period"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-stork-period">quarkus.grpc.clients."client-name".stork.period</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-stork-period"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-stork-period"><code>quarkus.grpc.clients."client-name".stork.period</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".stork.period' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-13" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Refresh period in seconds</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-5999">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_PERIOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-5999" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6210">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_PERIOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6210" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -690,15 +803,16 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-port"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-port">quarkus.grpc.clients."client-name".port</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-port"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-port"><code>quarkus.grpc.clients."client-name".port</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".port' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-12" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-14" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The gRPC service port.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6000">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6000" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6211">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6211" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -710,15 +824,16 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-test-port"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-test-port">quarkus.grpc.clients."client-name".test-port</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-test-port"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-test-port"><code>quarkus.grpc.clients."client-name".test-port</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".test-port' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-13" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-15" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The gRPC service test port.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6001">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TEST_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6001" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6212">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TEST_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6212" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -730,15 +845,16 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-host"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-host">quarkus.grpc.clients."client-name".host</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-host"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-host"><code>quarkus.grpc.clients."client-name".host</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".host' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-14" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-16" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The host name / IP on which the service is exposed.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6002">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6002" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6213">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6213" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -750,15 +866,16 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-ssl-certificate"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-ssl-certificate">quarkus.grpc.clients."client-name".ssl.certificate</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-ssl-certificate"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-ssl-certificate"><code>quarkus.grpc.clients."client-name".ssl.certificate</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".ssl.certificate' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-15" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-17" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The classpath path or file path to a server certificate or certificate chain in PEM format.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6003">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__SSL_CERTIFICATE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6003" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6214">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__SSL_CERTIFICATE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6214" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -770,15 +887,16 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-ssl-key"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-ssl-key">quarkus.grpc.clients."client-name".ssl.key</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-ssl-key"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-ssl-key"><code>quarkus.grpc.clients."client-name".ssl.key</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".ssl.key' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-16" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-18" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The classpath path or file path to the corresponding certificate private key file in PEM format.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6004">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__SSL_KEY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6004" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6215">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__SSL_KEY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6215" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -790,15 +908,16 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-ssl-trust-store"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-ssl-trust-store">quarkus.grpc.clients."client-name".ssl.trust-store</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-ssl-trust-store"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-ssl-trust-store"><code>quarkus.grpc.clients."client-name".ssl.trust-store</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".ssl.trust-store' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-17" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-19" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>An optional trust store which holds the certificate information of the certificates to trust The trust store can be either on classpath or in an external file.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6005">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__SSL_TRUST_STORE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6005" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6216">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__SSL_TRUST_STORE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6216" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -810,15 +929,46 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-enabled"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-enabled">quarkus.grpc.clients."client-name".tls.enabled</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-configuration-name"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-configuration-name"><code>quarkus.grpc.clients."client-name".tls-configuration-name</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".tls-configuration-name' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-18" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-20" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The name of the TLS configuration to use.</p>
+</div>
+<div class="paragraph">
+<p>If not set and the default TLS configuration is configured (<code>quarkus.tls.*</code>) then that will be used. If a name is configured, it uses the configuration from <code>quarkus.tls.&lt;name&gt;.*</code> If a name is configured, but no TLS configuration is found with that name then an error will be thrown.</p>
+</div>
+<div class="paragraph">
+<p>If no TLS configuration is set, and <code>quarkus.tls.*</code> is not configured, then, <code>quarkus.grpc.clients.$client-name.tls</code> will be used.</p>
+</div>
+<div class="paragraph">
+<p>Important: This is only supported when using the Quarkus (Vert.x-based) gRPC client.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6217">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_CONFIGURATION_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6217" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-enabled"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-enabled"><code>quarkus.grpc.clients."client-name".tls.enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".tls.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-21" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Whether SSL/TLS is enabled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6006">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6006" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6218">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6218" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -828,17 +978,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-trust-all"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-trust-all">quarkus.grpc.clients."client-name".tls.trust-all</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-trust-all"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-trust-all"><code>quarkus.grpc.clients."client-name".tls.trust-all</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".tls.trust-all' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-19" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-22" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Enable trusting all certificates. Disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6007">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_TRUST_ALL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6007" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6219">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_TRUST_ALL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6219" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -848,17 +999,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
+<tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-trust-certificate-pem-certs"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-trust-certificate-pem-certs">quarkus.grpc.clients."client-name".tls.trust-certificate-pem.certs</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-trust-certificate-pem-certs"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-trust-certificate-pem-certs"><code>quarkus.grpc.clients."client-name".tls.trust-certificate-pem.certs</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".tls.trust-certificate-pem.certs' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-20" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-23" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Comma-separated list of the trust certificate files (Pem format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6008">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_TRUST_CERTIFICATE_PEM_CERTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6008" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6220">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_TRUST_CERTIFICATE_PEM_CERTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6220" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -868,17 +1020,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-trust-certificate-jks-path"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-trust-certificate-jks-path">quarkus.grpc.clients."client-name".tls.trust-certificate-jks.path</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-trust-certificate-jks-path"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-trust-certificate-jks-path"><code>quarkus.grpc.clients."client-name".tls.trust-certificate-jks.path</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".tls.trust-certificate-jks.path' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-21" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-24" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Path of the key file (JKS format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6009">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_TRUST_CERTIFICATE_JKS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6009" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6221">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_TRUST_CERTIFICATE_JKS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6221" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -888,37 +1041,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
+<tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-trust-certificate-jks-password"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-trust-certificate-jks-password">quarkus.grpc.clients."client-name".tls.trust-certificate-jks.password</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-trust-certificate-jks-password"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-trust-certificate-jks-password"><code>quarkus.grpc.clients."client-name".tls.trust-certificate-jks.password</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".tls.trust-certificate-jks.password' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-22" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-25" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Password of the key file.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6010">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_TRUST_CERTIFICATE_JKS_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6010" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-trust-certificate-p12-path"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-trust-certificate-p12-path">quarkus.grpc.clients."client-name".tls.trust-certificate-p12.path</a></code></p>
-</div>
-<div id="conf-collapsible-desc-23" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Path to the key file (PFX format).</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6011">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_TRUST_CERTIFICATE_P12_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6011" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6222">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_TRUST_CERTIFICATE_JKS_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6222" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -930,15 +1064,16 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-trust-certificate-p12-password"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-trust-certificate-p12-password">quarkus.grpc.clients."client-name".tls.trust-certificate-p12.password</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-trust-certificate-p12-path"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-trust-certificate-p12-path"><code>quarkus.grpc.clients."client-name".tls.trust-certificate-p12.path</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".tls.trust-certificate-p12.path' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-24" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-26" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
-<p>Password of the key.</p>
+<p>Path to the key file (PFX format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6012">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_TRUST_CERTIFICATE_P12_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6012" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6223">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_TRUST_CERTIFICATE_P12_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6223" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -950,15 +1085,37 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-key-certificate-pem-keys"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-key-certificate-pem-keys">quarkus.grpc.clients."client-name".tls.key-certificate-pem.keys</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-trust-certificate-p12-password"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-trust-certificate-p12-password"><code>quarkus.grpc.clients."client-name".tls.trust-certificate-p12.password</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".tls.trust-certificate-p12.password' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-25" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-27" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Password of the key.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6224">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_TRUST_CERTIFICATE_P12_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6224" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-key-certificate-pem-keys"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-key-certificate-pem-keys"><code>quarkus.grpc.clients."client-name".tls.key-certificate-pem.keys</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".tls.key-certificate-pem.keys' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-28" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Comma-separated list of the path to the key files (Pem format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6013">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_KEY_CERTIFICATE_PEM_KEYS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6013" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6225">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_KEY_CERTIFICATE_PEM_KEYS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6225" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -968,17 +1125,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
+<tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-key-certificate-pem-certs"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-key-certificate-pem-certs">quarkus.grpc.clients."client-name".tls.key-certificate-pem.certs</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-key-certificate-pem-certs"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-key-certificate-pem-certs"><code>quarkus.grpc.clients."client-name".tls.key-certificate-pem.certs</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".tls.key-certificate-pem.certs' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-26" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-29" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Comma-separated list of the path to the certificate files (Pem format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6014">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_KEY_CERTIFICATE_PEM_CERTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6014" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6226">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_KEY_CERTIFICATE_PEM_CERTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6226" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -988,77 +1146,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-key-certificate-jks-path"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-key-certificate-jks-path">quarkus.grpc.clients."client-name".tls.key-certificate-jks.path</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-key-certificate-jks-path"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-key-certificate-jks-path"><code>quarkus.grpc.clients."client-name".tls.key-certificate-jks.path</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".tls.key-certificate-jks.path' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-27" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-30" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Path of the key file (JKS format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6015">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_KEY_CERTIFICATE_JKS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6015" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-key-certificate-jks-password"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-key-certificate-jks-password">quarkus.grpc.clients."client-name".tls.key-certificate-jks.password</a></code></p>
-</div>
-<div id="conf-collapsible-desc-28" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Password of the key file.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6016">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_KEY_CERTIFICATE_JKS_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6016" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-key-certificate-p12-path"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-key-certificate-p12-path">quarkus.grpc.clients."client-name".tls.key-certificate-p12.path</a></code></p>
-</div>
-<div id="conf-collapsible-desc-29" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Path to the key file (PFX format).</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6017">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_KEY_CERTIFICATE_P12_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6017" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-key-certificate-p12-password"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-key-certificate-p12-password">quarkus.grpc.clients."client-name".tls.key-certificate-p12.password</a></code></p>
-</div>
-<div id="conf-collapsible-desc-30" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Password of the key.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6018">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_KEY_CERTIFICATE_P12_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6018" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6227">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_KEY_CERTIFICATE_JKS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6227" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1070,15 +1169,79 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-verify-hostname"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-tls-verify-hostname">quarkus.grpc.clients."client-name".tls.verify-hostname</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-key-certificate-jks-password"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-key-certificate-jks-password"><code>quarkus.grpc.clients."client-name".tls.key-certificate-jks.password</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".tls.key-certificate-jks.password' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-31" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Password of the key file.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6228">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_KEY_CERTIFICATE_JKS_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6228" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-key-certificate-p12-path"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-key-certificate-p12-path"><code>quarkus.grpc.clients."client-name".tls.key-certificate-p12.path</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".tls.key-certificate-p12.path' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-32" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Path to the key file (PFX format).</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6229">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_KEY_CERTIFICATE_P12_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6229" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-key-certificate-p12-password"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-key-certificate-p12-password"><code>quarkus.grpc.clients."client-name".tls.key-certificate-p12.password</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".tls.key-certificate-p12.password' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-33" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Password of the key.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6230">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_KEY_CERTIFICATE_P12_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6230" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-verify-hostname"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-tls-verify-hostname"><code>quarkus.grpc.clients."client-name".tls.verify-hostname</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".tls.verify-hostname' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-34" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Whether hostname should be verified in the SSL/TLS handshake.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6019">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_VERIFY_HOSTNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6019" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6231">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TLS_VERIFY_HOSTNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6231" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1088,17 +1251,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-name-resolver"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-name-resolver">quarkus.grpc.clients."client-name".name-resolver</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-name-resolver"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-name-resolver"><code>quarkus.grpc.clients."client-name".name-resolver</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".name-resolver' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-32" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-35" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Use a name resolver. Defaults to dns. If set to "stork", host will be treated as SmallRye Stork service name</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6020">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__NAME_RESOLVER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6020" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6232">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__NAME_RESOLVER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6232" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1108,17 +1272,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>dns</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-plain-text"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-plain-text">quarkus.grpc.clients."client-name".plain-text</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-plain-text"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-plain-text"><code>quarkus.grpc.clients."client-name".plain-text</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".plain-text' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-33" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-36" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Whether <code>plain-text</code> should be used instead of <code>TLS</code>. Enabled by default, except if TLS/SSL is configured. In this case, <code>plain-text</code> is disabled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6021">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__PLAIN_TEXT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6021" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6233">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__PLAIN_TEXT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6233" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1128,38 +1293,39 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-keep-alive-time"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-keep-alive-time">quarkus.grpc.clients."client-name".keep-alive-time</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-keep-alive-time"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-keep-alive-time"><code>quarkus.grpc.clients."client-name".keep-alive-time</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".keep-alive-time' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-34" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-37" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The duration after which a keep alive ping is sent.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6022">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__KEEP_ALIVE_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6022" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6234">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__KEEP_ALIVE_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6234" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
-  <a href="#duration-note-anchor-quarkus-grpc-config-group-config-grpc-client-configuration"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-grpc_quarkus-grpc-clients"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-flow-control-window"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-flow-control-window">quarkus.grpc.clients."client-name".flow-control-window</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-flow-control-window"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-flow-control-window"><code>quarkus.grpc.clients."client-name".flow-control-window</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".flow-control-window' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-35" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-38" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The flow control window in bytes. Default is 1MiB.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6023">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__FLOW_CONTROL_WINDOW</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6023" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6235">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__FLOW_CONTROL_WINDOW</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6235" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1169,59 +1335,60 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-idle-timeout"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-idle-timeout">quarkus.grpc.clients."client-name".idle-timeout</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-idle-timeout"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-idle-timeout"><code>quarkus.grpc.clients."client-name".idle-timeout</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".idle-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-36" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-39" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The duration without ongoing RPCs before going to idle mode.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6024">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__IDLE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6024" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6236">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__IDLE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6236" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
-  <a href="#duration-note-anchor-quarkus-grpc-config-group-config-grpc-client-configuration"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-grpc_quarkus-grpc-clients"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-keep-alive-timeout"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-keep-alive-timeout">quarkus.grpc.clients."client-name".keep-alive-timeout</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-keep-alive-timeout"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-keep-alive-timeout"><code>quarkus.grpc.clients."client-name".keep-alive-timeout</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".keep-alive-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-37" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-40" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The amount of time the sender of a keep alive ping waits for an acknowledgement.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6025">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__KEEP_ALIVE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6025" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6237">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__KEEP_ALIVE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6237" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
-  <a href="#duration-note-anchor-quarkus-grpc-config-group-config-grpc-client-configuration"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-grpc_quarkus-grpc-clients"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-keep-alive-without-calls"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-keep-alive-without-calls">quarkus.grpc.clients."client-name".keep-alive-without-calls</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-keep-alive-without-calls"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-keep-alive-without-calls"><code>quarkus.grpc.clients."client-name".keep-alive-without-calls</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".keep-alive-without-calls' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-38" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-41" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Whether keep-alive will be performed when there are no outstanding RPC on a connection.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6026">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__KEEP_ALIVE_WITHOUT_CALLS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6026" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6238">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__KEEP_ALIVE_WITHOUT_CALLS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6238" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1231,17 +1398,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-max-hedged-attempts"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-max-hedged-attempts">quarkus.grpc.clients."client-name".max-hedged-attempts</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-max-hedged-attempts"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-max-hedged-attempts"><code>quarkus.grpc.clients."client-name".max-hedged-attempts</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".max-hedged-attempts' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-39" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-42" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The max number of hedged attempts.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6027">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_HEDGED_ATTEMPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6027" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6239">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_HEDGED_ATTEMPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6239" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1251,17 +1419,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>5</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-max-retry-attempts"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-max-retry-attempts">quarkus.grpc.clients."client-name".max-retry-attempts</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-max-retry-attempts"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-max-retry-attempts"><code>quarkus.grpc.clients."client-name".max-retry-attempts</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".max-retry-attempts' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-40" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-43" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The max number of retry attempts. Retry must be explicitly enabled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6028">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_RETRY_ATTEMPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6028" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6240">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_RETRY_ATTEMPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6240" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1271,37 +1440,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>5</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-max-trace-events"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-max-trace-events">quarkus.grpc.clients."client-name".max-trace-events</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-max-trace-events"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-max-trace-events"><code>quarkus.grpc.clients."client-name".max-trace-events</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".max-trace-events' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-41" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-44" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The maximum number of channel trace events to keep in the tracer for each channel or sub-channel.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6029">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_TRACE_EVENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6029" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-max-inbound-message-size"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-max-inbound-message-size">quarkus.grpc.clients."client-name".max-inbound-message-size</a></code></p>
-</div>
-<div id="conf-collapsible-desc-42" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The maximum message size allowed for a single gRPC frame (in bytes). Default is 4 MiB.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6030">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_INBOUND_MESSAGE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6030" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6241">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_TRACE_EVENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6241" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1313,15 +1463,16 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-max-inbound-metadata-size"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-max-inbound-metadata-size">quarkus.grpc.clients."client-name".max-inbound-metadata-size</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-max-inbound-message-size"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-max-inbound-message-size"><code>quarkus.grpc.clients."client-name".max-inbound-message-size</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".max-inbound-message-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-43" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-45" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
-<p>The maximum size of metadata allowed to be received (in bytes). Default is 8192B.</p>
+<p>The maximum message size allowed for a single gRPC frame (in bytes). Default is 4 MiB.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6031">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_INBOUND_METADATA_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6031" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6242">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_INBOUND_MESSAGE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6242" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1333,15 +1484,37 @@ public class StreamingEndpoint {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-negotiation-type"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-negotiation-type">quarkus.grpc.clients."client-name".negotiation-type</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-max-inbound-metadata-size"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-max-inbound-metadata-size"><code>quarkus.grpc.clients."client-name".max-inbound-metadata-size</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".max-inbound-metadata-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-44" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-46" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The maximum size of metadata allowed to be received (in bytes). Default is 8192B.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6243">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_INBOUND_METADATA_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6243" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-negotiation-type"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-negotiation-type"><code>quarkus.grpc.clients."client-name".negotiation-type</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".negotiation-type' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-47" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The negotiation type for the HTTP/2 connection. Accepted values are: <code>TLS</code>, <code>PLAINTEXT_UPGRADE</code>, <code>PLAINTEXT</code></p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6032">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__NEGOTIATION_TYPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6032" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6244">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__NEGOTIATION_TYPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6244" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1351,17 +1524,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>TLS</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-override-authority"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-override-authority">quarkus.grpc.clients."client-name".override-authority</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-override-authority"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-override-authority"><code>quarkus.grpc.clients."client-name".override-authority</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".override-authority' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-45" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-48" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Overrides the authority used with TLS and HTTP virtual hosting.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6033">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__OVERRIDE_AUTHORITY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6033" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6245">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__OVERRIDE_AUTHORITY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6245" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1371,17 +1545,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-per-rpc-buffer-limit"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-per-rpc-buffer-limit">quarkus.grpc.clients."client-name".per-rpc-buffer-limit</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-per-rpc-buffer-limit"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-per-rpc-buffer-limit"><code>quarkus.grpc.clients."client-name".per-rpc-buffer-limit</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".per-rpc-buffer-limit' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-46" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-49" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The per RPC buffer limit in bytes used for retry.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6034">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__PER_RPC_BUFFER_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6034" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6246">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__PER_RPC_BUFFER_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6246" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1391,17 +1566,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">long</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-retry"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-retry">quarkus.grpc.clients."client-name".retry</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-retry"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-retry"><code>quarkus.grpc.clients."client-name".retry</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".retry' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-47" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-50" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Whether retry is enabled. Note that retry is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6035">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__RETRY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6035" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6247">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__RETRY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6247" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1411,17 +1587,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-retry-buffer-size"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-retry-buffer-size">quarkus.grpc.clients."client-name".retry-buffer-size</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-retry-buffer-size"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-retry-buffer-size"><code>quarkus.grpc.clients."client-name".retry-buffer-size</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".retry-buffer-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-48" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-51" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The retry buffer size in bytes.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6036">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__RETRY_BUFFER_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6036" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6248">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__RETRY_BUFFER_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6248" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1431,17 +1608,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">long</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-user-agent"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-user-agent">quarkus.grpc.clients."client-name".user-agent</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-user-agent"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-user-agent"><code>quarkus.grpc.clients."client-name".user-agent</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".user-agent' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-49" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-52" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Use a custom user-agent.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6037">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__USER_AGENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6037" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6249">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__USER_AGENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6249" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1451,17 +1629,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-load-balancing-policy"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-load-balancing-policy">quarkus.grpc.clients."client-name".load-balancing-policy</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-load-balancing-policy"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-load-balancing-policy"><code>quarkus.grpc.clients."client-name".load-balancing-policy</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".load-balancing-policy' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-50" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-53" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Use a custom load balancing policy. Accepted values are: <code>pick_first</code>, <code>round_robin</code>, <code>grpclb</code>. This value is ignored if name-resolver is set to 'stork'.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6038">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__LOAD_BALANCING_POLICY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6038" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6250">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__LOAD_BALANCING_POLICY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6250" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1471,17 +1650,18 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>pick_first</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-compression"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-compression">quarkus.grpc.clients."client-name".compression</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-compression"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-compression"><code>quarkus.grpc.clients."client-name".compression</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".compression' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-51" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-54" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The compression to use for each call. The accepted values are <code>gzip</code> and <code>identity</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6039">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__COMPRESSION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6039" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6251">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__COMPRESSION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6251" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1491,30 +1671,30 @@ public class StreamingEndpoint {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-deadline"></a><code><a href="#quarkus-grpc-config-group-config-grpc-client-configuration_quarkus-grpc-clients-client-name-deadline">quarkus.grpc.clients."client-name".deadline</a></code></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-deadline"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients_quarkus-grpc-clients-client-name-deadline"><code>quarkus.grpc.clients."client-name".deadline</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".deadline' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-52" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-55" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The deadline used for each call.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6040">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__DEADLINE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6040" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6252">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__DEADLINE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6252" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
-  <a href="#duration-note-anchor-quarkus-grpc-config-group-config-grpc-client-configuration"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-grpc_quarkus-grpc-clients"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 </tbody>
 </table>
-<div id="duration-note-anchor-quarkus-grpc-config-group-config-grpc-client-configuration" class="admonitionblock note">
+<div id="duration-note-anchor-quarkus-grpc_quarkus-grpc-clients" class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
@@ -1570,22 +1750,58 @@ Don&#8217;t forget to replace it with the name you used in the <code>@GrpcClient
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-When you enable <code>quarkus.grpc.clients."client-name".use-quarkus-grpc-client</code>, you are then using the new Vert.x gRPC channel implementation, so not all configuration properties can still be applied. And currently there is no Stork support yet.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
 When you enable <code>quarkus.grpc.clients."client-name".xds.enabled</code>, it&#8217;s the xDS that should handle most of the configuration above.
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="custom-channel-building"><a class="anchor" href="#custom-channel-building"></a>Custom Channel building</h3>
+<div class="paragraph">
+<p>When Quarkus builds a gRPC Channel instance (the way gRPC clients communicate with gRPC services on a lower network level), users can apply their own Channel(Builder) customizers. The customizers are applied by <code>priority</code>, the higher the number the later customizer is applied. The customizers are applied before Quarkus applies user&#8217;s client configuration; e.g. ideal for some initial defaults per all clients.</p>
+</div>
+<div class="paragraph">
+<p>There are two <code>customize</code> methods, the first one uses gRPC&#8217;s <code>ManagedChannelBuilder</code> as a parameter - to be used with Quarkus' legacy gRPC support, where the other uses <code>GrpcClientOptions</code> - to be used with the new Vert.x gRPC support. User should implement the right <code>customize</code> method per gRPC support type usage, or both if the customizer is gRPC type neutral.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface ChannelBuilderCustomizer&lt;T extends ManagedChannelBuilder&lt;T&gt;&gt; {
+
+    /**
+     * Customize a ManagedChannelBuilder instance.
+     *
+     * @param name gRPC client name
+     * @param config client's configuration
+     * @param builder Channel builder instance
+     * @return map of config properties to be used as default service config against the builder
+     */
+    default Map&lt;String, Object&gt; customize(String name, GrpcClientConfiguration config, T builder) {
+        return Map.of();
+    }
+
+    /**
+     * Customize a GrpcClientOptions instance.
+     *
+     * @param name gRPC client name
+     * @param config client's configuration
+     * @param options GrpcClientOptions instance
+     */
+    default void customize(String name, GrpcClientConfiguration config, GrpcClientOptions options) {
+    }
+
+    /**
+     * Priority by which the customizers are applied.
+     * Higher priority is applied later.
+     *
+     * @return the priority
+     */
+    default int priority() {
+        return 0;
+    }
+}</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="enabling-tls"><a class="anchor" href="#enabling-tls"></a>Enabling TLS</h3>
@@ -1953,21 +2169,22 @@ You can configure the gRPC extension&#8217;s dev mode behavior using the followi
 </colgroup>
 <tbody>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-grpc-config-group-grpc-dev-mode-config_configuration"></a><a href="#quarkus-grpc-config-group-grpc-dev-mode-config_configuration">Configuration property</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><span class="header-title">Configuration property</span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-grpc-config-group-grpc-dev-mode-config_quarkus-grpc-dev-mode-force-server-start"></a><code><a href="#quarkus-grpc-config-group-grpc-dev-mode-config_quarkus-grpc-dev-mode-force-server-start">quarkus.grpc.dev-mode.force-server-start</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-grpc_quarkus-grpc-dev-mode_quarkus-grpc-dev-mode-force-server-start"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-dev-mode_quarkus-grpc-dev-mode-force-server-start"><code>quarkus.grpc.dev-mode.force-server-start</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.dev-mode.force-server-start' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-53" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-56" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Start gRPC server in dev mode even if no gRPC services are implemented. By default set to <code>true</code> to ease incremental development of new services using dev mode.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6041">QUARKUS_GRPC_DEV_MODE_FORCE_SERVER_START</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6041" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6253">QUARKUS_GRPC_DEV_MODE_FORCE_SERVER_START</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6253" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2033,6 +2250,9 @@ Only the Mutiny client can be <em>mocked</em>, channels, and other stubs cannot 
 </li>
 <li><a href="#client-configuration">Client configuration</a>
 <ul class="sectlevel2">
+<li><a href="#global-configuration">Global configuration</a></li>
+<li><a href="#per-client-configuration">Per-client configuration</a></li>
+<li><a href="#custom-channel-building">Custom Channel building</a></li>
 <li><a href="#enabling-tls">Enabling TLS</a></li>
 <li><a href="#tls-with-mutual-auth">TLS with Mutual Auth</a></li>
 <li><a href="#client-stub-deadlines">Client Stub Deadlines</a></li>
@@ -2106,6 +2326,9 @@ Only the Mutiny client can be <em>mocked</em>, channels, and other stubs cannot 
         <li class="guide"><a href="/guides/grpc-virtual-threads">Quarkus Virtual Thread support for gRPC services</a></li>
       
         
+        <li class="guide"><a href="/guides/grpc-cli">Using gRPC CLI</a></li>
+      
+        
         <li class="guide"><a href="/guides/grpc-xds">Using xDS gRPC</a></li>
       </ul>
     </div>
@@ -2121,7 +2344,7 @@ Only the Mutiny client can be <em>mocked</em>, channels, and other stubs cannot 
     </div>
   </div>
   <div class="grid-wrapper">
-    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
+    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license. <i class='fab fa-creative-commons'></i><i class='fab fa-creative-commons-by'></i> <a href='https://creativecommons.org/licenses/by/3.0/' target='_blank'>CC by 3.0</a><br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
 
     
       <div class="width-1-12 project-links">
@@ -2153,6 +2376,10 @@ Only the Mutiny client can be <em>mocked</em>, channels, and other stubs cannot 
           
           
           
+            <li><a href="/userstories" target="_blank">User Stories</a></li>
+          
+          
+          
             <li><a href="https://github.com/orgs/quarkusio/projects/13/views/1" target="_blank">Roadmap</a></li>
           
           
@@ -2172,6 +2399,10 @@ Only the Mutiny client can be <em>mocked</em>, channels, and other stubs cannot 
             <li><a href="/desktopwallpapers" target="_blank">Wallpapers</a></li>
           
           
+          
+            <li><a href="https://www.redhat.com/en/about/privacy-policy" target="_blank">Privacy Policy</a></li>
+          
+          
         </ul>
       </div>
     
@@ -2184,8 +2415,16 @@ Only the Mutiny client can be <em>mocked</em>, channels, and other stubs cannot 
           
           
           
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
+          
+          
+          
             <li><a rel="me" href="https://fosstodon.org/@quarkusio" target="_blank">Mastodon</a></li>
             
+          
+          
+            <li><a href="https://www.threads.com/@quarkusio" target="_blank">Threads</a></li>
+          
           
           
             <li><a href="https://www.facebook.com/quarkusio" target="_blank">Facebook</a></li>
@@ -2296,17 +2535,22 @@ Only the Mutiny client can be <em>mocked</em>, channels, and other stubs cannot 
   </div>
 </div>
 
-  <div class="content redhat-footer">
-  <div class="grid-wrapper">
-    <span class="licence">
-      <i class="fab fa-creative-commons"></i><i class="fab fa-creative-commons-by"></i> <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC by 3.0</a> | <a href="https://www.redhat.com/en/about/privacy-policy">Privacy Policy</a>
-    </span>
-    <span class="redhat">
-      Sponsored by
-    </span>
-    <span class="redhat-logo">
-      <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
-    </span>
+  <div class="content cf-footer">
+  <div class="flexcontainer">
+    <div class="cf-logo">
+      <img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/>
+    </div>
+    <div class="license">
+      Copyright © Quarkus. All rights reserved. For details on our trademarks, please visit our <a href="https://www.commonhaus.org/policies/trademark-policy/">Trademark Policy</a> and <a href="https://www.commonhaus.org/trademarks/">Trademark List</a>. Trademarks of third parties are owned by their respective holders and their mention here does not suggest any endorsement or association.
+    </div>
+    <div class="sponsorcontainer">
+      <div class="sponsor">
+        Sponsored by
+      </div>
+      <div class="sponsor-logo">
+        <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -2322,6 +2566,7 @@ Only the Mutiny client can be <em>mocked</em>, channels, and other stubs cannot 
   <script src="/assets/javascript/copy.js" type="text/javascript"></script>
   <script src="/assets/javascript/asciidoc-tabs.js" type="text/javascript"></script>
   <script src="/assets/javascript/future-date.js" type="text/javascript"></script>
+  <script src="/assets/javascript/randomize.js" type="text/javascript"></script>
 </body>
 
 </html>
