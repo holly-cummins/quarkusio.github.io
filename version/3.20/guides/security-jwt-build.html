@@ -190,7 +190,7 @@
         
         
         
-        <option value="latest" >3.24.4 - Latest</option>
+        <option value="latest" >3.24.5 - Latest</option>
         
         
         
@@ -787,6 +787,11 @@ String jwt = Jwt.claim("sensitiveClaim", getSensitiveClaim()).innerSign(signingK
 <td class="tableblock halign-left valign-top"><p class="tableblock">Set this property to <code>true</code> for <code>smallrye.jwt.new-token.issuer</code> and <code>smallrye.jwt.new-token.audience</code> values to override the already initialized <code>iss</code> (issuer) and <code>aud</code> (audience) claims.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>smallrye.jwt.new-token.add-default-claims</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set this property to <code>false</code> to disable an automatic addition of the <code>iat</code> (issued at), <code>exp</code> (expiration time) and <code>jti</code> (token identifier) claims when such claims have not already been set.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>smallrye.jwt.keystore.type</code></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>JKS</code></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This property can be used to customize a keystore type if either <code>smallrye.jwt.sign.key.location</code> or <code>smallrye.jwt.encrypt.key.location</code> or both of these properties point to a <code>KeyStore</code> file. If it is not set then the file name will be checked to determine the keystore type before defaulting to <code>JKS</code>.</p></td>
@@ -1143,20 +1148,20 @@ String jwt = Jwt.claim("sensitiveClaim", getSensitiveClaim()).innerSign(signingK
 
   <div class="content cf-footer">
   <div class="flexcontainer">
-    <div class="cf-logo">
-      <img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/>
-    </div>
-    <div class="license">
+    <span class="cf-logo">
+      <a href="https://www.commonhaus.org/" target="_blank"><img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/></a>
+    </span>
+    <span class="license">
       Copyright © Quarkus. All rights reserved. For details on our trademarks, please visit our <a href="https://www.commonhaus.org/policies/trademark-policy/">Trademark Policy</a> and <a href="https://www.commonhaus.org/trademarks/">Trademark List</a>. Trademarks of third parties are owned by their respective holders and their mention here does not suggest any endorsement or association.
-    </div>
-    <div class="sponsorcontainer">
-      <div class="sponsor">
+    </span>
+    <span class="sponsorcontainer">
+      <span class="sponsor">
         Sponsored by
-      </div>
-      <div class="sponsor-logo">
+      </span>
+      <span class="sponsor-logo">
         <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
-      </div>
-    </div>
+      </span>
+    </span>
   </div>
 </div>
 

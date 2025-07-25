@@ -190,7 +190,7 @@
         
         
         
-        <option value="latest" >3.24.4 - Latest</option>
+        <option value="latest" >3.24.5 - Latest</option>
         
         
         
@@ -477,7 +477,7 @@ quarkus.kubernetes.env.mapping.database-password.with-key=database-password
 <p>Whether configuration can be read from secrets. If set to <code>true</code>, Kubernetes resources allowing access to secrets (role and role binding) will be generated.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-13983">QUARKUS_KUBERNETES_CONFIG_SECRETS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-13983" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-13995">QUARKUS_KUBERNETES_CONFIG_SECRETS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-13995" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -497,7 +497,7 @@ quarkus.kubernetes.env.mapping.database-password.with-key=database-password
 <p>If set to true, the application will attempt to look up the configuration from the API server</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-13984">QUARKUS_KUBERNETES_CONFIG_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-13984" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-13996">QUARKUS_KUBERNETES_CONFIG_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-13996" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -517,7 +517,7 @@ quarkus.kubernetes.env.mapping.database-password.with-key=database-password
 <p>If set to true, the application will not start if any of the configured config sources cannot be located</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-13985">QUARKUS_KUBERNETES_CONFIG_FAIL_ON_MISSING_CONFIG</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-13985" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-13997">QUARKUS_KUBERNETES_CONFIG_FAIL_ON_MISSING_CONFIG</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-13997" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -537,7 +537,7 @@ quarkus.kubernetes.env.mapping.database-password.with-key=database-password
 <p>ConfigMaps to look for in the namespace that the Kubernetes Client has been configured for. ConfigMaps defined later in this list have a higher priority that ConfigMaps defined earlier in this list. Furthermore, any Secrets defined in <code>secrets</code>, will have higher priorities than all ConfigMaps.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-13986">QUARKUS_KUBERNETES_CONFIG_CONFIG_MAPS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-13986" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-13998">QUARKUS_KUBERNETES_CONFIG_CONFIG_MAPS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-13998" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -557,7 +557,7 @@ quarkus.kubernetes.env.mapping.database-password.with-key=database-password
 <p>Secrets to look for in the namespace that the Kubernetes Client has been configured for. If you use this, you probably want to enable <code>quarkus.kubernetes-config.secrets.enabled</code>. Secrets defined later in this list have a higher priority that ConfigMaps defined earlier in this list. Furthermore, these Secrets have a higher priorities than all ConfigMaps defined in <code>configMaps</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-13987">QUARKUS_KUBERNETES_CONFIG_SECRETS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-13987" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-13999">QUARKUS_KUBERNETES_CONFIG_SECRETS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-13999" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -577,7 +577,7 @@ quarkus.kubernetes.env.mapping.database-password.with-key=database-password
 <p>Namespace to look for config maps and secrets. If this is not specified, then the namespace configured in the kubectl config context is used. If the value is specified and the namespace doesn&#8217;t exist, the application will fail to start.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-13988">QUARKUS_KUBERNETES_CONFIG_NAMESPACE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-13988" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-14000">QUARKUS_KUBERNETES_CONFIG_NAMESPACE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14000" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -814,20 +814,20 @@ quarkus.kubernetes.env.mapping.database-password.with-key=database-password
 
   <div class="content cf-footer">
   <div class="flexcontainer">
-    <div class="cf-logo">
-      <img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/>
-    </div>
-    <div class="license">
+    <span class="cf-logo">
+      <a href="https://www.commonhaus.org/" target="_blank"><img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/></a>
+    </span>
+    <span class="license">
       Copyright © Quarkus. All rights reserved. For details on our trademarks, please visit our <a href="https://www.commonhaus.org/policies/trademark-policy/">Trademark Policy</a> and <a href="https://www.commonhaus.org/trademarks/">Trademark List</a>. Trademarks of third parties are owned by their respective holders and their mention here does not suggest any endorsement or association.
-    </div>
-    <div class="sponsorcontainer">
-      <div class="sponsor">
+    </span>
+    <span class="sponsorcontainer">
+      <span class="sponsor">
         Sponsored by
-      </div>
-      <div class="sponsor-logo">
+      </span>
+      <span class="sponsor-logo">
         <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
-      </div>
-    </div>
+      </span>
+    </span>
   </div>
 </div>
 

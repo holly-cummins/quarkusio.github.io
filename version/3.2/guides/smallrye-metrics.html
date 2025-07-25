@@ -190,7 +190,7 @@
         
         
         
-        <option value="latest" >3.24.4 - Latest</option>
+        <option value="latest" >3.24.5 - Latest</option>
         
         
         
@@ -713,7 +713,7 @@ Refer to the <a href="./management-interface-reference">management interface ref
 <p>The path to the metrics handler. By default, this value will be resolved as a path relative to <code>${quarkus.http.non-application-root-path}</code>. If the management interface is enabled, the value will be resolved as a path relative to <code>${quarkus.management.root-path}</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-39460">QUARKUS_SMALLRYE_METRICS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-39460" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-39472">QUARKUS_SMALLRYE_METRICS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-39472" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -733,7 +733,7 @@ Refer to the <a href="./management-interface-reference">management interface ref
 <p>Whether metrics published by Quarkus extensions should be enabled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-39461">QUARKUS_SMALLRYE_METRICS_EXTENSIONS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-39461" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-39473">QUARKUS_SMALLRYE_METRICS_EXTENSIONS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-39473" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -753,7 +753,7 @@ Refer to the <a href="./management-interface-reference">management interface ref
 <p>Apply Micrometer compatibility mode, where instead of regular 'base' and 'vendor' metrics, Quarkus exposes the same 'jvm' metrics that Micrometer does. Application metrics are unaffected by this mode. The use case is to facilitate migration from Micrometer-based metrics, because original dashboards for JVM metrics will continue working without having to rewrite them.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-39462">QUARKUS_SMALLRYE_METRICS_MICROMETER_COMPATIBILITY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-39462" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-39474">QUARKUS_SMALLRYE_METRICS_MICROMETER_COMPATIBILITY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-39474" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -776,7 +776,7 @@ Refer to the <a href="./management-interface-reference">management interface ref
 <p>See <a href="https://github.com/eclipse/microprofile-metrics/blob/2.3.x/spec/src/main/asciidoc/required-metrics.adoc#optional-rest">MicroProfile Metrics: Optional REST metrics</a>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-39463">QUARKUS_SMALLRYE_METRICS_JAXRS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-39463" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-39475">QUARKUS_SMALLRYE_METRICS_JAXRS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-39475" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1006,20 +1006,20 @@ Refer to the <a href="./management-interface-reference">management interface ref
 
   <div class="content cf-footer">
   <div class="flexcontainer">
-    <div class="cf-logo">
-      <img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/>
-    </div>
-    <div class="license">
+    <span class="cf-logo">
+      <a href="https://www.commonhaus.org/" target="_blank"><img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/></a>
+    </span>
+    <span class="license">
       Copyright © Quarkus. All rights reserved. For details on our trademarks, please visit our <a href="https://www.commonhaus.org/policies/trademark-policy/">Trademark Policy</a> and <a href="https://www.commonhaus.org/trademarks/">Trademark List</a>. Trademarks of third parties are owned by their respective holders and their mention here does not suggest any endorsement or association.
-    </div>
-    <div class="sponsorcontainer">
-      <div class="sponsor">
+    </span>
+    <span class="sponsorcontainer">
+      <span class="sponsor">
         Sponsored by
-      </div>
-      <div class="sponsor-logo">
+      </span>
+      <span class="sponsor-logo">
         <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
-      </div>
-    </div>
+      </span>
+    </span>
   </div>
 </div>
 

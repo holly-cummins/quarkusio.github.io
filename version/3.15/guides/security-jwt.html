@@ -190,7 +190,7 @@
         
         
         
-        <option value="latest" >3.24.4 - Latest</option>
+        <option value="latest" >3.24.5 - Latest</option>
         
         
         
@@ -324,7 +324,7 @@ cd security-jwt-quickstart</code></pre>
 <div class="title">Maven</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.15.5:create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.15.6:create \
     -DprojectGroupId=org.acme \
     -DprojectArtifactId=security-jwt-quickstart \
     -Dextensions='rest-jackson,smallrye-jwt,smallrye-jwt-build' \
@@ -1084,7 +1084,7 @@ hello jdoe@quarkus.io, isHttps: false, authScheme: Bearer, hasJWT: true, birthda
 <div class="title">Runner jar Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ java -jar target/quarkus-app/quarkus-run.jar
-2019-03-28 14:27:48,839 INFO  [io.quarkus] (main) Quarkus 3.15.5 started in 0.796s. Listening on: http://[::]:8080
+2019-03-28 14:27:48,839 INFO  [io.quarkus] (main) Quarkus 3.15.6 started in 0.796s. Listening on: http://[::]:8080
 2019-03-28 14:27:48,841 INFO  [io.quarkus] (main) Installed features: [cdi, rest, rest-jackson, security, smallrye-jwt]</code></pre>
 </div>
 </div>
@@ -1673,7 +1673,7 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
 <p>The MP-JWT configuration object</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-30645">QUARKUS_SMALLRYE_JWT_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-30645" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-30657">QUARKUS_SMALLRYE_JWT_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-30657" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1693,7 +1693,7 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
 <p>The name of the <code>java.security.Provider</code> that supports SHA256withRSA signatures</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-30646">QUARKUS_SMALLRYE_JWT_RSA_SIG_PROVIDER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-30646" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-30658">QUARKUS_SMALLRYE_JWT_RSA_SIG_PROVIDER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-30658" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1713,7 +1713,7 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
 <p>Enable this property if fetching the remote keys can be a time-consuming operation. Do not enable it if you use the local keys.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-30647">QUARKUS_SMALLRYE_JWT_BLOCKING_AUTHENTICATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-30647" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-30659">QUARKUS_SMALLRYE_JWT_BLOCKING_AUTHENTICATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-30659" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1733,7 +1733,7 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
 <p>Always create HTTP 401 challenge, even for requests containing no authentication credentials. JWT authentication mechanism will return HTTP 401 when an authentication challenge is required. However if it is used alongside one of the interactive authentication mechanisms then returning HTTP 401 to the users accessing the application from a browser may not be desired. If you prefer you can request that JWT authentication mechanism does not create a challenge in such cases by setting this property to 'true'.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-30648">QUARKUS_SMALLRYE_JWT_SILENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-30648" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-30660">QUARKUS_SMALLRYE_JWT_SILENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-30660" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2401,20 +2401,20 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
 
   <div class="content cf-footer">
   <div class="flexcontainer">
-    <div class="cf-logo">
-      <img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/>
-    </div>
-    <div class="license">
+    <span class="cf-logo">
+      <a href="https://www.commonhaus.org/" target="_blank"><img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/></a>
+    </span>
+    <span class="license">
       Copyright © Quarkus. All rights reserved. For details on our trademarks, please visit our <a href="https://www.commonhaus.org/policies/trademark-policy/">Trademark Policy</a> and <a href="https://www.commonhaus.org/trademarks/">Trademark List</a>. Trademarks of third parties are owned by their respective holders and their mention here does not suggest any endorsement or association.
-    </div>
-    <div class="sponsorcontainer">
-      <div class="sponsor">
+    </span>
+    <span class="sponsorcontainer">
+      <span class="sponsor">
         Sponsored by
-      </div>
-      <div class="sponsor-logo">
+      </span>
+      <span class="sponsor-logo">
         <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
-      </div>
-    </div>
+      </span>
+    </span>
   </div>
 </div>
 

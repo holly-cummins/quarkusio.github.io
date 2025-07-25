@@ -190,7 +190,7 @@
         
         
         
-        <option value="latest" >3.24.4 - Latest</option>
+        <option value="latest" >3.24.5 - Latest</option>
         
         
         
@@ -2795,7 +2795,7 @@ You can also provide your own custom <code>quarkus.oidc.TokenStateManager</code>
 <div class="sect3">
 <h4 id="oidc-requests"><a class="anchor" href="#oidc-requests"></a>OIDC requests</h4>
 <div class="paragraph">
-<p>You can use OIDC request filters to observe requests, add additional headers, and set context properties for coordinating with OIDC response filters.</p>
+<p>You can use OIDC request filters to observe requests, add additional headers, customize a request body, and set context properties for coordinating with OIDC response filters.</p>
 </div>
 <div class="paragraph">
 <p>Use <a href="security-oidc-code-flow-authentication#code-flow-oidc-request-filters">quarkus.oidc.common.OidcRequestFilter</a> to implement a request filter and if necessary, restrict it to the specific OIDC endpoint or endpoints only with the <code>quarkus.oidc.common.OidcEndpoint</code> annotation.</p>
@@ -2804,7 +2804,7 @@ You can also provide your own custom <code>quarkus.oidc.TokenStateManager</code>
 <div class="sect3">
 <h4 id="oidc-responses"><a class="anchor" href="#oidc-responses"></a>OIDC responses</h4>
 <div class="paragraph">
-<p>You can use OIDC response filters to observe responses, and use the context properties for coordinating with OIDC request filters.</p>
+<p>You can use OIDC response filters to observe responses, customize a response body, and use the context properties for coordinating with OIDC request filters.</p>
 </div>
 <div class="paragraph">
 <p>Use <a href="security-oidc-code-flow-authentication#code-flow-oidc-response-filters">quarkus.oidc.common.OidcResponseFilter</a> to implement a response filter and if necessary, restrict it to the specific OIDC endpoint or endpoints only with the <code>quarkus.oidc.common.OidcEndpoint</code> annotation.</p>
@@ -3314,20 +3314,20 @@ According to the <a href="https://datatracker.ietf.org/doc/rfc9728/">OAuth2 Prot
 
   <div class="content cf-footer">
   <div class="flexcontainer">
-    <div class="cf-logo">
-      <img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/>
-    </div>
-    <div class="license">
+    <span class="cf-logo">
+      <a href="https://www.commonhaus.org/" target="_blank"><img src="https://raw.githubusercontent.com/commonhaus/artwork/main/foundation/brand/svg/CF_logo_horizontal_single_reverse.svg"/></a>
+    </span>
+    <span class="license">
       Copyright © Quarkus. All rights reserved. For details on our trademarks, please visit our <a href="https://www.commonhaus.org/policies/trademark-policy/">Trademark Policy</a> and <a href="https://www.commonhaus.org/trademarks/">Trademark List</a>. Trademarks of third parties are owned by their respective holders and their mention here does not suggest any endorsement or association.
-    </div>
-    <div class="sponsorcontainer">
-      <div class="sponsor">
+    </span>
+    <span class="sponsorcontainer">
+      <span class="sponsor">
         Sponsored by
-      </div>
-      <div class="sponsor-logo">
+      </span>
+      <span class="sponsor-logo">
         <a href="https://www.redhat.com/" target="_blank"><img src="/assets/images/redhat_reversed.svg"></a>
-      </div>
-    </div>
+      </span>
+    </span>
   </div>
 </div>
 
