@@ -22,6 +22,7 @@ npm-debug.log
 .vscode
 .jekyll-cache
 bin
+target
 vendor
 
 .quarkus-main-repository
