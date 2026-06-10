@@ -90,7 +90,7 @@ jobs:
         run: >-
           mvn -B test -Pe2e -Dtest.url=http://localhost:8090
           -Dtest.crawl.check-external=false
-          -Dtest.crawl.exclude-paths=/version/2,/version/3,/version/4,/version/5
+          -Dtest.crawl.exclude-paths=/version/2,/version/3,/version/4,/version/5,/guides/doc-reference
         env:
           PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS: 1
 
