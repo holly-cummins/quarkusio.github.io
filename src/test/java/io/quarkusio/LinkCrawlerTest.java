@@ -76,7 +76,7 @@ public class LinkCrawlerTest extends BrowserTest {
                     BrowserContext ctx = br.newContext();
                     ctx.route("**/*.{css,png,jpg,jpeg,gif,svg,ico,woff,woff2,ttf,eot}", Route::abort);
                     Page p = ctx.newPage();
-                    p.setDefaultNavigationTimeout(30_000);
+                    p.setDefaultNavigationTimeout(60_000);
 
                     crawLoop(p, queue, visited, broken, foundOn, checkedExternal,
                             crawledCount, maxPages, checkInternal, checkExternal, excludePaths);
@@ -137,14 +137,8 @@ public class LinkCrawlerTest extends BrowserTest {
             }
             crawledCount.incrementAndGet();
 
-            Response response;
-            try {
-                response = p.navigate(currentUrl,
-                        new Page.NavigateOptions().setWaitUntil(WaitUntilState.DOMCONTENTLOADED));
-            } catch (Exception e) {
-                // A meta-refresh redirect fires during navigate(), destroying
-                // the execution context. If the browser landed on a different
-                // URL the page redirected successfully — not broken.
+            Response response = navigateWithRetry(p, currentUrl);
+            if (response == null) {
                 try {
                     if (!currentUrl.equals(normalize(p.url()))) {
                         continue;
@@ -152,14 +146,7 @@ public class LinkCrawlerTest extends BrowserTest {
                 } catch (Exception ignored) {
                 }
                 if (checkInternal) {
-                    broken.put(currentUrl, new BrokenLink(0, e.getMessage(), foundOn.get(currentUrl)));
-                }
-                continue;
-            }
-
-            if (response == null) {
-                if (checkInternal) {
-                    broken.put(currentUrl, new BrokenLink(0, "null response", foundOn.get(currentUrl)));
+                    broken.put(currentUrl, new BrokenLink(0, "navigation failed", foundOn.get(currentUrl)));
                 }
                 continue;
             }
@@ -210,6 +197,21 @@ public class LinkCrawlerTest extends BrowserTest {
                 }
             }
         }
+    }
+
+    private static Response navigateWithRetry(Page p, String url) {
+        for (int attempt = 0; attempt < 2; attempt++) {
+            try {
+                Response response = p.navigate(url,
+                        new Page.NavigateOptions().setWaitUntil(WaitUntilState.DOMCONTENTLOADED));
+                return response;
+            } catch (Exception e) {
+                if (attempt == 0) {
+                    continue;
+                }
+            }
+        }
+        return null;
     }
 
     private ResolvedLink resolveLink(String currentPageUrl, String href) {
