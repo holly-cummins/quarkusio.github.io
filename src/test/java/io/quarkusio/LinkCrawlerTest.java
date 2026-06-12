@@ -282,9 +282,7 @@ public class LinkCrawlerTest extends BrowserTest {
                     ")",
             Pattern.CASE_INSENSITIVE);
 
-    // Falls back to plain HTTP when Playwright can't navigate (downloads, bad schemes, meta-refresh).
-    // Returns null if reachable, BrokenLink otherwise.
-    private static BrokenLink probeWithHttp(String url) {
+    private BrokenLink probeWithHttp(String url) {
         if (!url.startsWith("http://") && !url.startsWith("https://")) {
             return new BrokenLink(0, "unsupported scheme", null);
         }
@@ -310,6 +308,7 @@ public class LinkCrawlerTest extends BrowserTest {
                 if (m.find()) {
                     String target = m.group(1) != null ? m.group(1) : m.group(2);
                     target = target.strip();
+                    target = rewriteToLocal(target);
                     BrokenLink targetCheck = checkUrlReachable(target, url);
                     if (targetCheck != null) {
                         return new BrokenLink(targetCheck.status,
@@ -351,6 +350,28 @@ public class LinkCrawlerTest extends BrowserTest {
         } catch (Exception e) {
             return new BrokenLink(0, e.getMessage(), null);
         }
+    }
+
+    // Meta-refresh redirects bake in the production site.url (e.g. https://quarkus.io/guides/foo)
+    // at build time. When testing against localhost, rewrite absolute targets back to the
+    // local server so we verify the redirect target locally instead of hitting the live site.
+    private String rewriteToLocal(String target) {
+        if (!target.startsWith("http://") && !target.startsWith("https://")) {
+            return target;
+        }
+        try {
+            URI targetUri = URI.create(target);
+            URI baseUri = URI.create(baseUrl);
+            if (targetUri.getHost().equals(baseUri.getHost())) {
+                return target;
+            }
+            String path = targetUri.getPath();
+            if (path != null && !path.isEmpty()) {
+                return baseUrl + path;
+            }
+        } catch (IllegalArgumentException ignored) {
+        }
+        return target;
     }
 
     private static List<String> parseExcludePaths(String property) {
