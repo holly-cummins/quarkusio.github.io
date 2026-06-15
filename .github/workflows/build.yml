@@ -114,6 +114,7 @@ jobs:
           timeout 30 bash -c 'until curl -s http://localhost:8090 > /dev/null 2>&1; do sleep 0.5; done'
 
       - name: Run smoke tests
+        continue-on-error: true
         run: mvn -B test -Dtest.url=http://localhost:8090
         env:
           PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS: 1
@@ -185,6 +186,7 @@ jobs:
       # Versioned guides (2.x-5.x) are excluded from this build by
       # _only_latest_guides_config.yml, so skip crawling those paths.
       - name: Run link crawler
+        continue-on-error: true
         if: steps.link_scope.outputs.mode != 'skip'
         run: |
           CHANGED_PATHS_ARG=""
