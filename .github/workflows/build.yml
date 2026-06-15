@@ -97,7 +97,7 @@ jobs:
 
       - name: Build with Maven
         if: steps.check_roq.outputs.roq_exists == 'true'
-        run: QUARKUS_ROQ_GENERATOR_BATCH=true mvn -B package quarkus:run
+        run: QUARKUS_ROQ_GENERATOR_BATCH=true mvn -B package quarkus:build -DskipTests # for now, for parity, we need to stand up a test server to run tests
 
       - name: Compile tests
         run: mvn -B test-compile
@@ -112,6 +112,21 @@ jobs:
         run: |
           bundle exec jekyll serve --port 8090 --no-watch --skip-initial-build &
           timeout 30 bash -c 'until curl -s http://localhost:8090 > /dev/null 2>&1; do sleep 0.5; done'
+
+      - name: Start Jekyll test server
+        if: steps.check_jekyll.outputs.jekyll_exists == 'true'
+        run: |
+          bundle exec jekyll serve --port 8090 --no-watch --skip-initial-build &
+          timeout 30 bash -c 'until curl -s http://localhost:8090 > /dev/null 2>&1; do sleep 0.5; done'
+
+      - uses: jbangdev/setup-jbang@main
+        if: steps.check_roq.outputs.roq_exists == 'true'
+
+      - name: Start Java test server
+        if: steps.check_roq.outputs.roq_exists == 'true'
+        run: |
+          jbang trust add https://repo1.maven.org/maven2/io/quarkiverse/roq/quarkus-roq-cli/
+          jbang roq@quarkiverse/quarkus-roq serve target/roq/ -p 8090 &
 
       - name: Run smoke tests
         run: mvn -B test -Dtest.url=http://localhost:8090
