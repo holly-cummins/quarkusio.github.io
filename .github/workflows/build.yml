@@ -296,18 +296,43 @@ jobs:
       - name: Reduce the size of the website to be compatible with surge
         run: |
           SITE_DIR="${{ steps.detect.outputs.site_dir }}"
-          find "$SITE_DIR"/assets/images/posts/ -mindepth 1 -maxdepth 1 -type d -mtime +50 -exec rm -rf {} \;
-          find "$SITE_DIR"/newsletter/ -mindepth 1 -maxdepth 1 -type d -mtime +50 -exec rm -rf {} \;
+          # Keep only the 10 most recent newsletter editions (by number)
+          if [ -d "$SITE_DIR/newsletter" ]; then
+            ls -1 "$SITE_DIR/newsletter" | sort -n | head -n -10 | while read -r dir; do
+              rm -rf "$SITE_DIR/newsletter/$dir"
+            done
+          fi
+          # Remove post images only referenced by blog posts older than ~2 months.
+          # Uses filename dates instead of mtime (which breaks after file moves/migrations).
+          CUTOFF=$(date -d '50 days ago' +%Y-%m-%d)
+          RECENT_IMGS=$(mktemp)
+          OLD_IMGS=$(mktemp)
+          POSTS_DIR=content/posts
+          [ -d _posts ] && POSTS_DIR=_posts
+          for post in "$POSTS_DIR"/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-*.adoc; do
+            POST_DATE=$(basename "$post" | grep -oP '^\d{4}-\d{2}-\d{2}')
+            [ -z "$POST_DATE" ] && continue
+            if [ "$POST_DATE" \> "$CUTOFF" ]; then
+              grep -oP 'images/posts/\K[^/\["\]]+' "$post" >> "$RECENT_IMGS" 2>/dev/null
+            else
+              grep -oP 'images/posts/\K[^/\["\]]+' "$post" >> "$OLD_IMGS" 2>/dev/null
+            fi
+          done
+          comm -23 <(sort -u "$OLD_IMGS") <(sort -u "$RECENT_IMGS") | while read -r imgdir;
+          do
+           rm -rf "$SITE_DIR/assets/images/posts/$imgdir"
+          done
+          rm -f "$RECENT_IMGS" "$OLD_IMGS"
           rm -rf "$SITE_DIR"/assets/stickers
           rm -rf "$SITE_DIR"/assets/images/desktopwallpapers
           rm -rf "$SITE_DIR"/assets/images/stickers
 
-      - name: Publishing directory for PR preview
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        with:
-          name: site
-          path: ./${{ steps.detect.outputs.site_dir }}
-          retention-days: 3
+          - name: Publishing directory for PR preview
+            uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+            with:
+              name: site
+              path: ./${{ steps.detect.outputs.site_dir }}
+              retention-days: 3
 
   build-report:
     runs-on: ubuntu-latest
