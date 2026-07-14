@@ -32,7 +32,7 @@
         </div>
         <div class="pulldown category">
           <select name="categories">
-            <option value="">{=cdi:index-docs.texts.all_categories.or('').raw}</option>
+            <option value="">{=cdi:index-docs.texts.all_categories.raw}</option>
             {#for item in categories.orEmpty}
             <option value="{=item.cat-id.raw}">{=item.category.raw}</option>
             {/for}
@@ -63,8 +63,8 @@
         <div class="grid-wrapper">
           {#for guide in index.mergeTypes('tutorial')}
           {#include partials/index-doc-item.html type="tutorial" docversion=docversion
-          title=guide.title url=guide.url summary=guide.summary status=guide.status.or('')
-          keywords=guide.keywords.or('') categories=guide.categories origin=guide.origin.or('') /}
+          title=guide.title url=guide.url summary=guide.summary status=guide.status
+          keywords=guide.keywords categories=guide.categories origin=guide.origin /}
           {/for}
         </div>
       </div>
@@ -78,8 +78,8 @@
         <div class="grid-wrapper">
           {#for guide in index.mergeTypes('howto')}
           {#include partials/index-doc-item.html type="howto" docversion=docversion
-          title=guide.title url=guide.url summary=guide.summary status=guide.status.or('')
-          keywords=guide.keywords.or('') categories=guide.categories origin=guide.origin.or('') /}
+          title=guide.title url=guide.url summary=guide.summary status=guide.status
+          keywords=guide.keywords categories=guide.categories origin=guide.origin /}
           {/for}
         </div>
       </div>
@@ -93,8 +93,8 @@
         <div class="grid-wrapper">
           {#for guide in index.mergeTypes('concepts')}
           {#include partials/index-doc-item.html type="concepts" docversion=docversion
-          title=guide.title url=guide.url summary=guide.summary status=guide.status.or('')
-          keywords=guide.keywords.or('') categories=guide.categories origin=guide.origin.or('') /}
+          title=guide.title url=guide.url summary=guide.summary status=guide.status
+          keywords=guide.keywords categories=guide.categories origin=guide.origin /}
           {/for}
         </div>
       </div>
@@ -108,8 +108,8 @@
         <div class="grid-wrapper">
           {#for guide in index.mergeTypes('reference')}
           {#include partials/index-doc-item.html type="reference" docversion=docversion
-          title=guide.title url=guide.url summary=guide.summary status=guide.status.or('')
-          keywords=guide.keywords.or('') categories=guide.categories origin=guide.origin.or('') /}
+          title=guide.title url=guide.url summary=guide.summary status=guide.status
+          keywords=guide.keywords categories=guide.categories origin=guide.origin /}
           {/for}
         </div>
       </div>
@@ -123,8 +123,8 @@
         <div class="grid-wrapper">
           {#for guide in index.mergeTypes('guide')}
           {#include partials/index-doc-item.html type="guides" docversion=docversion
-          title=guide.title url=guide.url summary=guide.summary status=guide.status.or('')
-          keywords=guide.keywords.or('') categories=guide.categories origin=guide.origin.or('') /}
+          title=guide.title url=guide.url summary=guide.summary status=guide.status
+          keywords=guide.keywords categories=guide.categories origin=guide.origin /}
           {/for}
         </div>
       </div>

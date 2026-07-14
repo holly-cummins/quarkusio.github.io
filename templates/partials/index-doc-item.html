@@ -6,12 +6,12 @@
 
 <qs-guide type="{=type.escapeHtml.raw}"
           title="{=title.escapeHtml.raw}"
-          status="{=status.or('').escapeHtml.raw}"
+          status="{=status.escapeHtml.raw}"
           url="{=guide_url.raw}"
           summary="{=summary.markdownify.raw}"
-          keywords="{=keywords.or('').escapeHtml.raw}"
+          keywords="{=keywords.escapeHtml.raw}"
           categories="{=categories.escapeHtml.raw}"
-          origin="{=origin.or('').escapeHtml.raw}"
+          origin="{=origin.escapeHtml.raw}"
 >
   <!-- WE KEEP PART OF THE CONTENT FOR SEO -->
   <h4><a href="{=guide_url.raw}" {#if is_external_guide}target="_blank" {/if}>{=title.raw}</a></h4>
@@ -23,12 +23,12 @@
 
 <qs-guide type="{=type.escapeHtml.raw}"
           title="{=title.escapeHtml.raw}"
-          status="{=status.or('').escapeHtml.raw}"
+          status="{=status.escapeHtml.raw}"
           url="{=guide_url.raw}"
           summary="{=summary.markdownify.raw}"
-          keywords="{=keywords.or('').escapeHtml.raw}"
+          keywords="{=keywords.escapeHtml.raw}"
           categories="{=categories.escapeHtml.raw}"
-          origin="{=origin.or('').escapeHtml.raw}"
+          origin="{=origin.escapeHtml.raw}"
 >
   <!-- WE KEEP PART OF THE CONTENT FOR SEO -->
   <h4><a href="{=guide_url.raw}" {#if is_external_guide}target="_blank" {/if}>{=title.raw}</a></h4>

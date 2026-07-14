@@ -60,8 +60,8 @@
             <div class="grid-wrapper list-item">
               {#for guide in item.guides.orEmpty}
               {#include partials/index-doc-item.html docversion=docversion
-              title=guide.title url=guide.url summary=guide.description status=guide.status.or('')
-              keywords=guide.keywords.or('') categories=guide.categories origin=guide.origin.or('') /}
+              title=guide.title url=guide.url summary=guide.description
+              keywords=guide.keywords categories=guide.categories origin=guide.origin /}
               {/for}
             </div>
           </li>
