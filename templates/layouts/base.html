@@ -76,7 +76,6 @@
 
 <body class="{#if page.url.path == '/'}homepage{#else}{=page.data.layout.or('').raw}{/if}">
 
-  {#include partials/language-headerbar.html /}
   {#include partials/header-navigation.html /}
   <div class="content">
     {#insert /}
