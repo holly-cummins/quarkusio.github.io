@@ -1,0 +1,36 @@
+---
+layout: base
+search_wc: true
+---
+{#let versioned_page=page.url.startsWith('/version/')}
+{#if versioned_page}
+  {#let docversion=page.url.path.replaceAll('^/version/([^/]+)/.*', '$1')}
+
+
+{#include partials/back-to-top.html /}
+
+{#let docversion_index=docversion.replace('.', '-')}
+
+{! TODO: Quarkus 3.38 fixes NotFound in .get() — remove .or('') to get: {#if cdi:versioned.get(docversion_index).index} !}
+{#if cdi:versioned.get(docversion_index.or('')).index}
+  {#include partials/index-docs.html docversion=docversion /}  
+{#else}
+  {#let data_source="guides-".concat(docversion.replace('.', '-'))}
+  {#include partials/index-guides.html source=data_source docversion=docversion /}  
+{/let}{/if}
+{/let}{/let}{#else}
+  {#let docversion='latest'}
+
+
+{#include partials/back-to-top.html /}
+
+{#let docversion_index=docversion.replace('.', '-')}
+
+{! TODO: Quarkus 3.38 fixes NotFound in .get() — remove .or('') to get: {#if cdi:versioned.get(docversion_index).index} !}
+{#if cdi:versioned.get(docversion_index.or('')).index}
+  {#include partials/index-docs.html docversion=docversion /}  
+{#else}
+  {#let data_source="guides-".concat(docversion.replace('.', '-'))}
+  {#include partials/index-guides.html source=data_source docversion=docversion /}  
+{/let}{/if}
+{/let}{/let}{/if}{/let}
