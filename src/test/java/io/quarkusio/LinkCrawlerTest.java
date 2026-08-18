@@ -375,6 +375,8 @@ public class LinkCrawlerTest extends BrowserTest {
     }
 
     private static BrokenImage checkImageUrl(String url) {
+        // TODO: Remove fallback to GET once Roq 2.1.8+ is released with HEAD support
+        // Try HEAD first, fallback to GET if HEAD returns 404/405
         for (int attempt = 0; attempt < 2; attempt++) {
             try (HttpClient client = HttpClient.newBuilder()
                     .followRedirects(HttpClient.Redirect.NORMAL)
@@ -387,6 +389,16 @@ public class LinkCrawlerTest extends BrowserTest {
                         .build();
                 HttpResponse<Void> response = client.send(request, HttpResponse.BodyHandlers.discarding());
                 int status = response.statusCode();
+                if (status == 404 || status == 405) {
+                    // Fallback to GET for servers that don't support HEAD
+                    request = HttpRequest.newBuilder()
+                            .uri(URI.create(url))
+                            .method("GET", HttpRequest.BodyPublishers.noBody())
+                            .timeout(Duration.ofSeconds(15))
+                            .build();
+                    response = client.send(request, HttpResponse.BodyHandlers.discarding());
+                    status = response.statusCode();
+                }
                 if (status >= 400) {
                     if (attempt == 0) {
                         continue;
@@ -405,24 +417,13 @@ public class LinkCrawlerTest extends BrowserTest {
     }
 
     private static BrokenLink checkExternalLink(String url) {
-        try (HttpClient client = HttpClient.newBuilder()
-                .followRedirects(HttpClient.Redirect.NORMAL)
-                .connectTimeout(Duration.ofSeconds(10))
-                .build()) {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(url))
-                    .method("HEAD", HttpRequest.BodyPublishers.noBody())
-                    .timeout(Duration.ofSeconds(15))
-                    .build();
-            HttpResponse<Void> response = client.send(request, HttpResponse.BodyHandlers.discarding());
-            int status = response.statusCode();
-            if (status >= 400) {
-                return new BrokenLink(status, "HTTP " + status, null);
-            }
-            return null;
-        } catch (Exception e) {
-            return new BrokenLink(0, e.getMessage(), null);
+        // TODO: Remove fallback to GET once Roq 2.1.8+ is released with HEAD support
+        // Try HEAD first, fallback to GET if HEAD returns 404/405
+        BrokenLink headResult = checkUrl(url, "HEAD");
+        if (headResult != null && (headResult.status == 404 || headResult.status == 405)) {
+            return checkUrl(url, "GET");
         }
+        return headResult;
     }
 
     private static final Pattern META_REFRESH_PATTERN = Pattern.compile(
@@ -485,13 +486,23 @@ public class LinkCrawlerTest extends BrowserTest {
             }
         }
 
+        // TODO: Remove fallback to GET once Roq 2.1.8+ is released with HEAD support
+        // Try HEAD first, fallback to GET if HEAD returns 404/405
+        BrokenLink headResult = checkUrl(url, "HEAD");
+        if (headResult != null && (headResult.status == 404 || headResult.status == 405)) {
+            return checkUrl(url, "GET");
+        }
+        return headResult;
+    }
+
+    private static BrokenLink checkUrl(String url, String method) {
         try (HttpClient client = HttpClient.newBuilder()
                 .followRedirects(HttpClient.Redirect.NORMAL)
                 .connectTimeout(Duration.ofSeconds(10))
                 .build()) {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(url))
-                    .method("HEAD", HttpRequest.BodyPublishers.noBody())
+                    .method(method, HttpRequest.BodyPublishers.noBody())
                     .timeout(Duration.ofSeconds(15))
                     .build();
             HttpResponse<Void> response = client.send(request, HttpResponse.BodyHandlers.discarding());
