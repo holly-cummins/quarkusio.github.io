@@ -13,7 +13,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 UPSTREAM_REPO="https://github.com/rolfedh/quarkus-roq.git"
-UPSTREAM_COMMIT="c52d3ec79f3d6dcb4ff57c495666b60bcd98bf94"
+UPSTREAM_COMMIT="d30c3175e034a3125e6d092980ca248d58ceee10"
 
 WORK_DIR=$(mktemp -d)
 trap 'rm -rf "$WORK_DIR"' EXIT
@@ -33,11 +33,6 @@ cp -r "$SRC/runtime/src/test/java/"* "$SCRIPT_DIR/runtime/src/test/java/"
 # Deployment sources
 mkdir -p "$SCRIPT_DIR/deployment/src/main/java"
 cp -r "$SRC/deployment/src/main/java/"* "$SCRIPT_DIR/deployment/src/main/java/"
-
-echo "Patching default TOC depth to match AsciiDoc :toclevels: default..."
-EXTENSION_FILE="$SCRIPT_DIR/runtime/src/main/java/io/quarkiverse/roq/plugin/toc/runtime/RoqPluginTocTemplateExtension.java"
-sed 's/getInteger("content-toc-levels", 6)/getInteger("content-toc-levels", page.data().getInteger("toclevels", 3))/' \
-  "$EXTENSION_FILE" > "$EXTENSION_FILE.tmp" && mv "$EXTENSION_FILE.tmp" "$EXTENSION_FILE"
 
 echo "Building and installing TOC plugin..."
 mvn -B install -f "$SCRIPT_DIR/pom.xml"
