@@ -47,7 +47,7 @@ These instructions will get you a copy of the Quarkus.io website up and running 
 docker compose up --force-recreate
 ```
 
-5. Now browse to [http://localhost:4000](http://localhost:4000).
+5. Now browse to [http://localhost:8042](http://localhost:8042).
 #### Using a local Ruby environment
 [Jekyll static site generator docs](https://jekyllrb.com/docs/).
 
@@ -79,7 +79,7 @@ docker compose up --force-recreate
    ```
 
 
-7. Now browse to http://localhost:4000
+7. Now browse to http://localhost:8042
 
 >[!NOTE]
 >If you encounter any unexpected errors during the above, please refer to the [troubleshooting](https://jekyllrb.com/docs/troubleshooting/#configuration-problems) page or the [requirements](https://jekyllrb.com/docs/installation/#requirements) page, as you might be missing development headers or other prerequisites.
