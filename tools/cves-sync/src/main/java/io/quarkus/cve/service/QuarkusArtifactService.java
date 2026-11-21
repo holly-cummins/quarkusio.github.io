@@ -226,11 +226,13 @@ public class QuarkusArtifactService {
         Log.log(1, "GitHub Advisory: %d additional CVEs not in OSV "
                         + "(%d packages in %d requests: %d cached, %d unchanged (304), %d downloaded, %d stale/unavailable)",
                 ghNew, sorted.size(), batches, gh.fresh, gh.notModified, gh.downloaded, gh.stale + gh.unavailable);
-        if (gh.halted) {
-            Log.warn("GitHub rate limit reached - %d request(s) of %d packages each were not made against GitHub%s. "
-                            + "Set GITHUB_TOKEN for a 5,000 req/hour limit.",
-                    gh.unavailable, GH_PACKAGES_PER_REQUEST,
-                    gh.stale > 0 ? " (" + gh.stale + " used older cached data)" : "");
+        if (gh.stale + gh.unavailable > 0) {
+            // GitHub is the source for CVEs OSV has not ingested yet, so a gap here can hide a recent CVE
+            Log.warn("GitHub Advisory: %d of %d requests (of %d packages each) could not be made%s: %d used older cached data, "
+                            + "%d have no data",
+                    gh.stale + gh.unavailable, batches, GH_PACKAGES_PER_REQUEST,
+                    gh.halted ? " (rate limit reached; set GITHUB_TOKEN for 5,000 req/hour)" : "",
+                    gh.stale, gh.unavailable);
         }
 
         return new ArrayList<>(merged.values());
@@ -304,6 +306,8 @@ public class QuarkusArtifactService {
     /** Returns vulnerability id -> modified timestamp for every package given. */
     private Map<String, String> queryOsvIds(List<String> packageNames) {
         Map<String, String> seen = new LinkedHashMap<>();
+        int failedBatches = 0;
+        int failedQueries = 0;
         int total   = packageNames.size();
         int batches = (int) Math.ceil((double) total / OSV_BATCH_SIZE);
 
@@ -329,6 +333,7 @@ public class QuarkusArtifactService {
             } catch (Exception ex) {
                 // Fallback: individual queries
                 Log.error(1, "OSV batch " + (b + 1) + " failed, falling back to individual queries", ex);
+                failedBatches++;
                 int n = 0;
                 for (OsvQueryRequest req : reqs) {
                     Log.log(3, "OSV single query %d/%d", ++n, reqs.size());
@@ -336,9 +341,15 @@ public class QuarkusArtifactService {
                         collect(Retry.call("OSV query", () -> osvApiClient.query(req)), seen);
                     } catch (Exception e2) {
                         Log.error(2, "OSV single query failed", e2);
+                        failedQueries++;
                     }
                 }
             }
+        }
+        if (failedQueries > 0) {
+            // A package whose query failed has no advisories here, which would read as "no CVEs".
+            Log.warn("%d OSV package queries failed (in %d failed batches); their advisories are missing from the results",
+                    failedQueries, failedBatches);
         }
         return seen;
     }
@@ -394,6 +405,9 @@ public class QuarkusArtifactService {
         if (stats.failed.get() > 0) {
             Log.warn("%d OSV record(s) could not be loaded and are missing from the results (use -vv for details)",
                     stats.failed.get());
+        }
+        if (stats.stale.get() > 0) {
+            Log.warn("%d OSV record(s) could not be refreshed; older cached copies were used", stats.stale.get());
         }
         return out;
     }

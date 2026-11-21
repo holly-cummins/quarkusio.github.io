@@ -38,6 +38,10 @@ jobs:
 
       - uses: jbangdev/setup-jbang@2b1b465a7b75f4222b81426f23a01e013aa7b95c # v0.1.1
 
+      - name: Test cve-util
+        working-directory: tools/cves-sync
+        run: mvn -B -ntp test
+
       # The cve-util cache (Quarkus platform BOMs, OSV records, GitHub advisory ETags) is what makes
       # a run fast: a cold run downloads ~40 MB and makes ~1,200 requests, a warm one a few dozen.
       # Everything in it is validated by the tool before use (BOM POMs are immutable, OSV records are

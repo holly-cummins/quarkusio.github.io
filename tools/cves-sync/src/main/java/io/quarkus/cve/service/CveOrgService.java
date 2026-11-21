@@ -78,7 +78,7 @@ public class CveOrgService {
             if (r.isPresent()) records.add(r.get());
             else skipped++;
         }
-        if (skipped > 0) Log.log(1, "cve.org: %d candidate records could not be read", skipped);
+        if (skipped > 0) Log.log(1, "cve.org: %d candidate records were not available", skipped);
         return select(records, managed, alreadyKnown);
     }
 
@@ -199,7 +199,13 @@ public class CveOrgService {
                 Log.log(3, "cve.org %s: using stale cache (%s)", id, stale.get().ageText());
                 return Optional.of(stale.get().data());
             }
-            Log.log(1, "cve.org %s: not available (%s)", id, status != -1 ? "HTTP " + status : ex.getMessage());
+            String why = status != -1 ? "HTTP " + status : ex.getMessage();
+            if (status == 404) {
+                Log.log(1, "cve.org %s: no such record", id); // listed in the mirror but not (or no longer) published
+            } else {
+                // not knowing a candidate record means a pending CVE may be missing
+                Log.warn("cve.org %s: could not be read (%s); it is left out", id, why);
+            }
             return Optional.empty();
         }
     }
