@@ -89,10 +89,10 @@ class ReleaseTimelineFactoryTest {
                         + "                {\"version\": \"0.2\"")));
         Timeline t = withOld.supportView(TODAY);
         assertTrue(t.rows().stream().anyMatch(r -> r.id().equals("1.0")));
-        assertEquals(List.of("open-ended"), kinds(row(t, "1.0")));
+        assertEquals(List.of("never-ending"), kinds(row(t, "1.0")));
         assertEquals(LocalDate.of(2025, 3, 1), t.scale().start());
         // the full view still draws its community bar
-        assertEquals(List.of("community", "open-ended"), kinds(row(withOld.fullView(TODAY), "1.0")));
+        assertEquals(List.of("community", "never-ending"), kinds(row(withOld.fullView(TODAY), "1.0")));
     }
 
     @Test
@@ -107,13 +107,14 @@ class ReleaseTimelineFactoryTest {
         assertEquals("ibm", ibmOpenEnded.variant());
         assertEquals(LocalDate.of(2028, 6, 30), ibmOpenEnded.start());
         // 3.20: community, Red Hat, HeroDevs never-ending
-        assertEquals(List.of("community", "enterprise", "open-ended"), kinds(row(t, "3.20")));
+        assertEquals(List.of("community", "enterprise", "never-ending"), kinds(row(t, "3.20")));
         assertEquals("herodevs", row(t, "3.20").segments().get(2).variant());
         assertTrue(row(t, "3.20").segments().get(2).openEnded());
-        // each vendor's name for support with no end date, under one legend key
+        // each vendor's own term for support with no end date, with its own legend key
         assertEquals("Quarkus 3.33: IBM open-ended support", ibmOpenEnded.title());
         assertEquals("Quarkus 3.20: HeroDevs never-ending support", row(t, "3.20").segments().get(2).title());
-        assertTrue(factory.legend().stream().anyMatch(i -> i.key().equals("open-ended") && i.label().equals("EOL Patches")));
+        assertTrue(factory.legend().stream().anyMatch(i -> i.key().equals("open-ended") && i.label().equals("Open-ended support")));
+        assertTrue(factory.legend().stream().anyMatch(i -> i.key().equals("never-ending") && i.label().equals("Never-ending support")));
     }
 
     @Test
